@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Planning Challenge | SOC-213 Family Sociology Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #9b59b6;
+            --primary-dark: #8e44ad;
+            --secondary: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --navy: #2c3e50;
+            --gray-light: #ecf0f1;
+            --text-dark: #34495e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--navy) 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.1em; opacity: 0.95; }
+
+        .content {
+            padding: 40px;
+        }
+
+        .welcome-section {
+            margin-bottom: 30px;
+        }
+
+        .welcome-section h2 {
+            color: var(--navy);
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .welcome-section p {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .info-box {
+            background: #f0f8ff;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .info-box h3 {
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: var(--text-dark);
+        }
+
+        .info-box li {
+            margin: 8px 0;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .module-card {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(155, 89, 182, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .module-card.completed {
+            background: #d4edda;
+            border-color: var(--success);
+        }
+
+        .module-card.current {
+            background: #fff3cd;
+            border-color: var(--warning);
+        }
+
+        .module-number {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin: 0 auto 15px auto;
+        }
+
+        .module-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .module-status {
+            font-size: 0.85em;
+            color: #7f8c8d;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .game-section {
+            display: none;
+        }
+
+        .game-section.active {
+            display: block;
+        }
+
+        .question-group {
+            margin: 25px 0;
+        }
+
+        .question-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: var(--gray-light);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-label:hover {
+            background: #e8f4f8;
+            border-color: var(--primary);
+        }
+
+        .option-label input[type="radio"],
+        .option-label input[type="checkbox"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .character-profile {
+            background: linear-gradient(135deg, #f8f3ff 0%, #fff 100%);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .profile-item {
+            margin: 12px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+        }
+
+        .profile-label {
+            font-weight: 600;
+            color: var(--navy);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .profile-value {
+            color: var(--text-dark);
+        }
+
+        .export-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f0f8ff;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border-left: 4px solid #0c5460;
+            color: #0c5460;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-left: 4px solid #155724;
+            color: #155724;
+        }
+
+        .footer {
+            background: var(--navy);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .content { padding: 25px; }
+            .module-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Life Planning Challenge</h1>
+            <p>An Interactive Family Sociology Simulation</p>
+        </div>
+
+        <!-- WELCOME SECTION -->
+        <div id="welcome" class="content game-section active">
+            <div class="welcome-section">
+                <h2>Welcome to the Life Planning Challenge!</h2>
+                <p>
+                    This interactive simulation is part of your SOC-213 (Sociology of the Family) course.
+                    Over the next 8 modules, you'll make sequential life decisions about education, career,
+                    relationships, family formation, and finances—and experience how choices in one domain
+                    cascade through all others.
+                </p>
+                <p>
+                    <strong>This isn't a test.</strong> There are no "right" or "wrong" decisions. The goal is to
+                    demonstrate how family is an interconnected system shaped by structural forces, not just personal choices.
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 Learning Goals</h3>
+                <ul>
+                    <li>Experience how family decisions are interconnected systems</li>
+                    <li>Understand how structural forces (economics, gender, education) constrain choices</li>
+                    <li>Recognize life course perspective: early decisions affect later options</li>
+                    <li>Build empathy for diverse family forms and experiences</li>
+                    <li>Develop systems thinking about family sociology</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>💾 Saving Your Progress</h3>
+                <p>
+                    Your game progress saves automatically to your browser. You can:
+                </p>
+                <ul>
+                    <li><strong>Play across multiple sessions:</strong> Close and return anytime</li>
+                    <li><strong>Export your data:</strong> Download a summary at any time (required for Canvas assignments!)</li>
+                    <li><strong>Replay modules:</strong> Try different paths to see different outcomes</li>
+                </ul>
+                <p style="margin-top: 10px; color: var(--secondary); font-weight: 600;">
+                    ⚠️ Important: Always export your game summary before submitting Canvas assignments!
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 How It Works</h3>
+                <ul>
+                    <li><strong>8 Modules:</strong> Each corresponds to a course module</li>
+                    <li><strong>15-25 minutes per module:</strong> Take your time with decisions</li>
+                    <li><strong>Consequences cascade:</strong> Early choices affect later options</li>
+                    <li><strong>Export after each module:</strong> You'll upload summaries to Canvas for reflection assignments</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-primary" onclick="startGame()">Begin Module 1: Character Creation →</button>
+            </div>
+        </div>
+
+        <!-- MODULE SELECTION HUB -->
+        <div id="moduleHub" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 25px;">Module Hub</h2>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="overallProgress" style="width: 0%;"></div>
+            </div>
+
+            <p style="margin-bottom: 25px; color: var(--text-dark);">
+                Progress: <strong id="progressText">0/8 modules completed</strong>
+            </p>
+
+            <div class="module-grid" id="moduleGrid">
+                <!-- Modules will be populated by JavaScript -->
+            </div>
+
+            <div class="export-section">
+                <h3 style="color: var(--navy); margin-bottom: 15px;">📥 Export Your Game Data</h3>
+                <p style="color: var(--text-dark); margin-bottom: 15px;">
+                    Download a complete summary of all your decisions and outcomes. You'll need this for Canvas assignments.
+                </p>
+                <div class="export-buttons">
+                    <button class="btn btn-success" onclick="exportData('text')">📄 Export as Text</button>
+                    <button class="btn btn-success" onclick="exportData('json')">💾 Export as JSON</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 1: CHARACTER CREATION -->
+        <div id="module1" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 1: Character Creation & Values</h2>
+
+            <div class="alert alert-info">
+                <strong>⏱️ Time:</strong> 15-20 minutes |
+                <strong>📚 Connect to:</strong> Hammond Chapters 1-3
+            </div>
+
+            <p style="margin-bottom: 25px; color: var(--text-dark);">
+                Let's create your character by reflecting on your family background, values, and life priorities.
+                Your responses will shape your starting point for the rest of the game.
+            </p>
+
+            <div class="question-group">
+                <label>1. What was most important in your family growing up?</label>
+                <div class="options">
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="financial_security">
+                        <span>Financial security / Stability</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="relationships">
+                        <span>Close relationships / Time together</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="achievement">
+                        <span>Personal achievement / Ambition</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="community">
+                        <span>Community service / Helping others</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="balance">
+                        <span>Balance between all of these</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label>2. What did your parents' work-family balance look like?</label>
+                <div class="options">
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="both_fulltime">
+                        <span>Both worked full-time</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="one_worked">
+                        <span>One worked, one stayed home</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="both_parttime">
+                        <span>Both worked part-time / flexible</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="varied">
+                        <span>Varied / Changed over time</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label>3. What's your relationship with money growing up?</label>
+                <div class="options">
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="tight">
+                        <span>Resources were always tight</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="budget">
+                        <span>We had enough but had to budget</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="comfortable">
+                        <span>We were comfortable</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="no_concern">
+                        <span>Money wasn't really a concern</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label>4. What does your "ideal life" look like at age 35? (Write 2-3 sentences)</label>
+                <textarea id="idealLife" placeholder="Describe your ideal life at age 35..."></textarea>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <button class="btn btn-primary" onclick="completeModule1()">Create My Character →</button>
+            </div>
+        </div>
+
+        <!-- MODULE 2: EDUCATION & CAREER -->
+        <div id="module2" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 2: Education & Career Path</h2>
+
+            <div class="alert alert-info">
+                <strong>⏱️ Time:</strong> 20 minutes |
+                <strong>📚 Connect to:</strong> Hammond Chapter 4 (Gender & Socialization)
+            </div>
+
+            <p style="margin-bottom: 25px; color: var(--text-dark);">
+                You're 22 years old. It's time to make education and career decisions. These choices will
+                shape your income, flexibility, and when you can afford to form a family.
+            </p>
+
+            <div class="question-group">
+                <label>5. Education Path: What level of education will you pursue?</label>
+                <div class="options">
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="four_year">
+                        <span><strong>4-Year Degree:</strong> Higher income potential, more student debt, delayed family formation (complete by age 24-25)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="two_year">
+                        <span><strong>2-Year Degree:</strong> Good jobs, moderate debt, sooner career start (complete by age 23)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="certificate">
+                        <span><strong>Certificate Program:</strong> Fast employment, low debt, practical skills (complete by age 22-23)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="workforce">
+                        <span><strong>Enter Workforce Now:</strong> Immediate income, no more school, limited advancement</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group" id="careerFieldGroup">
+                <label>6. Career Field: What area interests you?</label>
+                <div class="options">
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="healthcare">
+                        <span><strong>Healthcare:</strong> Nursing, medical tech (stable demand, moderate flexibility)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="business">
+                        <span><strong>Business:</strong> Management, accounting (advancement potential, varied hours)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="education">
+                        <span><strong>Education:</strong> Teaching (family-friendly schedule, moderate pay)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="trades">
+                        <span><strong>Skilled Trades:</strong> Plumbing, electrical (good pay, physical work)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="technology">
+                        <span><strong>Technology:</strong> IT, software (high pay, flexible work)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <button class="btn btn-primary" onclick="completeModule2()">Finalize Education & Career →</button>
+            </div>
+        </div>
+
+        <!-- MODULE 3-8 PLACEHOLDERS -->
+        <div id="module3" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 3: Love, Intimacy & Communication</h2>
+            <div class="alert alert-info">
+                <strong>Coming Soon:</strong> This module will be available in the full game version.
+                For now, you can still export your progress from Modules 1-2.
+            </div>
+            <button class="btn btn-secondary" onclick="showModuleHub()">← Return to Module Hub</button>
+        </div>
+
+        <div id="module4" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 4: Sexuality & Mate Selection</h2>
+            <div class="alert alert-info">
+                <strong>Coming Soon:</strong> This module will be available in the full game version.
+            </div>
+            <button class="btn btn-secondary" onclick="showModuleHub()">← Return to Module Hub</button>
+        </div>
+
+        <div id="module5" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 5: Marriage & Partnership</h2>
+            <div class="alert alert-info">
+                <strong>Coming Soon:</strong> This module will be available in the full game version.
+            </div>
+            <button class="btn btn-secondary" onclick="showModuleHub()">← Return to Module Hub</button>
+        </div>
+
+        <div id="module6" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 6: Parenthood & Work-Family Balance</h2>
+            <div class="alert alert-info">
+                <strong>Coming Soon:</strong> This module will be available in the full game version.
+            </div>
+            <button class="btn btn-secondary" onclick="showModuleHub()">← Return to Module Hub</button>
+        </div>
+
+        <div id="module7" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 7: Family Challenges & Transitions</h2>
+            <div class="alert alert-info">
+                <strong>Coming Soon:</strong> This module will be available in the full game version.
+            </div>
+            <button class="btn btn-secondary" onclick="showModuleHub()">← Return to Module Hub</button>
+        </div>
+
+        <div id="module8" class="content game-section">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 8: Systems Reflection</h2>
+            <div class="alert alert-info">
+                <strong>Coming Soon:</strong> This module will be available in the full game version.
+            </div>
+            <button class="btn btn-secondary" onclick="showModuleHub()">← Return to Module Hub</button>
+        </div>
+
+        <div class="footer">
+            <p><strong>Life Planning Challenge</strong> | Part of SOC-213: Sociology of the Family</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Built for FTCC | Free & Open Educational Resource</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">Your data stays in your browser. We don't collect anything.</p>
+        </div>
+    </div>
+
+    <script>
+        // Game state management
+        let gameState = {
+            currentModule: 0,
+            modulesCompleted: [],
+            characterData: {},
+            startedAt: null,
+            lastUpdated: null
+        };
+
+        // Load saved state from localStorage
+        function loadGameState() {
+            const saved = localStorage.getItem('lifePlanningGame');
+            if (saved) {
+                gameState = JSON.parse(saved);
+                console.log('Loaded game state:', gameState);
+            } else {
+                gameState.startedAt = new Date().toISOString();
+            }
+        }
+
+        // Save state to localStorage
+        function saveGameState() {
+            gameState.lastUpdated = new Date().toISOString();
+            localStorage.setItem('lifePlanningGame', JSON.stringify(gameState));
+            console.log('Saved game state');
+        }
+
+        // Initialize game
+        function initGame() {
+            loadGameState();
+
+            if (gameState.modulesCompleted.length > 0) {
+                showModuleHub();
+            }
+        }
+
+        // Show specific section
+        function showSection(sectionId) {
+            document.querySelectorAll('.game-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Start game
+        function startGame() {
+            showSection('module1');
+        }
+
+        // Show module hub
+        function showModuleHub() {
+            populateModuleHub();
+            showSection('moduleHub');
+        }
+
+        // Populate module hub
+        function populateModuleHub() {
+            const modules = [
+                { num: 1, title: "Character Creation", icon: "👤" },
+                { num: 2, title: "Education & Career", icon: "🎓" },
+                { num: 3, title: "Love & Communication", icon: "💬" },
+                { num: 4, title: "Mate Selection", icon: "💑" },
+                { num: 5, title: "Marriage & Partnership", icon: "💍" },
+                { num: 6, title: "Parenthood & Balance", icon: "👶" },
+                { num: 7, title: "Family Challenges", icon: "⚡" },
+                { num: 8, title: "Systems Reflection", icon: "🔄" }
+            ];
+
+            const grid = document.getElementById('moduleGrid');
+            grid.innerHTML = '';
+
+            modules.forEach(module => {
+                const completed = gameState.modulesCompleted.includes(module.num);
+                const current = gameState.currentModule === module.num;
+                const available = module.num <= 2 || completed; // Only modules 1-2 available in MVP
+
+                const card = document.createElement('div');
+                card.className = `module-card ${completed ? 'completed' : ''} ${current ? 'current' : ''}`;
+                if (!available) {
+                    card.style.opacity = '0.5';
+                    card.style.cursor = 'not-allowed';
+                }
+
+                card.innerHTML = `
+                    <div class="module-number">${module.num}</div>
+                    <div class="module-title">${module.icon} ${module.title}</div>
+                    <div class="module-status">
+                        ${completed ? '✅ Completed' : available ? '▶️ Available' : '🔒 Locked'}
+                    </div>
+                `;
+
+                if (available && !completed) {
+                    card.onclick = () => showSection(`module${module.num}`);
+                } else if (completed) {
+                    card.onclick = () => showSection(`module${module.num}`);
+                }
+
+                grid.appendChild(card);
+            });
+
+            // Update progress
+            const completedCount = gameState.modulesCompleted.length;
+            document.getElementById('progressText').textContent = `${completedCount}/8 modules completed`;
+            document.getElementById('overallProgress').style.width = `${(completedCount / 8) * 100}%`;
+        }
+
+        // Complete Module 1
+        function completeModule1() {
+            // Validate all questions answered
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            const idealLife = document.getElementById('idealLife').value;
+
+            if (!q1 || !q2 || !q3 || !idealLife.trim()) {
+                alert('Please answer all questions before continuing.');
+                return;
+            }
+
+            // Save character data
+            gameState.characterData.familyValues = q1.value;
+            gameState.characterData.parentsWork = q2.value;
+            gameState.characterData.moneyRelationship = q3.value;
+            gameState.characterData.idealLife = idealLife;
+
+            // Mark module complete
+            if (!gameState.modulesCompleted.includes(1)) {
+                gameState.modulesCompleted.push(1);
+            }
+            gameState.currentModule = 2;
+
+            saveGameState();
+
+            // Show success and module 2
+            alert('✅ Character created! Moving to Module 2: Education & Career');
+            showSection('module2');
+        }
+
+        // Complete Module 2
+        function completeModule2() {
+            // Validate
+            const q5 = document.querySelector('input[name="q5"]:checked');
+            const q6 = document.querySelector('input[name="q6"]:checked');
+
+            if (!q5 || !q6) {
+                alert('Please answer all questions before continuing.');
+                return;
+            }
+
+            // Save data
+            gameState.characterData.educationPath = q5.value;
+            gameState.characterData.careerField = q6.value;
+
+            // Mark complete
+            if (!gameState.modulesCompleted.includes(2)) {
+                gameState.modulesCompleted.push(2);
+            }
+            gameState.currentModule = 3;
+
+            saveGameState();
+
+            alert('✅ Module 2 complete! Remember to export your data for your Canvas reflection assignment.');
+            showModuleHub();
+        }
+
+        // Export data
+        function exportData(format) {
+            if (gameState.modulesCompleted.length === 0) {
+                alert('Complete at least one module before exporting!');
+                return;
+            }
+
+            if (format === 'text') {
+                exportText();
+            } else if (format === 'json') {
+                exportJSON();
+            }
+        }
+
+        function exportText() {
+            let text = '=== LIFE PLANNING CHALLENGE - GAME SUMMARY ===\n\n';
+            text += `Export Date: ${new Date().toLocaleString()}\n`;
+            text += `Started: ${new Date(gameState.startedAt).toLocaleString()}\n`;
+            text += `Modules Completed: ${gameState.modulesCompleted.length}/8\n\n`;
+
+            text += '--- CHARACTER PROFILE ---\n';
+            if (gameState.characterData.familyValues) {
+                text += `Family Values: ${gameState.characterData.familyValues}\n`;
+            }
+            if (gameState.characterData.parentsWork) {
+                text += `Parents' Work Pattern: ${gameState.characterData.parentsWork}\n`;
+            }
+            if (gameState.characterData.moneyRelationship) {
+                text += `Money Relationship: ${gameState.characterData.moneyRelationship}\n`;
+            }
+            if (gameState.characterData.idealLife) {
+                text += `Ideal Life at 35: ${gameState.characterData.idealLife}\n`;
+            }
+
+            if (gameState.characterData.educationPath) {
+                text += `\n--- EDUCATION & CAREER ---\n`;
+                text += `Education Path: ${gameState.characterData.educationPath}\n`;
+                text += `Career Field: ${gameState.characterData.careerField}\n`;
+            }
+
+            text += '\n\n=== END OF SUMMARY ===\n';
+            text += '\nUse this summary for your Canvas reflection assignment.\n';
+            text += 'Connect your game experience to sociological concepts from the Hammond textbook.\n';
+
+            // Download
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `LifePlanningGame_${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert('✅ Game summary downloaded! Upload this to your Canvas reflection assignment.');
+        }
+
+        function exportJSON() {
+            const data = {
+                exportDate: new Date().toISOString(),
+                gameState: gameState
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `LifePlanningGame_${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert('✅ JSON data downloaded!');
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
