@@ -306,6 +306,23 @@
             margin-top: 15px;
         }
 
+        .btn-print {
+            background: #e74c3c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-print:hover {
+            background: #c0392b;
+        }
+
+        @media print {
+            body * { visibility: hidden; }
+            #printable, #printable * { visibility: visible; }
+            #printable { position: absolute; left: 0; top: 0; width: 100%; }
+            .no-print { display: none !important; }
+        }
+
         .alert {
             padding: 15px 20px;
             border-radius: 8px;
@@ -423,7 +440,16 @@
                 <p style="color: var(--text-dark); margin-bottom: 15px;">
                     Download a complete summary of all your decisions and outcomes. You'll need this for Canvas assignments.
                 </p>
+                <div class="alert alert-info" style="margin-bottom: 15px;">
+                    <strong>IMPORTANT:</strong> Save your game data BEFORE closing your browser! Choose either:
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li><strong>Print to PDF</strong> - Most reliable method. Works on all devices.</li>
+                        <li><strong>Export as Text</strong> - Download a text file you can upload to Canvas.</li>
+                        <li><strong>Export as JSON</strong> - Technical format for advanced users.</li>
+                    </ul>
+                </div>
                 <div class="export-buttons">
+                    <button class="btn btn-print" onclick="printToPDF()">🖨️ Print to PDF (Recommended)</button>
                     <button class="btn btn-success" onclick="exportData('text')">📄 Export as Text</button>
                     <button class="btn btn-success" onclick="exportData('json')">💾 Export as JSON</button>
                 </div>
@@ -1493,7 +1519,7 @@
 
             saveGameState();
 
-            alert('✅ Module 2 complete! Remember to export your data for your Canvas reflection assignment.');
+            alert('✅ Module 2 complete! \n\nREMEMBER: Export your game data now for your Canvas assignment!\n\nClick "Print to PDF" on the next screen.');
             showModuleHub();
         }
 
@@ -2082,6 +2108,189 @@
             URL.revokeObjectURL(url);
 
             alert('✅ JSON data downloaded!');
+        }
+
+        // Print to PDF function
+        function printToPDF() {
+            if (gameState.modulesCompleted.length === 0) {
+                alert('Complete at least one module before printing!');
+                return;
+            }
+
+            // Create printable content
+            const profile = gameState.characterData;
+            let printContent = `
+                <div id="printable" style="font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto;">
+                    <div style="text-align: center; margin-bottom: 30px; border-bottom: 3px solid #9b59b6; padding-bottom: 20px;">
+                        <h1 style="color: #2c3e50; margin-bottom: 10px;">Life Planning Challenge Game Report</h1>
+                        <p style="color: #7f8c8d; font-size: 14px;">Student Name: _________________________________</p>
+                        <p style="color: #7f8c8d; font-size: 14px;">Export Date: ${new Date().toLocaleString()}</p>
+                        <p style="color: #7f8c8d; font-size: 14px;">Modules Completed: ${gameState.modulesCompleted.length}/8</p>
+                    </div>
+            `;
+
+            // Add comprehensive game summary
+            printContent += generatePrintSummary();
+
+            printContent += `
+                    <div style="margin-top: 40px; padding: 20px; background: #f0f8ff; border-left: 4px solid #9b59b6;">
+                        <h3 style="color: #2c3e50;">Instructions for Canvas Submission:</h3>
+                        <ol style="line-height: 1.8; color: #34495e;">
+                            <li>Save this PDF with your name (e.g., "YourName_LifePlanningGame_Module${gameState.modulesCompleted.length}.pdf")</li>
+                            <li>Upload to the corresponding Canvas assignment</li>
+                            <li>Write your reflection connecting your game choices to course concepts</li>
+                            <li>Cite specific decisions from this report in your reflection</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 30px; text-align: center; color: #7f8c8d; font-size: 12px;">
+                        <p>Life Planning Challenge | SOC-213 Sociology of the Family | FTCC</p>
+                        <p>This data is saved in your browser. Keep this PDF for your records.</p>
+                    </div>
+                </div>
+            `;
+
+            // Create temporary container
+            const printContainer = document.createElement('div');
+            printContainer.innerHTML = printContent;
+            printContainer.id = 'printable';
+            document.body.appendChild(printContainer);
+
+            // Trigger print dialog
+            window.print();
+
+            // Clean up
+            setTimeout(() => {
+                document.body.removeChild(printContainer);
+            }, 1000);
+        }
+
+        // Generate comprehensive print summary
+        function generatePrintSummary() {
+            const profile = gameState.characterData;
+            let html = '';
+
+            if (profile.familyValues) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Module 1: Character Creation</h2>
+                        <p><strong>Family Values Growing Up:</strong> ${formatValue(profile.familyValues)}</p>
+                        <p><strong>Parents' Work Pattern:</strong> ${formatValue(profile.parentsWork)}</p>
+                        <p><strong>Money Relationship:</strong> ${formatValue(profile.moneyRelationship)}</p>
+                        <p><strong>Ideal Life at 35:</strong> ${profile.idealLife}</p>
+                    </div>
+                `;
+            }
+
+            if (profile.educationPath) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Module 2: Education & Career</h2>
+                        <p><strong>Education Path:</strong> ${formatValue(profile.educationPath)}</p>
+                        <p><strong>Career Field:</strong> ${formatValue(profile.careerField)}</p>
+                    </div>
+                `;
+            }
+
+            if (profile.communicationStyle) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Module 3: Communication & Relationships</h2>
+                        <p><strong>Communication Score:</strong> ${profile.communicationStyle.score}/8</p>
+                        <p><strong>Relationship Status:</strong> ${formatValue(profile.relationshipStatus)}</p>
+                        <p><strong>Conflict Resolution Style:</strong> ${formatValue(profile.communicationStyle.conflict)}</p>
+                        <p><strong>Emotional Labor:</strong> ${formatValue(profile.communicationStyle.emotionalLabor)}</p>
+                    </div>
+                `;
+            }
+
+            if (profile.partnerCompatibility) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Module 4: Mate Selection & Compatibility</h2>
+                        <p><strong>Compatibility Score:</strong> ${profile.partnerCompatibility.compatibilityScore}/10</p>
+                        <p><strong>Educational Homogamy:</strong> ${formatValue(profile.partnerCompatibility.education)}</p>
+                        <p><strong>Values Alignment:</strong> ${formatValue(profile.partnerCompatibility.values)}</p>
+                        <p><strong>Children Agreement:</strong> ${formatValue(profile.partnerCompatibility.children)}</p>
+                    </div>
+                `;
+            }
+
+            if (profile.partnership) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Module 5: Partnership Formation</h2>
+                        <p><strong>Partnership Type:</strong> ${formatValue(profile.partnership.type)}</p>
+                        <p><strong>Financial Arrangement:</strong> ${formatValue(profile.partnership.finances)}</p>
+                        <p><strong>Legal Protections:</strong> ${formatValue(profile.partnership.legalProtection)}</p>
+                    </div>
+                `;
+            }
+
+            if (profile.parenthoodDecision) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Module 6: Parenthood & Work-Family Balance</h2>
+                        <p><strong>Parenthood Decision:</strong> ${formatValue(profile.parenthoodDecision)}</p>
+                `;
+                if (profile.workFamilyBalance) {
+                    html += `
+                        <p><strong>Childcare:</strong> ${formatValue(profile.workFamilyBalance.childcare)}</p>
+                        <p><strong>Monthly Cost:</strong> $${profile.workFamilyBalance.childcareCost}</p>
+                        <p><strong>Work Arrangement:</strong> ${formatValue(profile.workFamilyBalance.workArrangement)}</p>
+                        <p><strong>Stress Level:</strong> ${formatValue(profile.workFamilyBalance.stressLevel)}</p>
+                    `;
+                }
+                html += `</div>`;
+            }
+
+            if (profile.crisisResponse) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Module 7: Family Challenges & Resilience</h2>
+                        <p><strong>Crisis Type:</strong> ${formatValue(profile.crisisResponse.crisisType)}</p>
+                        <p><strong>Immediate Response:</strong> ${formatValue(profile.crisisResponse.immediateResponse)}</p>
+                        <p><strong>Support Systems:</strong> ${profile.crisisResponse.supportSystems.map(s => formatValue(s)).join(', ')}</p>
+                        <p><strong>Resilience Score:</strong> ${profile.crisisResponse.resilienceScore}/8</p>
+                    </div>
+                `;
+            }
+
+            if (profile.finalReflection) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Module 8: Systems Reflection</h2>
+                        <p><strong>Biggest Impact Decision:</strong> ${formatValue(profile.finalReflection.biggestImpact)}</p>
+                        <p><strong>Structural Constraints:</strong> ${profile.finalReflection.structuralConstraints.map(c => formatValue(c)).join(', ')}</p>
+                        <div style="margin-top: 15px;">
+                            <p><strong>What Surprised You:</strong></p>
+                            <p style="margin-left: 20px; font-style: italic;">${profile.finalReflection.surprises}</p>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <p><strong>Family Understanding Evolution:</strong></p>
+                            <p style="margin-left: 20px; font-style: italic;">${profile.finalReflection.familyUnderstanding}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return html;
+        }
+
+        // Add module completion reminders
+        function showModuleCompletionReminder(moduleNum) {
+            const reminder = `
+                <div style="background: #fff3cd; border: 2px solid #f39c12; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h3 style="color: #856404; margin-bottom: 10px;">Module ${moduleNum} Complete - Don't Forget to Save!</h3>
+                    <p style="color: #856404; margin-bottom: 15px;"><strong>IMPORTANT:</strong> Before returning to Canvas, you MUST export your game data!</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn btn-print" onclick="printToPDF()">Print to PDF (Recommended)</button>
+                        <button class="btn btn-success" onclick="exportData('text')">Export as Text</button>
+                        <button class="btn btn-secondary" onclick="showModuleHub()">Return to Module Hub</button>
+                    </div>
+                </div>
+            `;
+            return reminder;
         }
 
         // Initialize on load
