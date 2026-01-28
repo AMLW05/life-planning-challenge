@@ -626,95 +626,82 @@
 
         <!-- MODULE 1: CHARACTER CREATION -->
         <div id="module1" class="content game-section">
-            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 1: Character Creation & Values</h2>
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 1: Family Origins & Starting Point</h2>
 
             <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 15-20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapters 1-3
+                <strong>⏱️ Time:</strong> 20 minutes |
+                <strong>📚 Connect to:</strong> Hammond Chapter 1 (What IS Family?)
+            </div>
+
+            <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
+                <strong>🎯 Decision-Making Framework</strong><br>
+                Sociology teaches us that <span class="glossary-term" data-term="kinship">kinship<span class="glossary-tooltip"><strong>Kinship</strong><br>The social relationships and obligations among people considered related, whether by blood (consanguineal), marriage (affinal), or choice.<br><em>Hammond Ch. 1</em></span></span> and family structures shape our opportunities and constraints. Your character's family background will affect their resources, networks, and assumptions about "normal" family life. <strong>There are no "right" answers</strong>—all family forms have strengths and challenges.
             </div>
 
             <p style="margin-bottom: 25px; color: var(--text-dark);">
-                Let's create your character by reflecting on your family background, values, and life priorities.
-                Your responses will shape your starting point for the rest of the game.
+                You're 18 years old and about to launch into adulthood. Your family background has shaped your values, resources, and worldview. These decisions establish your character's <strong>starting resources</strong> for the rest of the simulation.
             </p>
 
             <div class="question-group">
-                <label>1. What was most important in your family growing up?</label>
+                <label><strong>DECISION 1:</strong> What family structure did you grow up in?</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    Family structure affects economic resources, social capital, and caregiving models. Each form has both advantages and constraints.
+                </p>
                 <div class="options">
                     <label class="option-label">
-                        <input type="radio" name="q1" value="financial_security">
-                        <span>Financial security / Stability</span>
+                        <input type="radio" name="q1" value="nuclear_traditional">
+                        <span><strong><span class="glossary-term" data-term="nuclear-family">Nuclear Family<span class="glossary-tooltip"><strong>Nuclear Family</strong><br>A family unit consisting of two parents and their biological or adopted children living in one household.<br><em>Hammond Ch. 1</em></span></span> (Two Parents + Children):</strong> Stable income from dual earners, but limited extended family support. Strong parental involvement, but isolated if parents struggle. May have access to employer benefits and mortgage/credit advantages. Reflects idealized 1950s model—common but not universal.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q1" value="relationships">
-                        <span>Close relationships / Time together</span>
+                        <input type="radio" name="q1" value="extended_multigenerational">
+                        <span><strong><span class="glossary-term" data-term="extended-family">Extended Family<span class="glossary-tooltip"><strong>Extended Family</strong><br>A family structure including multiple generations (grandparents, aunts, uncles, cousins) living together or in close proximity with shared resources and responsibilities.<br><em>Hammond Ch. 1</em></span></span> (Multigenerational Household):</strong> Built-in childcare and eldercare support, shared housing costs, collective resources. Rich cultural transmission and family wisdom. But potential for conflict over parenting styles, limited privacy, and complex household decision-making. Common in many cultures worldwide.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q1" value="achievement">
-                        <span>Personal achievement / Ambition</span>
+                        <input type="radio" name="q1" value="single_parent">
+                        <span><strong>Single-Parent Household:</strong> Strong parent-child bonds and resilience developed through necessity. Independence and responsibility learned early. But limited income (single earner), time poverty (one adult managing all household labor), and fewer safety nets if crisis occurs. May face stigma despite being 25% of U.S. households.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q1" value="community">
-                        <span>Community service / Helping others</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q1" value="balance">
-                        <span>Balance between all of these</span>
+                        <input type="radio" name="q1" value="chosen_family">
+                        <span><strong><span class="glossary-term" data-term="chosen-family">Chosen Family<span class="glossary-tooltip"><strong>Chosen Family</strong><br>Close relationships with non-biological, non-legal "kin" who provide family-like support—common among LGBTQ+ communities, immigrants, and those estranged from biological families.<br><em>Hammond Ch. 1</em></span></span> Network:</strong> Intentional relationships based on mutual support rather than obligation. Flexible definitions of family, strong chosen bonds. May lack legal recognition (inheritance, medical decisions), institutional support (family leave, insurance), and financial resources from family wealth. Challenges dominant definitions of kinship.</span>
                     </label>
                 </div>
             </div>
 
             <div class="question-group">
-                <label>2. What did your parents' work-family balance look like?</label>
+                <label><strong>DECISION 2:</strong> What value will guide your major life decisions?</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    Socialization in your family taught you what matters most. Your prioritized value will influence education, career, relationships, and parenting choices throughout the game. Each value has trade-offs.
+                </p>
                 <div class="options">
                     <label class="option-label">
-                        <input type="radio" name="q2" value="both_fulltime">
-                        <span>Both worked full-time</span>
+                        <input type="radio" name="q2" value="economic_security">
+                        <span><strong>Economic Security First:</strong> You'll prioritize stable income, savings, and financial independence. This may mean choosing higher-paying careers over passion, delaying family formation until financially stable, and making practical rather than romantic relationship decisions. <em>Advantage:</em> Material comfort and safety net. <em>Trade-off:</em> May sacrifice time with loved ones, creative pursuits, or relationship timing.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q2" value="one_worked">
-                        <span>One worked, one stayed home</span>
+                        <input type="radio" name="q2" value="relationships">
+                        <span><strong>Relationships & Connection First:</strong> You'll prioritize time with family and friends over career advancement. This may mean choosing flexible but lower-paying jobs, living near family rather than pursuing opportunities elsewhere, and being available for caregiving. <em>Advantage:</em> Rich social support and deep bonds. <em>Trade-off:</em> Constrained career mobility, geographic limitations, and potential income reduction.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q2" value="both_parttime">
-                        <span>Both worked part-time / flexible</span>
+                        <input type="radio" name="q2" value="achievement">
+                        <span><strong>Personal Achievement & Growth First:</strong> You'll prioritize education, career advancement, and skill development. This may mean pursuing graduate degrees, accepting demanding jobs, relocating for opportunities, and delaying or limiting family formation. <em>Advantage:</em> Professional fulfillment and status. <em>Trade-off:</em> Work-life imbalance, delayed relationships, and potential isolation from family/community.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q2" value="varied">
-                        <span>Varied / Changed over time</span>
+                        <input type="radio" name="q2" value="social_justice">
+                        <span><strong>Social Justice & Community First:</strong> You'll prioritize meaningful work that helps others, even if pay is lower. This may mean nonprofit careers, community organizing, or public service. You'll choose partners and communities aligned with your values. <em>Advantage:</em> Purpose-driven life and social impact. <em>Trade-off:</em> Limited income, potential burnout, and reduced material comfort.</span>
                     </label>
                 </div>
             </div>
 
             <div class="question-group">
-                <label>3. What's your relationship with money growing up?</label>
-                <div class="options">
-                    <label class="option-label">
-                        <input type="radio" name="q3" value="tight">
-                        <span>Resources were always tight</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q3" value="budget">
-                        <span>We had enough but had to budget</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q3" value="comfortable">
-                        <span>We were comfortable</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q3" value="no_concern">
-                        <span>Money wasn't really a concern</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="question-group">
-                <label>4. What does your "ideal life" look like at age 35? (Write 2-3 sentences)</label>
-                <textarea id="idealLife" placeholder="Describe your ideal life at age 35..."></textarea>
+                <label><strong>REFLECTION:</strong> What's your vision of family at age 35?</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    Describe what "family" might look like for your character at age 35. This is aspirational—future modules will show how structures and circumstances shape whether this vision is possible.
+                </p>
+                <textarea id="idealLife" placeholder="Write 2-3 sentences describing your character's imagined family life at age 35. Consider: Who is in your family? What does daily life look like? What matters most to you?" style="min-height: 100px; width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 1em;"></textarea>
             </div>
 
             <div style="margin-top: 40px; text-align: center;">
-                <button class="btn btn-primary" onclick="completeModule1()">Create My Character →</button>
+                <button class="btn btn-primary" onclick="completeModule1()">Begin My Life Journey →</button>
             </div>
         </div>
 
