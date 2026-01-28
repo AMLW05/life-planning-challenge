@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life Planning Challenge | SOC-213 Family Sociology Game</title>
+    <script src="glossary-data.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -353,10 +354,177 @@
             .content { padding: 25px; }
             .module-grid { grid-template-columns: 1fr; }
         }
+
+        /* GLOSSARY TOOLTIP SYSTEM */
+        .glossary-term {
+            border-bottom: 1px dotted #9b59b6;
+            cursor: help;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .glossary-term:hover {
+            color: #8e44ad;
+            border-bottom-color: #8e44ad;
+        }
+
+        .glossary-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            width: 320px;
+            font-size: 0.9em;
+            line-height: 1.5;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        .glossary-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #2c3e50;
+        }
+
+        .glossary-term:hover .glossary-tooltip {
+            display: block;
+        }
+
+        .glossary-tooltip strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1.1em;
+            color: #e8b3ff;
+        }
+
+        .glossary-tooltip em {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        /* MODULE LOCKING STATES */
+        .module-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f5f5f5;
+        }
+
+        .module-card.locked:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: #e1e8ed;
+        }
+
+        .module-card.unlocked {
+            border-color: #3498db;
+            background: #fff;
+        }
+
+        .module-card.completed {
+            border-color: #27ae60;
+            background: #d4edda;
+        }
+
+        .module-status {
+            font-size: 0.9em;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        /* PRINT-FRIENDLY PDF STYLES */
+        .print-header, .print-signature {
+            display: none;
+        }
+
+        @media print {
+            body, *, .header {
+                background: white !important;
+                color: black !important;
+                border-color: #333 !important;
+            }
+
+            .btn, .navigation, .module-select, .export-buttons-secondary {
+                display: none !important;
+            }
+
+            .module-section {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+
+            .decision-summary {
+                page-break-inside: avoid;
+                border: 2px solid #333;
+                padding: 12px;
+                margin: 15px 0;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 20px 0;
+            }
+
+            th, td {
+                border: 1px solid #333;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background: #f0f0f0 !important;
+                font-weight: bold;
+            }
+
+            .print-header {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid #333;
+            }
+
+            .print-signature {
+                display: block !important;
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #333;
+            }
+
+            @page {
+                margin: 1in;
+                size: letter portrait;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- PRINT-ONLY HEADER -->
+        <div class="print-header">
+            <h1>Life Planning Challenge - Game Report</h1>
+            <p><strong>SOC-213: Sociology of the Family</strong></p>
+            <p>Student Name: ________________________________</p>
+            <p>Export Date: <span id="print-date"></span></p>
+            <p>Modules Completed: <span id="print-modules-completed"></span>/8</p>
+        </div>
+
         <div class="header">
             <h1>🎮 Life Planning Challenge</h1>
             <p>An Interactive Family Sociology Simulation</p>
@@ -2293,8 +2461,106 @@
             return reminder;
         }
 
+        // MODULE LOCKING SYSTEM
+        const moduleProgress = JSON.parse(localStorage.getItem('soc213-module-progress')) || {
+            1: { unlocked: true, completed: false, dateStarted: null, dateCompleted: null },
+            2: { unlocked: false, completed: false, dateStarted: null, dateCompleted: null },
+            3: { unlocked: false, completed: false, dateStarted: null, dateCompleted: null },
+            4: { unlocked: false, completed: false, dateStarted: null, dateCompleted: null },
+            5: { unlocked: false, completed: false, dateStarted: null, dateCompleted: null },
+            6: { unlocked: false, completed: false, dateStarted: null, dateCompleted: null },
+            7: { unlocked: false, completed: false, dateStarted: null, dateCompleted: null },
+            8: { unlocked: false, completed: false, dateStarted: null, dateCompleted: null }
+        };
+
+        function saveModuleProgress() {
+            localStorage.setItem('soc213-module-progress', JSON.stringify(moduleProgress));
+        }
+
+        function isModuleUnlocked(moduleNum) {
+            return moduleProgress[moduleNum].unlocked;
+        }
+
+        function startModule(moduleNum) {
+            if (!isModuleUnlocked(moduleNum)) {
+                alert(`⚠️ Module ${moduleNum} is Locked\n\nTo unlock this module, you must:\n✓ Complete Module ${moduleNum - 1} game decisions\n✓ Export your game data\n✓ Submit Module ${moduleNum - 1} Canvas reflection\n\nThis ensures systematic learning progression through the course.`);
+                return false;
+            }
+
+            if (!moduleProgress[moduleNum].dateStarted) {
+                moduleProgress[moduleNum].dateStarted = new Date().toISOString();
+                saveModuleProgress();
+            }
+
+            return true;
+        }
+
+        function completeModule(moduleNum) {
+            moduleProgress[moduleNum].completed = true;
+            moduleProgress[moduleNum].dateCompleted = new Date().toISOString();
+
+            if (moduleNum < 8) {
+                moduleProgress[moduleNum + 1].unlocked = true;
+            }
+
+            saveModuleProgress();
+            showModuleCompletionModal(moduleNum);
+        }
+
+        function showModuleCompletionModal(moduleNum) {
+            const nextModule = moduleNum + 1;
+            const message = moduleNum < 8
+                ? `✓ Module ${moduleNum} Completed!\n\n✓ Module ${nextModule} is now unlocked\n\nNext Steps:\n1. Export your game data (click button below)\n2. Submit Module ${moduleNum} Canvas reflection\n3. Return to continue Module ${nextModule}`
+                : `✓ Module ${moduleNum} Completed!\n\n✓ You've finished all 8 modules!\n\nNext Steps:\n1. Export your complete game data\n2. Submit Module 8 final reflection\n3. Complete your "What IS Family?" portfolio project`;
+
+            alert(message);
+        }
+
+        function updateModuleCards() {
+            for (let i = 1; i <= 8; i++) {
+                const card = document.getElementById(`module-${i}-card`);
+                if (!card) continue;
+
+                const status = moduleProgress[i];
+                card.classList.remove('locked', 'unlocked', 'completed');
+
+                if (status.completed) {
+                    card.classList.add('completed');
+                    const statusEl = card.querySelector('.module-status');
+                    if (statusEl) statusEl.textContent = '✓ Completed';
+                } else if (status.unlocked) {
+                    card.classList.add('unlocked');
+                    const statusEl = card.querySelector('.module-status');
+                    if (statusEl) statusEl.textContent = '▶️ Available';
+                } else {
+                    card.classList.add('locked');
+                    const statusEl = card.querySelector('.module-status');
+                    if (statusEl) statusEl.textContent = '🔒 Locked';
+                }
+            }
+        }
+
+        // Print date update for PDF export
+        window.addEventListener('beforeprint', function() {
+            const printDate = document.getElementById('print-date');
+            if (printDate) printDate.textContent = new Date().toLocaleDateString();
+            const completedCount = Object.values(moduleProgress).filter(m => m.completed).length;
+            const printModules = document.getElementById('print-modules-completed');
+            if (printModules) printModules.textContent = completedCount;
+        });
+
         // Initialize on load
-        window.addEventListener('DOMContentLoaded', initGame);
+        window.addEventListener('DOMContentLoaded', function() {
+            initGame();
+            updateModuleCards();
+        });
     </script>
+
+    <!-- PRINT-ONLY SIGNATURE -->
+    <div class="print-signature">
+        <p><strong>Student Signature:</strong> ________________________________</p>
+        <p><strong>Date Submitted:</strong> ________________________________</p>
+        <p><strong>Canvas Assignment:</strong> Module ___ Game Reflection</p>
+    </div>
 </body>
 </html>
