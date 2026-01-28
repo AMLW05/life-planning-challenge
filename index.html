@@ -871,16 +871,20 @@
 
         <!-- MODULE 4: SEXUALITY & MATE SELECTION -->
         <div id="module4" class="content game-section">
-            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 4: Sexuality & Mate Selection</h2>
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 4: Partner Selection & Compatibility</h2>
 
             <div class="alert alert-info">
                 <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapters 7-8
+                <strong>📚 Connect to:</strong> Hammond Chapters 7-8 (Sexuality & Mate Selection)
             </div>
 
-            <p style="margin-bottom: 25px; color: var(--text-dark);">
-                You're 27 years old. If you're in a relationship, it's time to think about long-term compatibility.
-                Sociologists study patterns of "homogamy" (marrying someone similar) and "assortative mating."
+            <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
+                <strong>🎯 How Content Connects to This Decision</strong><br>
+                Hammond Ch. 8 explains <span class="glossary-term" data-term="homogamy">homogamy<span class="glossary-tooltip"><strong>Homogamy</strong><br>The pattern of marrying someone similar to yourself in education, race, class, religion, age—"like marries like."<br><em>Hammond Ch. 8</em></span></span> (like marries like) and <span class="glossary-term" data-term="marriage-market">marriage markets<span class="glossary-tooltip"><strong>Marriage Market</strong><br>The metaphor describing how people compete for desirable partners in a marketplace-like system with supply, demand, and "exchange" of resources.<br><em>Hammond Ch. 8</em></span></span> structured by networks, proximity, and social class. Your Module 2 education/career shaped who you meet and your "value" in dating markets. Ch. 7 covers <span class="glossary-term" data-term="sexual-scripts">sexual scripts<span class="glossary-tooltip"><strong>Sexual Scripts</strong><br>Cultural guidelines about who does what, when, where, how, and why in sexual encounters—gendered rules for sexual behavior.<br><em>Hammond Ch. 7</em></span></span> and relationship expectations.
+            </div>
+
+            <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                <strong>You're 27 years old.</strong> If pursuing partnership, you're evaluating compatibility. Your Module 3 communication style affects relationship quality. These decisions connect to Module 5 (marriage timing) and Module 6 (work-family negotiations).
             </p>
 
             <div id="module4_single" style="display: none;">
@@ -891,98 +895,65 @@
             </div>
 
             <div id="module4_partnered">
+                <!-- DECISION 7: Partner Selection Criteria -->
                 <div class="question-group">
-                    <label>12. Your partner's education level:</label>
+                    <label><strong>DECISION 7:</strong> What do you prioritize when choosing a long-term partner?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        <span class="glossary-term" data-term="homogamy">Homogamy<span class="glossary-tooltip"><strong>Homogamy</strong><br>The pattern of marrying someone similar to yourself in education, race, class, religion, age—"like marries like."<br><em>Hammond Ch. 8</em></span></span> (like marries like) and <span class="glossary-term" data-term="assortative-mating">assortative mating<span class="glossary-tooltip"><strong>Assortative Mating</strong><br>The sociological term for people selecting partners based on similar characteristics—education, class, values—creating social reproduction across generations.<br><em>Hammond Ch. 8</em></span></span> mean you tend to meet and choose partners similar in education, class, and values. Your Module 2 choices shaped who's in your <span class="glossary-term" data-term="marriage-market">marriage market<span class="glossary-tooltip"><strong>Marriage Market</strong><br>The metaphor describing how people compete for desirable partners in a marketplace-like system with supply, demand, and "exchange" of resources.<br><em>Hammond Ch. 8</em></span></span>.
+                    </p>
                     <div class="options">
                         <label class="option-label">
-                            <input type="radio" name="q12" value="same">
-                            <span>Similar to yours (educational homogamy)</span>
+                            <input type="radio" name="q7" value="educational_career_match" required>
+                            <span><strong>Educational & Career Compatibility:</strong> You meet someone through work/grad school with similar education and career ambitions. You share intellectual interests and professional goals. <em>Advantage:</em> Strong homogamy provides shared lifestyle, minimal class conflict, mutual understanding of work demands. <em>Trade-off:</em> Both working demanding jobs may create work-family conflict later; less economic diversity may mean limited perspectives. <em>Future impact:</em> Dual-career couple shapes Module 5 timing (delayed marriage until careers stable) and Module 6 childcare negotiations (two demanding jobs).</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q12" value="higher">
-                            <span>Higher than yours</span>
+                            <input type="radio" name="q7" value="emotional_communication" required>
+                            <span><strong>Emotional Intimacy & Communication Style:</strong> You prioritize someone who matches your Module 3 communication approach—deep emotional connection, conflict resolution skills, vulnerability. You meet through mutual friends who know both your personalities well. <em>Advantage:</em> Strong relationship quality, low conflict, high satisfaction from communication match. <em>Trade-off:</em> May have education/income differences creating practical challenges (different work schedules, financial stress, class culture gaps). <em>Future impact:</em> Communication skills help Module 7 crisis resilience, but economic mismatch may create Module 5 marriage bar (can't afford wedding/stability needed).</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q12" value="lower">
-                            <span>Lower than yours</span>
+                            <input type="radio" name="q7" value="family_values_match" required>
+                            <span><strong>Family Values & Life Goals Alignment:</strong> You meet someone who shares your Module 1 family values—same views on children, gender roles, extended family involvement, work-family balance priorities. Strong value homogamy around family formation. <em>Advantage:</em> Minimal conflict over major life decisions (children, career sacrifices, caregiving), similar cultural scripts reduce negotiation needs. <em>Trade-off:</em> May sacrifice other dimensions of compatibility (intellectual connection, career ambitions, income potential) for family alignment. <em>Future impact:</em> Shapes Module 5 (agree on marriage timing) and Module 6 (aligned on childcare/work trade-offs), but may limit career flexibility.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q7" value="economic_security" required>
+                            <span><strong>Economic Security & Financial Stability:</strong> You prioritize a partner with stable income, good benefits, financial responsibility—economic factors dominate partner "exchange" in marriage market. May be different education level but strong earning potential. <em>Advantage:</em> Financial security enables Module 5 marriage (no marriage bar), buffers Module 7 crises (savings, insurance), funds Module 6 childcare. Economic stability protects relationship from money stress. <em>Trade-off:</em> May compromise on emotional connection, communication style, or value alignment to prioritize income. Income gaps may create power imbalances. <em>Future impact:</em> Economic resources enable choices in all future modules but relationship quality depends on other compatibility factors.</span>
                         </label>
                     </div>
                 </div>
 
+                <!-- DECISION 8: Sexual Scripts & Relationship Expectations -->
                 <div class="question-group">
-                    <label>13. Your partner's values about family and career:</label>
+                    <label><strong>DECISION 8:</strong> How do you navigate sexuality and relationship expectations?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        <span class="glossary-term" data-term="sexual-scripts">Sexual scripts<span class="glossary-tooltip"><strong>Sexual Scripts</strong><br>Cultural guidelines about who does what, when, where, how, and why in sexual encounters—gendered rules for sexual behavior.<br><em>Hammond Ch. 7</em></span></span> are gendered cultural rules about sexuality and relationship progression. Different scripts create different relationship pacing, power dynamics, and long-term expectations.
+                    </p>
                     <div class="options">
                         <label class="option-label">
-                            <input type="radio" name="q13" value="very_aligned">
-                            <span>Very aligned with yours</span>
+                            <input type="radio" name="q8" value="traditional_scripts" required>
+                            <span><strong>Traditional Sexual Scripts (Slow Pacing, Clear Milestones):</strong> You follow conventional relationship escalator: dating → exclusive → meet families → engagement → marriage → sex/cohabitation. Traditional gender roles (men initiate, women gatekeep). <em>Advantage:</em> Clear social norms reduce ambiguity, strong family/community approval, matches Module 1 traditional family background, religious community support. <em>Trade-off:</em> Limited sexual exploration before commitment, gender role rigidity may conflict with career ambitions (Module 6 work-family tensions), delayed relationship formation (late marriage timing in Module 5). <em>Future impact:</em> Shapes Module 5 (prioritize marriage before cohabitation) and Module 6 (traditional gender division of labor expectations).</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q13" value="somewhat_aligned">
-                            <span>Somewhat aligned - a few differences</span>
+                            <input type="radio" name="q8" value="egalitarian_progressive" required>
+                            <span><strong>Egalitarian/Progressive Scripts (Gender Equality, Open Communication):</strong> You reject gendered scripts—either partner initiates, explicit consent conversations, shared decision-making about relationship pacing, sexuality as mutual exploration. Test compatibility through cohabitation before marriage. <em>Advantage:</em> Authentic to personal values, gender equality in relationship supports dual careers (Module 6), good communication (Module 3) about expectations reduces conflict. <em>Trade-off:</em> May face family disapproval (conflicts with Module 1 traditional background), navigating ambiguity without clear cultural roadmap, potential judgment from conservative communities. <em>Future impact:</em> Enables Module 5 cohabitation before marriage, shapes Module 6 egalitarian work-family negotiations.</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q13" value="different">
-                            <span>Quite different - will require negotiation</span>
+                            <input type="radio" name="q8" value="practical_compatibility" required>
+                            <span><strong>Practical Compatibility Testing (Trial Period Approach):</strong> You prioritize testing real-life compatibility—cohabit to assess domestic labor division, financial management, conflict resolution under stress before legal commitment. Sexuality integrated with emotional intimacy but relationship progression based on practical assessment. <em>Advantage:</em> Lower divorce risk from testing compatibility first, realistic view of partner's habits before marriage, aligns with Module 3 pragmatic communication, economic sensibility. <em>Trade-off:</em> Extended "trial period" may delay marriage (Module 5 timing), family may view cohabitation as "living in sin," ambiguity about commitment timeline creates relationship uncertainty. <em>Future impact:</em> Shapes Module 5 (cohabitation pathway), Module 6 (pre-tested work-family arrangements), Module 7 (practiced conflict resolution).</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q8" value="flexible_individualized" required>
+                            <span><strong>Flexible/Individualized Scripts (Create Your Own Path):</strong> You and partner explicitly negotiate your own relationship rules—rejecting both traditional and progressive templates to create custom arrangement matching both personalities. Ongoing conversations about boundaries, expectations, pacing. <em>Advantage:</em> Maximum authenticity and flexibility, matches your unique situation, honors both partners' needs, avoids assumptions from cultural scripts that may not fit. <em>Trade-off:</em> Requires exceptional communication skills (depends on Module 3 choice), ongoing emotional labor to negotiate everything, social isolation from lack of community norms, family confusion about relationship status. <em>Future impact:</em> Requires strong Module 3 communication for Module 5 commitment negotiations and Module 6 work-family arrangements; may lack social support in Module 7 crises.</span>
                         </label>
                     </div>
                 </div>
 
-                <div class="question-group">
-                    <label>14. Financial compatibility:</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q14" value="similar_income">
-                            <span>Similar income levels and spending habits</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q14" value="income_gap">
-                            <span>Significant income gap but compatible money values</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q14" value="conflict">
-                            <span>Different money values - potential for conflict</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="question-group">
-                    <label>15. Do you want children?</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q15" value="both_yes">
-                            <span>Yes, and partner agrees</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q15" value="both_no">
-                            <span>No, and partner agrees (childfree)</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q15" value="unsure">
-                            <span>Still deciding / not sure yet</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q15" value="disagree">
-                            <span>You disagree on this major issue</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="question-group">
-                    <label>16. Relationship decision:</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q16" value="serious">
-                            <span>This is "the one" - move toward long-term commitment</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q16" value="continue">
-                            <span>Continue dating but not ready for big commitment</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q16" value="end">
-                            <span>Incompatibilities are too large - end relationship</span>
-                        </label>
-                    </div>
+                <!-- Connection Box -->
+                <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
+                    <strong>💡 CONNECT: How will these choices affect future modules?</strong><br>
+                    • <strong>Module 5 (Partnership Formation):</strong> Your partner selection criteria and sexual scripts determine marriage timing, cohabitation decisions, and relationship formalization<br>
+                    • <strong>Module 6 (Work-Family Balance):</strong> Educational/career homogamy affects dual-career negotiations; sexual scripts shape gender role expectations for childcare and housework<br>
+                    • <strong>Module 7 (Crisis Response):</strong> Economic security provides stress buffer; communication match affects crisis resilience; value alignment shapes coping strategies<br><br>
+                    <em>This is <span class="glossary-term" data-term="assortative-mating">assortative mating<span class="glossary-tooltip"><strong>Assortative Mating</strong><br>The sociological term for people selecting partners based on similar characteristics—education, class, values—creating social reproduction across generations.<br><em>Hammond Ch. 8</em></span></span> in action: your choice creates path dependency for all future family decisions.</em>
                 </div>
             </div>
 
@@ -1000,9 +971,13 @@
                 <strong>📚 Connect to:</strong> Hammond Chapter 9
             </div>
 
-            <p style="margin-bottom: 25px; color: var(--text-dark);">
-                You're 29 years old. Many of your friends are getting married or moving in with partners.
-                What form will your partnership take? Each option has different legal, financial, and social implications.
+            <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
+                <strong>🎯 How Content Connects to This Decision</strong><br>
+                Hammond Ch. 9 explores <span class="glossary-term" data-term="deinstitutionalization">deinstitutionalization of marriage<span class="glossary-tooltip"><strong>Deinstitutionalization of Marriage</strong><br>The historical shift where marriage changed from required life stage with rigid rules to optional lifestyle choice with flexible arrangements.<br><em>Hammond Ch. 9</em></span></span>—marriage transformed from required institution to optional choice. The <span class="glossary-term" data-term="marriage-bar">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers preventing marriage formation—couples feel they need financial stability, home ownership, job security before marrying.<br><em>Hammond Ch. 9</em></span></span> describes economic barriers to marriage: couples delay marriage until achieving job stability, debt payoff, savings. <span class="glossary-term" data-term="cohabitation">Cohabitation<span class="glossary-tooltip"><strong>Cohabitation</strong><br>Living together in a sexual relationship without legal marriage—increasingly common alternative or precursor to marriage.<br><em>Hammond Ch. 9</em></span></span> has become normative alternative/pathway. Your Module 2 career and Module 4 partner choices created economic context.
+            </div>
+
+            <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                <strong>You're 29 years old.</strong> Many friends are marrying or cohabiting. Your Module 4 sexual scripts and economic situation shape whether you can "afford" marriage, whether cohabitation fits your values, and what legal/financial arrangements make sense. These choices affect Module 6 work-family balance and Module 7 crisis resilience.
             </p>
 
             <div id="module5_single" style="display: none;">
@@ -1025,67 +1000,64 @@
             </div>
 
             <div id="module5_partnered">
-                <div class="info-box">
-                    <h3>Partnership Options:</h3>
-                    <ul>
-                        <li><strong>Marriage:</strong> Legal benefits (tax, insurance, inheritance), social recognition, but costly and legally complex to exit</li>
-                        <li><strong>Cohabitation:</strong> Flexibility, test compatibility, but fewer legal protections and benefits</li>
-                        <li><strong>LAT (Living Apart Together):</strong> Maintain independence, but less practical for shared finances/childcare</li>
-                    </ul>
-                </div>
-
+                <!-- DECISION 9: Marriage Timing & Economic Readiness -->
                 <div class="question-group">
-                    <label>17. What type of partnership will you form?</label>
+                    <label><strong>DECISION 9:</strong> When will you formalize your partnership? (Marriage timing decision)</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        The <span class="glossary-term" data-term="marriage-bar">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers preventing marriage formation—couples feel they need financial stability, home ownership, job security before marrying.<br><em>Hammond Ch. 9</em></span></span> means most couples feel they need economic stability before marrying. Your Module 2 education/career and Module 4 partner economic security choices determine whether you've "cleared" the marriage bar.
+                    </p>
                     <div class="options">
                         <label class="option-label">
-                            <input type="radio" name="q17" value="marriage">
-                            <span><strong>Marriage:</strong> Legal commitment with full benefits and protections</span>
+                            <input type="radio" name="q9" value="marry_now_achieved_bar" required>
+                            <span><strong>Marry Now—Cleared the Marriage Bar:</strong> You have stable jobs, saved money, paid off student loans, can afford wedding. You meet cultural expectations for marriage readiness (financial security, career establishment, homeownership or path to it). <em>Advantage:</em> Legal benefits (taxes, insurance, inheritance), social recognition, family approval, <span class="glossary-term" data-term="companionate-marriage">companionate marriage<span class="glossary-tooltip"><strong>Companionate Marriage</strong><br>Modern marriage based on love, emotional intimacy, and mutual fulfillment rather than economic necessity or social obligation.<br><em>Hammond Ch. 9</em></span></span> based on love and choice. <em>Trade-off:</em> Expensive wedding reduces savings; legally complex to exit if relationship fails; may delay childbearing until after marriage (Module 6 timing). <em>Future impact:</em> Legal protections help Module 6 (benefits for childcare, maternity leave) and Module 7 (insurance for crisis resilience).</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q17" value="cohabitation">
-                            <span><strong>Cohabitation:</strong> Move in together without marriage</span>
+                            <input type="radio" name="q9" value="marry_despite_bar" required>
+                            <span><strong>Marry Despite Economic Barriers:</strong> You have debt, unstable jobs, no savings—haven't cleared marriage bar—but marry anyway for love, religious values, or family pressure. Prioritize relationship formalization over economic readiness. <em>Advantage:</em> Legal protections even with economic vulnerability; fulfills cultural/religious values; family approval; companionate marriage commitment. <em>Trade-off:</em> Financial stress strains relationship (research shows economic strain → higher divorce); can't afford big wedding; may face housing insecurity. <em>Future impact:</em> Economic stress affects Module 6 work-family decisions (can't afford childcare) and Module 7 crisis vulnerability (no savings buffer). Marriage won't solve poverty—may intensify stress.</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q17" value="lat">
-                            <span><strong>LAT:</strong> Committed relationship but keep separate households</span>
+                            <input type="radio" name="q9" value="cohabit_before_marriage" required>
+                            <span><strong>Cohabit First, Marry Later:</strong> Live together to test compatibility, share expenses, and save for wedding while working toward clearing marriage bar. <span class="glossary-term" data-term="cohabitation">Cohabitation<span class="glossary-tooltip"><strong>Cohabitation</strong><br>Living together in a sexual relationship without legal marriage—increasingly common alternative or precursor to marriage.<br><em>Hammond Ch. 9</em></span></span> as pathway to marriage (not alternative). <em>Advantage:</em> Test domestic labor division, financial compatibility, daily habits before legal commitment; share rent reduces costs; aligns with Module 4 egalitarian/practical scripts. <em>Trade-off:</em> No legal protections (inheritance, insurance, medical decisions); family disapproval if traditional background; ambiguity about commitment timeline may create anxiety. <em>Future impact:</em> Cohabitation shapes Module 6 (already tested work-family arrangements) but may delay legal benefits until later marriage.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q9" value="cohabit_alternative" required>
+                            <span><strong>Long-term Cohabitation (Marriage Alternative):</strong> Never marry—cohabitation as permanent partnership form reflecting <span class="glossary-term" data-term="deinstitutionalization">deinstitutionalization<span class="glossary-tooltip"><strong>Deinstitutionalization of Marriage</strong><br>The historical shift where marriage changed from required life stage with rigid rules to optional lifestyle choice with flexible arrangements.<br><em>Hammond Ch. 9</em></span></span>. Reject marriage as outdated institution; prioritize flexibility and personal choice over legal/social recognition. <em>Advantage:</em> Maximum flexibility; easier exit if relationship deteriorates; avoid expensive wedding; resist institutional control of relationship; authentic to non-traditional values. <em>Trade-off:</em> No automatic legal protections (must create contracts for inheritance, medical proxy, property); social stigma from traditional family; complications if having children (custody, benefits); housing discrimination (some rentals prefer married). <em>Future impact:</em> Must actively create legal protections; affects Module 6 (childcare benefits tied to marriage); Module 7 (insurance gaps in crisis).</span>
                         </label>
                     </div>
                 </div>
 
+                <!-- DECISION 10: Partnership Structure & Financial Integration -->
                 <div class="question-group">
-                    <label>18. Financial arrangement:</label>
+                    <label><strong>DECISION 10:</strong> How will you structure your partnership? (Legal & financial arrangement)</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        Modern partnerships range from fully merged (traditional model) to economically independent. Your Module 4 partner selection (economic security vs. emotional compatibility) and sexual scripts shape which arrangement fits your relationship.
+                    </p>
                     <div class="options">
                         <label class="option-label">
-                            <input type="radio" name="q18" value="fully_combined">
-                            <span>Fully combine finances - joint accounts for everything</span>
+                            <input type="radio" name="q10" value="traditional_merged" required>
+                            <span><strong>Traditional Merged Model:</strong> Marry with fully combined finances (joint bank accounts, shared credit, pooled income). Traditional gender-typed division of labor (based on Module 4 sexual scripts). Legal marriage with conventional expectations about roles. <em>Advantage:</em> Clear social script reduces ambiguity; family approval; simplified finances; aligned if both want traditional arrangement; economic efficiency of specialization. <em>Trade-off:</em> Loss of financial autonomy; vulnerable if relationship ends (economically dependent partner disadvantaged); rigid gender roles may conflict with career ambitions; assumes trust and equal power. <em>Future impact:</em> Determines Module 6 work-family arrangements (likely one partner reduces work for childcare); shapes Module 7 (economic dependence affects crisis options).</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q18" value="hybrid">
-                            <span>Hybrid - joint account for shared expenses, keep some separate</span>
+                            <input type="radio" name="q10" value="egalitarian_merged" required>
+                            <span><strong>Egalitarian Partnership:</strong> Marry with joint finances BUT explicit commitment to equal domestic labor, equal career priority, and shared decision-making. Reject gendered scripts from Module 4. Both maintain careers. <em>Advantage:</em> Gender equality; both partners economically secure; legal benefits of marriage; shared financial resources; authentic to progressive values; supports dual-career Module 6 arrangements. <em>Trade-off:</em> Requires constant negotiation (who does what, career sacrifices); work-family conflict when both have demanding jobs; expensive childcare costs (Module 6); no "default" gendered script to fall back on. <em>Future impact:</em> Enables Module 6 dual-career strategy; requires purchased childcare; both vulnerable to job loss (Module 7) but also both have income.</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q18" value="separate">
-                            <span>Keep finances completely separate</span>
+                            <input type="radio" name="q10" value="semi_autonomous" required>
+                            <span><strong>Semi-Autonomous Partnership:</strong> Marry OR cohabit with partially separate finances—joint account for shared expenses (rent, groceries), but each keeps separate accounts for personal spending. Hybrid legal/financial model. <em>Advantage:</em> Balances commitment with autonomy; financial independence protects both partners; flexibility if income gap exists; reduces money conflict by maintaining personal control; aligns with practical Module 4 scripts. <em>Trade-off:</em> Requires detailed negotiation about "fair" contribution; ambiguity about what's "ours" vs. "mine"; complicated if children arrive (Module 6 costs); less romantic/trusting than full merger. <em>Future impact:</em> Financial autonomy helps if Module 7 crisis causes relationship strain; but must renegotiate when Module 6 parenting creates income changes.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q10" value="lat_living_apart" required>
+                            <span><strong>LAT (Living Apart Together):</strong> Committed partnership (may include marriage legally) but maintain separate households. Maximum autonomy model. Spend time together but keep separate homes, finances, daily routines. <em>Advantage:</em> Maximum independence; no domestic labor negotiations; maintains personal space; good for partners with demanding careers, different schedules, or previous failed cohabitations; avoids Module 3 communication conflicts from daily proximity. <em>Trade-off:</em> Expensive (two rents/mortgages); not practical for childcare (Module 6—where would child live?); social confusion about relationship status; miss daily intimacy and spontaneity; limits economic efficiency of shared household. <em>Future impact:</em> Prevents coparenting arrangements in Module 6; relationship may feel less "real" during Module 7 crisis without daily support.</span>
                         </label>
                     </div>
                 </div>
 
-                <div class="question-group">
-                    <label>19. Legal protections (if not marrying):</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q19" value="formal_agreements">
-                            <span>Create formal agreements (cohabitation agreement, wills, power of attorney)</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q19" value="informal">
-                            <span>Informal understanding - no legal paperwork</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q19" value="na_married">
-                            <span>N/A - We're getting married</span>
-                        </label>
-                    </div>
+                <!-- Connection Box -->
+                <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
+                    <strong>💡 CONNECT: How will these choices affect future modules?</strong><br>
+                    • <strong>Module 6 (Parenthood & Work-Family):</strong> Marriage provides legal benefits for parental leave, insurance; cohabitation lacks protections. Financial structure (merged vs. separate) determines how you afford childcare and negotiate career sacrifices.<br>
+                    • <strong>Module 7 (Crisis & Resilience):</strong> Legal marriage provides protections during crisis (insurance, medical decisions, inheritance). Economic integration affects vulnerability—merged finances mean shared crisis but also shared resources; separate finances mean individual exposure.<br><br>
+                    <em>The <span class="glossary-term" data-term="marriage-bar">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers preventing marriage formation—couples feel they need financial stability, home ownership, job security before marrying.<br><em>Hammond Ch. 9</em></span></span> shows marriage is increasingly class-stratified: college-educated delay marriage but eventually marry; working-class face persistent economic barriers.</em>
                 </div>
             </div>
 
@@ -1103,123 +1075,73 @@
                 <strong>📚 Connect to:</strong> Hammond Chapters 10-11
             </div>
 
-            <p style="margin-bottom: 25px; color: var(--text-dark);">
-                You're 31 years old. Many couples face "the parenting decision" around this age.
-                If you choose parenthood, you'll navigate childcare costs, work-family balance, and time scarcity.
+            <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
+                <strong>🎯 How Content Connects to This Decision</strong><br>
+                Hammond Ch. 10-11 cover the <span class="glossary-term" data-term="second-shift">second shift<span class="glossary-tooltip"><strong>Second Shift</strong><br>Hochschild's term for the domestic work (housework, childcare) women do after coming home from paid employment—effectively working two jobs.<br><em>Hammond Ch. 11</em></span></span> (mothers work paid job then come home to "second job" of housework/childcare), <span class="glossary-term" data-term="motherhood-penalty">motherhood penalty<span class="glossary-tooltip"><strong>Motherhood Penalty</strong><br>Wage and career penalties mothers face (lower pay, fewer promotions, hiring discrimination) while fathers receive wage premium—same parenthood, opposite effects by gender.<br><em>Hammond Ch. 11</em></span></span> (mothers face wage cuts; fathers get raises), <span class="glossary-term" data-term="intensive-mothering">intensive mothering<span class="glossary-tooltip"><strong>Intensive Mothering</strong><br>Cultural ideology that mothers should devote enormous time, energy, and money to child-rearing using expert-guided, child-centered methods.<br><em>Hammond Ch. 10</em></span></span> ideology (impossible standards for "good parenting"), and <span class="glossary-term" data-term="work-family-conflict">work-family conflict<span class="glossary-tooltip"><strong>Work-Family Conflict</strong><br>Structural incompatibility between paid work demands (long hours, inflexibility) and family caregiving needs (time, presence, energy).<br><em>Hammond Ch. 11</em></span></span> created by U.S. policy gaps (no paid leave, no childcare, no flex work rights). Your Module 2 career, Module 4 partner, and Module 5 economic decisions determine what work-family options you can afford.
+            </div>
+
+            <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                <strong>You're 31 years old.</strong> If you choose parenthood, you'll navigate childcare costs ($1,000-$1,500/month), <span class="glossary-term" data-term="work-family-conflict">work-family conflict<span class="glossary-tooltip"><strong>Work-Family Conflict</strong><br>Structural incompatibility between paid work demands (long hours, inflexibility) and family caregiving needs (time, presence, energy).<br><em>Hammond Ch. 11</em></span></span>, and the "time squeeze." These decisions reveal how gender, class, and policy structure parenting experiences.
             </p>
 
+            <!-- DECISION 11: Childcare Strategy -->
             <div class="question-group">
-                <label>20. Parenthood decision:</label>
+                <label><strong>DECISION 11:</strong> How will you handle childcare? (Assumes parenthood choice)</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    U.S. lacks universal childcare—average cost $1,000-$1,500/month (20-30% of median household income). Your Module 2 career income and Module 5 partnership finances determine what you can afford. Each option has class-based access.
+                </p>
                 <div class="options">
                     <label class="option-label">
-                        <input type="radio" name="q20" value="yes_now">
-                        <span>Yes, have a child now</span>
+                        <input type="radio" name="q11" value="dual_career_purchased_care" required>
+                        <span><strong>Dual-Career + Purchased Professional Care:</strong> Both partners work full-time demanding jobs. Pay $1,500/month for high-quality daycare or nanny. Maintain careers but outsource caregiving to paid professionals. <em>Advantage:</em> Both advance careers; no <span class="glossary-term" data-term="motherhood-penalty">motherhood penalty<span class="glossary-tooltip"><strong>Motherhood Penalty</strong><br>Wage and career penalties mothers face (lower pay, fewer promotions, hiring discrimination) while fathers receive wage premium—same parenthood, opposite effects by gender.<br><em>Hammond Ch. 11</em></span></span> from employment gap; high household income; professional childcare quality; gender equality in career continuation. <em>Trade-off:</em> Massive <span class="glossary-term" data-term="work-family-conflict">work-family conflict<span class="glossary-tooltip"><strong>Work-Family Conflict</strong><br>Structural incompatibility between paid work demands (long hours, inflexibility) and family caregiving needs (time, presence, energy).<br><em>Hammond Ch. 11</em></span></span> (long hours, little family time), childcare costs = $18K/year (after-tax), guilt from <span class="glossary-term" data-term="intensive-mothering">intensive mothering<span class="glossary-tooltip"><strong>Intensive Mothering</strong><br>Cultural ideology that mothers should devote enormous time, energy, and money to child-rearing using expert-guided, child-centered methods.<br><em>Hammond Ch. 10</em></span></span> ideology ("bad parent" for working), exhaustion from <span class="glossary-term" data-term="second-shift">second shift<span class="glossary-tooltip"><strong>Second Shift</strong><br>Hochschild's term for the domestic work (housework, childcare) women do after coming home from paid employment—effectively working two jobs.<br><em>Hammond Ch. 11</em></span></span> (work all day then parent all night). <em>Future impact:</em> Career security helps Module 7 resilience but stress accumulates; high income but low time.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q20" value="yes_later">
-                        <span>Yes, but wait 3-5 more years</span>
+                        <input type="radio" name="q11" value="one_parent_exits_career" required>
+                        <span><strong>One Parent Exits Career (Stay-Home Parent):</strong> One partner quits paid work to provide full-time childcare ($0 childcare cost but lose $40-60K income). Aligns with <span class="glossary-term" data-term="intensive-mothering">intensive mothering<span class="glossary-tooltip"><strong>Intensive Mothering</strong><br>Cultural ideology that mothers should devote enormous time, energy, and money to child-rearing using expert-guided, child-centered methods.<br><em>Hammond Ch. 10</em></span></span> ideal. Typically mother exits (reinforcing gender inequality). <em>Advantage:</em> Maximum parenting time; meets intensive mothering standards; no work-family conflict for stay-home parent; save childcare costs; flexible daily schedule; present for all child milestones. <em>Trade-off:</em> Permanent career penalty (5+ year resume gap = hard to re-enter workforce); economic dependence on working partner; loss of professional identity; <span class="glossary-term" data-term="motherhood-penalty">motherhood penalty<span class="glossary-tooltip"><strong>Motherhood Penalty</strong><br>Wage and career penalties mothers face (lower pay, fewer promotions, hiring discrimination) while fathers receive wage premium—same parenthood, opposite effects by gender.<br><em>Hammond Ch. 11</em></span></span> compounded; lower lifetime earnings; Module 7 vulnerability if lose working partner's job. <em>Future impact:</em> Relationship power imbalance; Module 7 crisis very vulnerable (one income); difficult to return to career later; retirement security reduced.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q20" value="childfree">
-                        <span>No, remain childfree by choice</span>
+                        <input type="radio" name="q11" value="part_time_compromise" required>
+                        <span><strong>One Parent Goes Part-Time:</strong> One partner (usually mother) reduces to part-time work (20-30hrs/week) to handle childcare gaps around reduced daycare hours. "Mommy track" compromise trying to do both work and intensive parenting. <em>Advantage:</em> Maintain career connection (easier re-entry than full exit); some income and benefits; more family time than full-time; slightly reduced childcare costs; doesn't fully abandon professional identity. <em>Trade-off:</em> Career advancement stops (part-time = no promotions, seen as "uncommitted"), still face <span class="glossary-term" data-term="motherhood-penalty">motherhood penalty<span class="glossary-tooltip"><strong>Motherhood Penalty</strong><br>Wage and career penalties mothers face (lower pay, fewer promotions, hiring discrimination) while fathers receive wage premium—same parenthood, opposite effects by gender.<br><em>Hammond Ch. 11</em></span></span>, doing 1.5 jobs poorly (neither full worker nor full parent), still pay $600/month childcare for part-time hours, exhaustion from trying to meet both work and <span class="glossary-term" data-term="intensive-mothering">intensive mothering<span class="glossary-tooltip"><strong>Intensive Mothering</strong><br>Cultural ideology that mothers should devote enormous time, energy, and money to child-rearing using expert-guided, child-centered methods.<br><em>Hammond Ch. 10</em></span></span> standards simultaneously. <em>Future impact:</em> Permanent earnings reduction; Module 7 moderate vulnerability; difficult to return to full-time.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q20" value="unsure">
-                        <span>Still uncertain</span>
+                        <input type="radio" name="q11" value="family_network_care" required>
+                        <span><strong>Extended Family Network Care:</strong> Grandparents or other relatives provide childcare (low/no cost). Both parents work full-time. Reflects Module 1 family form—requires available, willing, nearby extended family. More common in working-class and immigrant families. <em>Advantage:</em> Both maintain careers without expensive childcare ($200/month contribution vs. $1,500); family bonding across generations; cultural transmission; trust in caregivers; affordable dual-career strategy; reflects collectivist values. <em>Trade-off:</em> Only works if family available/nearby (Module 1 choice matters); may create obligation/power dynamics (grandparents' rules, guilt, expectations of reciprocity); less control over childcare approach; potential conflict over parenting styles; caregivers aging/unreliable. <em>Future impact:</em> Enables dual careers without class privilege; but family conflict possible; caregivers' health becomes Module 7 crisis vulnerability.</span>
                     </label>
                 </div>
             </div>
 
-            <div id="parenthood_yes" style="display: none;">
-                <div class="info-box">
-                    <h3>📊 Childcare Costs (National Average)</h3>
-                    <ul>
-                        <li>Infant daycare: $1,200-$1,500/month</li>
-                        <li>Family daycare: $800-$1,000/month</li>
-                        <li>Nanny/au pair: $2,000-$3,000/month</li>
-                        <li>One parent stays home: $0 childcare cost, but lose one income</li>
-                    </ul>
+            <!-- DECISION 12: Work-Family Strategy & Gender Division -->
+            <div class="question-group">
+                <label><strong>DECISION 12:</strong> How will you divide paid work and unpaid domestic labor?</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    The <span class="glossary-term" data-term="second-shift">second shift<span class="glossary-tooltip"><strong>Second Shift</strong><br>Hochschild's term for the domestic work (housework, childcare) women do after coming home from paid employment—effectively working two jobs.<br><em>Hammond Ch. 11</em></span></span> means even when both parents work full-time, mothers do 15 more hours/week of housework and childcare. Your Module 4 sexual scripts and Module 5 partnership structure shape expectations.
+                </p>
+                <div class="options">
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="traditional_gendered_division" required>
+                        <span><strong>Traditional Gendered Division:</strong> Father focuses on paid work ("breadwinner"); mother does most domestic labor even if also employed. Reflects Module 4 traditional sexual scripts. Father "helps" with childcare (mother's primary job). <em>Advantage:</em> Clear cultural script (no negotiation needed); family approval; aligns with intensive mothering expectations; father advances career unimpeded; efficient specialization if mother has lower-wage job. <em>Trade-off:</em> Mother's <span class="glossary-term" data-term="second-shift">second shift<span class="glossary-tooltip"><strong>Second Shift</strong><br>Hochschild's term for the domestic work (housework, childcare) women do after coming home from paid employment—effectively working two jobs.<br><em>Hammond Ch. 11</em></span></span> exhaustion; unfair (mother works two jobs, father one); mother's career stalls from caregiving demands; relationship resentment builds; reinforces gender inequality; father misses parenting; teaches children gendered expectations. <em>Future impact:</em> Mother burned out; Module 7 crisis very hard on mother carrying load; model inequality for next generation.</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="egalitarian_equal_sharing" required>
+                        <span><strong>Egalitarian Equal Sharing:</strong> Both partners split domestic labor 50/50—childcare, cooking, cleaning, appointments, mental load. Reject gendered scripts from Module 4. True equality attempt. Both careers equally prioritized. <em>Advantage:</em> Gender equality; no <span class="glossary-term" data-term="second-shift">second shift<span class="glossary-tooltip"><strong>Second Shift</strong><br>Hochschild's term for the domestic work (housework, childcare) women do after coming home from paid employment—effectively working two jobs.<br><em>Hammond Ch. 11</em></span></span> unfairness; both maintain careers; shared parenting means both bond with child; teaches children equality; relationship fairness reduces resentment. <em>Trade-off:</em> Requires constant negotiation about who does what; both experience work-family conflict simultaneously; no "default" parent (who stays home when child sick?); workplace doesn't accommodate father's caregiving (stigma for men doing childcare); extended family may disapprove of father's high involvement. <em>Future impact:</em> Sustainable if both committed; models equality; Module 7 both stressed but shared burden.</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="outsource_purchase_services" required>
+                        <span><strong>Outsource Domestic Labor (Class Privilege Solution):</strong> Both partners work demanding full-time careers. Hire cleaning service ($200/month), meal delivery, nanny, dog walker—pay others to do domestic work. Avoid <span class="glossary-term" data-term="second-shift">second shift<span class="glossary-tooltip"><strong>Second Shift</strong><br>Hochschild's term for the domestic work (housework, childcare) women do after coming home from paid employment—effectively working two jobs.<br><em>Hammond Ch. 11</em></span></span> through purchasing services. <em>Advantage:</em> Both advance careers without domestic labor time drain; gender equality achieved through class privilege; more leisure time than other options; reduced work-family conflict; avoids negotiation about housework. <em>Trade-off:</em> Requires high income (costs $25-30K/year for services); reproduces class inequality (employs low-wage workers to do your domestic labor); guilt about not doing own childcare/housework; still have "mental load" of managing hired help; <span class="glossary-term" data-term="intensive-mothering">intensive mothering<span class="glossary-tooltip"><strong>Intensive Mothering</strong><br>Cultural ideology that mothers should devote enormous time, energy, and money to child-rearing using expert-guided, child-centered methods.<br><em>Hammond Ch. 10</em></span></span> guilt. <em>Future impact:</em> Sustainable only if high income maintains; Module 7 crisis if lose income = lose services = collapse.</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="shift_work_tag_team" required>
+                        <span><strong>Shift Work "Tag Team" Strategy:</strong> Partners work opposite shifts (one works days, one nights/weekends) to provide childcare without paying for daycare. Working-class solution to childcare costs. Trade time together for childcare coverage. <em>Advantage:</em> Both maintain employment and income; no childcare costs ($18K/year savings); parent always with child (meets <span class="glossary-term" data-term="intensive-mothering">intensive mothering<span class="glossary-tooltip"><strong>Intensive Mothering</strong><br>Cultural ideology that mothers should devote enormous time, energy, and money to child-rearing using expert-guided, child-centered methods.<br><em>Hammond Ch. 10</em></span></span> standard); avoids stranger care; no second shift (each parents alone during shift). <em>Trade-off:</em> Partners rarely see each other (relationship strain); exhaustion (always parenting or working, never rest); night/weekend shift work often lower-wage and health-damaging; no couple time; difficult to coordinate schedules; relationship suffers from lack of connection. <em>Future impact:</em> Relationship vulnerable; Module 7 crisis hits already-strained relationship; divorce risk higher; but both have employment.</span>
+                    </label>
                 </div>
+            </div>
 
-                <div class="question-group">
-                    <label>21. Childcare arrangement:</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q21" value="daycare_center">
-                            <span>Daycare center ($1,350/mo) - Professional care, socialization</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q21" value="family_daycare">
-                            <span>Family daycare ($900/mo) - Smaller, home-based</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q21" value="family_member">
-                            <span>Family member helps ($200/mo contribution) - If available</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q21" value="parent_home">
-                            <span>One parent reduces/quits work - Lose income, gain time</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="question-group">
-                    <label>22. Work arrangement:</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q22" value="both_fulltime">
-                            <span>Both partners work full-time (high income, high stress)</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q22" value="one_parttime">
-                            <span>One partner goes part-time (moderate income, moderate stress)</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q22" value="one_home">
-                            <span>One partner stays home (lower income, more family time)</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q22" value="flexible">
-                            <span>Both negotiate flexible/remote work (if available in your field)</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="question-group">
-                    <label>23. Division of household labor:</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q23" value="equal_split">
-                            <span>Equal split - both partners share childcare and housework 50/50</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q23" value="primary_secondary">
-                            <span>Primary/secondary - one does 70%, one does 30%</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q23" value="outsource">
-                            <span>Outsource what you can - hire cleaning service, meal delivery</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="question-group">
-                    <label>24. How do you feel about this work-family balance?</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q24" value="sustainable">
-                            <span>Sustainable - feels manageable</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q24" value="stressful">
-                            <span>Stressful but worth it</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q24" value="overwhelming">
-                            <span>Overwhelming - the "time squeeze" is real</span>
-                        </label>
-                    </div>
-                </div>
+            <!-- Connection Box -->
+            <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
+                <strong>💡 CONNECT: How will these choices affect Module 7 (Crisis & Resilience)?</strong><br>
+                • <strong>Childcare strategy:</strong> Purchased care = expensive but flexible if crisis hits. Family network care = vulnerable if family caregiver has crisis. Stay-home parent = one income means high financial vulnerability.<br>
+                • <strong>Work-family division:</strong> Traditional gender division = mother overloaded, father's career secure. Egalitarian = both stressed but shared. Outsourcing = vulnerable if lose income. Tag team = relationship already strained before crisis.<br><br>
+                <em>These decisions show how <span class="glossary-term" data-term="work-family-conflict">work-family conflict<span class="glossary-tooltip"><strong>Work-Family Conflict</strong><br>Structural incompatibility between paid work demands (long hours, inflexibility) and family caregiving needs (time, presence, energy).<br><em>Hammond Ch. 11</em></span></span> is structural (U.S. policy gaps) not individual—countries with paid leave, universal childcare, and flex work rights don't force these impossible choices.</em>
             </div>
 
             <div style="margin-top: 40px; text-align: center;">
@@ -1233,141 +1155,82 @@
 
             <div class="alert alert-info">
                 <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapters 12-16
+                <strong>📚 Connect to:</strong> Hammond Chapter 12
             </div>
 
-            <p style="margin-bottom: 25px; color: var(--text-dark);">
-                You're 35 years old. Life rarely goes as planned. Let's simulate an unexpected challenge
-                and see how structural factors affect your ability to cope.
-            </p>
+            <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
+                <strong>🎯 How Content Connects to This Decision</strong><br>
+                Hammond Ch. 12 presents the <span class="glossary-term" data-term="abc-x-model">ABC-X Model<span class="glossary-tooltip"><strong>ABC-X Model</strong><br>Family stress model: A (stressor event) + B (resources) + C (perception/meaning) = X (crisis level). Same stressor creates different outcomes based on resources and how family defines situation.<br><em>Hammond Ch. 12</em></span></span>: A (stressor) + B (resources) + C (perception) = X (crisis level). Same stressor creates different outcomes based on resources (money, insurance, social support) and meanings (how you interpret the event). <span class="glossary-term" data-term="resilience">Resilience<span class="glossary-tooltip"><strong>Resilience</strong><br>Family's capacity to withstand and recover from stress/crisis through resources, communication, and positive reframing—not innate trait but learned capability.<br><em>Hammond Ch. 12</em></span></span> isn't innate—it's built through resources accumulated in Modules 2-6. The <span class="glossary-term" data-term="divorce-gap">divorce gap<span class="glossary-tooltip"><strong>Divorce Gap</strong><br>Growing class divide in divorce rates—college-educated couples have low, stable divorce rates while working-class couples have high rates, driven by economic stress not values.<br><em>Hammond Ch. 12</em></span></span> shows economic security protects relationships during stress.
+            </div>
+
+            <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                <strong>You're 35 years old.</strong> Life rarely goes as planned. An unexpected crisis occurs. Your responses reveal how ALL previous decisions (Module 1 family background → Module 2 career → Module 4 partner → Module 5 marriage → Module 6 work-family) create cumulative resilience or vulnerability. This is systems thinking in action.</p>
 
             <div class="info-box">
-                <h3>⚡ Random Crisis Event</h3>
-                <p id="crisisEvent" style="font-weight: 600; color: var(--secondary);"></p>
+                <h3>⚡ Crisis Scenario: Medical Emergency</h3>
+                <p style="font-weight: 600; color: var(--secondary);">Your partner requires emergency surgery with $50,000 in medical costs. How do your accumulated resources (B) and relationship strength affect your crisis response (X)?</p>
             </div>
 
-            <div id="crisis_job_loss" style="display: none;">
-                <div class="question-group">
-                    <label>25. You just lost your job. Immediate response:</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="emergency_fund">
-                            <span>Use emergency savings (if you have them)</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="partner_income">
-                            <span>Rely on partner's income temporarily</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="unemployment">
-                            <span>File for unemployment benefits</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="credit_debt">
-                            <span>Use credit cards / go into debt</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div id="crisis_health" style="display: none;">
-                <div class="question-group">
-                    <label>25. Your partner has a serious health issue requiring expensive treatment. Response:</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="insurance_covers">
-                            <span>Health insurance covers most costs (high deductible though)</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="savings">
-                            <span>Drain savings to cover medical bills</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="gofundme">
-                            <span>Start a GoFundMe / ask family for help</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="medical_debt">
-                            <span>Accept medical debt / payment plans</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div id="crisis_financial" style="display: none;">
-                <div class="question-group">
-                    <label>25. Unexpected $5,000 expense (car accident, home repair, etc). Response:</label>
-                    <div class="options">
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="savings_cover">
-                            <span>Emergency fund covers it</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="payment_plan">
-                            <span>Negotiate payment plan</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="credit_card">
-                            <span>Put on credit card</span>
-                        </label>
-                        <label class="option-label">
-                            <input type="radio" name="q25" value="borrow">
-                            <span>Borrow from family/friends</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
+            <!-- DECISION 13: Crisis Response Strategy (Resources) -->
             <div class="question-group">
-                <label>26. Support systems - who helps you cope?</label>
+                <label><strong>DECISION 13:</strong> How do you handle the $50K medical bill? (B = Resources in ABC-X Model)</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    Your Module 2 career income, Module 4 partner economic security, Module 5 marriage legal benefits, and Module 6 work-family decisions determine what resources (B) you have. Same stressor (A), different resources (B) = different crisis levels (X).
+                </p>
                 <div class="options">
                     <label class="option-label">
-                        <input type="checkbox" name="q26" value="partner">
-                        <span>Partner/spouse</span>
+                        <input type="radio" name="q13" value="insurance_savings_covered" required>
+                        <span><strong>Protected by Insurance + Savings:</strong> Your Module 5 marriage provides insurance benefits. Module 2 career stability means good employer health plan. Deductible is $5K but you have emergency savings from dual-income Module 6 strategy. Out-of-pocket: $5K (manageable). <em>Advantage:</em> Crisis is stressful but financially manageable; no debt; treatment proceeds immediately; <span class="glossary-term" data-term="resilience">resilience<span class="glossary-tooltip"><strong>Resilience</strong><br>Family's capacity to withstand and recover from stress/crisis through resources, communication, and positive reframing—not innate trait but learned capability.<br><em>Hammond Ch. 12</em></span></span> high because safety net exists; relationship protected from financial stress; demonstrates how accumulated advantages buffer crisis. <em>Trade-off:</em> Drains savings (vulnerable to next crisis); still stressful emotionally; privilege of good insurance not available to all; shows class protection. <em>Outcome:</em> Low crisis level (X)—resources (B) absorbed stressor (A). Relationship survives. This outcome available mainly to college-educated, married, dual-career families.</span>
                     </label>
                     <label class="option-label">
-                        <input type="checkbox" name="q26" value="family">
-                        <span>Extended family</span>
+                        <input type="radio" name="q13" value="insurance_but_high_costs" required>
+                        <span><strong>Insurance with High Out-of-Pocket:</strong> You have insurance but high-deductible plan (common in Module 2 working-class jobs). Out-of-pocket costs $15K. You don't have savings—Module 6 childcare costs consumed all extra income. Must create payment plan or use credit cards. <em>Advantage:</em> Treatment happens (not uninsured); can negotiate payment plan; won't be outright medical bankruptcy; partner survives crisis with treatment. <em>Trade-off:</em> Go into $15K debt (years to repay); debt causes ongoing stress; may delay other life goals; relationship strain from money stress; demonstrates how "having insurance" doesn't mean "affordable"; working-class families experience insurance as inadequate. <em>Outcome:</em> Moderate crisis level (X)—some resources (B) but insufficient to fully buffer. Relationship strained. <span class="glossary-term" data-term="divorce-gap">Divorce gap<span class="glossary-tooltip"><strong>Divorce Gap</strong><br>Growing class divide in divorce rates—college-educated couples have low, stable divorce rates while working-class couples have high rates, driven by economic stress not values.<br><em>Hammond Ch. 12</em></span></span> visible—economic stress creates relationship vulnerability even in happy marriages.</span>
                     </label>
                     <label class="option-label">
-                        <input type="checkbox" name="q26" value="friends">
-                        <span>Close friends</span>
+                        <input type="radio" name="q13" value="no_insurance_catastrophe" required>
+                        <span><strong>No Insurance—Catastrophic Crisis:</strong> Module 5 cohabitation (not marriage) means no partner insurance access. Your Module 2 job has no benefits. Partner's Module 2 job also no insurance. Full $50K bill. Can't pay. Must choose: GoFundMe crowdfunding, medical bankruptcy, delay treatment, or move to Medicaid state. <em>Advantage:</em> Medicaid might cover after "spending down" assets; community support (GoFundMe) might help; emergency rooms can't refuse treatment; might qualify for hospital charity care. <em>Trade-off:</em> Medical bankruptcy (ruins credit for 7 years); GoFundMe is public begging (humiliation); delayed treatment risks health; must liquidate all assets (lose everything); relationship faces maximum stress (blame, fear, resentment); demonstrates U.S. policy failure—medical crisis shouldn't destroy families. <em>Outcome:</em> High crisis level (X)—no resources (B) to buffer stressor (A). Relationship may not survive. Shows structural vulnerability—working-class, unmarried, uninsured = catastrophe from same event that affluent, married, insured couple manages.</span>
                     </label>
                     <label class="option-label">
-                        <input type="checkbox" name="q26" value="community">
-                        <span>Community organizations / faith community</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="checkbox" name="q26" value="professional">
-                        <span>Professional support (therapy, counseling)</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="checkbox" name="q26" value="limited">
-                        <span>Limited support - mostly handling alone</span>
+                        <input type="radio" name="q13" value="family_network_support" required>
+                        <span><strong>Extended Family Network Support:</strong> No savings, inadequate insurance ($20K out-of-pocket). But Module 1 extended family background means relatives help. Parents loan $10K, siblings contribute, community fundraiser raises $5K, negotiate hospital down to $15K. Total covered through social capital. <em>Advantage:</em> Family <span class="glossary-term" data-term="resilience">resilience<span class="glossary-tooltip"><strong>Resilience</strong><br>Family's capacity to withstand and recover from stress/crisis through resources, communication, and positive reframing—not innate trait but learned capability.<br><em>Hammond Ch. 12</em></span></span> through social support (B resources = relationships, not just money); demonstrates collectivist values; survives crisis without bankruptcy; partner receives treatment; emotional support alongside financial. <em>Trade-off:</em> Obligation/debt to family (affects future autonomy); not everyone has family with resources to help; may create family conflict or expectations of repayment through caregiving; economic vulnerability still exists; only worked because family had resources. <em>Outcome:</em> Moderate crisis level (X)—social capital (B) substituted for economic capital. Relationship survives but indebted. Shows how family structure (Module 1) affects crisis resilience decades later.</span>
                     </label>
                 </div>
             </div>
 
+            <!-- DECISION 14: Crisis Perception & Relationship Response (C = Perception) -->
             <div class="question-group">
-                <label>27. How does this crisis affect your relationship/family?</label>
+                <label><strong>DECISION 14:</strong> How do you and your partner emotionally respond to this crisis? (C = Perception/Meaning in ABC-X Model)</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    ABC-X Model: same resources (B) can produce different crisis levels (X) based on how families perceive/frame the stressor (C). Your Module 3 communication style and Module 4 relationship quality shape your crisis perception and coping.
+                </p>
                 <div class="options">
                     <label class="option-label">
-                        <input type="radio" name="q27" value="stronger">
-                        <span>Brings us closer - we're resilient together</span>
+                        <input type="radio" name="q14" value="resilient_reframing" required>
+                        <span><strong>Resilient Reframing ("We'll get through this together"):</strong> You define crisis as temporary challenge, not catastrophe. Module 3 open communication means you problem-solve together. Frame medical emergency as "bad luck" not personal failure. Focus on partner's recovery (positive). Activate Module 1 family support, lean on each other emotionally. <em>Advantage:</em> <span class="glossary-term" data-term="resilience">Resilience<span class="glossary-tooltip"><strong>Resilience</strong><br>Family's capacity to withstand and recover from stress/crisis through resources, communication, and positive reframing—not innate trait but learned capability.<br><em>Hammond Ch. 12</em></span></span> practices reduce emotional distress; positive framing protects relationship quality; "we" language creates solidarity; communication prevents blame; research shows couples with positive reframing experience lower crisis levels (X) from same stressor (A). <em>Trade-off:</em> Requires emotional energy to maintain positive frame; may suppress valid fears/anger; "staying positive" doesn't change material reality (still in debt); can feel like toxic positivity if economic reality is dire. <em>Outcome:</em> Reduces crisis level (X)—good perception (C) buffers stress even if resources (B) limited. Relationship emerges stronger. Depends on Module 3 communication skills developed earlier.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q27" value="strain">
-                        <span>Creates strain but we're managing</span>
+                        <input type="radio" name="q14" value="blame_conflict_response" required>
+                        <span><strong>Blame & Conflict ("This is your fault"):</strong> You frame crisis as someone's fault—blame partner for job with bad insurance, blame self for not saving more. Module 3 conflict-avoidant communication means issues fester. Fight over money instead of supporting each other. Define situation as "unfair" (true) but focus on blame not solutions. <em>Advantage:</em> Anger/blame may feel emotionally honest; identifying responsibility (bad insurance, bad policy) is valid; expressing frustration may be cathartic initially. <em>Trade-off:</em> Blame increases crisis level (X)—same stressor (A) feels worse because relationship conflict added; negative meaning (C) compounds stress; damages relationship quality; partners emotionally isolated during crisis; research shows blame/conflict during stress predicts divorce; prevents effective problem-solving. <em>Outcome:</em> High crisis level (X)—negative perception (C) amplifies stressor (A). Relationship vulnerable even if survive financially. Shows how crisis can create relationship cascades toward <span class="glossary-term" data-term="divorce-gap">divorce gap<span class="glossary-tooltip"><strong>Divorce Gap</strong><br>Growing class divide in divorce rates—college-educated couples have low, stable divorce rates while working-class couples have high rates, driven by economic stress not values.<br><em>Hammond Ch. 12</em></span></span> pattern—economic stress → conflict → divorce.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q27" value="conflict">
-                        <span>Major conflict and stress</span>
+                        <input type="radio" name="q14" value="structural_analysis_frame" required>
+                        <span><strong>Structural Analysis Frame ("System failure, not our fault"):</strong> You frame crisis as U.S. policy failure—no universal healthcare, inadequate insurance tied to employment, medical bankruptcy as structural problem. Anger directed at system, not each other. Activates political consciousness. Support each other while critiquing structure. <em>Advantage:</em> Accurate structural analysis reduces shame/blame; "not our fault" protects self-esteem and relationship; may motivate advocacy/activism; solidarity with others facing similar crises; Module 3 pragmatic communication enables this analysis; intellectually validates anger while maintaining relationship; sociological imagination in practice. <em>Trade-off:</em> Doesn't change immediate material reality (still in debt); structural critique doesn't pay medical bills; may feel powerless facing large systems; family/community may not share frame ("personal responsibility" ideology). <em>Outcome:</em> Moderate crisis level (X)—structural framing (C) reduces blame but doesn't add resources (B). Relationship protected from internal conflict but external stress remains. Demonstrates sociological perspective as coping resource.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q27" value="questioning">
-                        <span>Makes me question the relationship's stability</span>
+                        <input type="radio" name="q14" value="isolation_shutdown" required>
+                        <span><strong>Isolation & Emotional Shutdown:</strong> Crisis feels overwhelming—you shut down emotionally. Module 3 conflict-avoidant communication means you don't talk about feelings. Each partner isolates, processes alone. Avoid discussing medical bills or fears. Frame as "too big to handle" so avoid engaging. <em>Advantage:</em> Avoids immediate conflict (no fighting); gives time for emotional processing; some people cope better alone initially; prevents saying hurtful things in moment of high stress. <em>Trade-off:</em> No mutual support during crisis—miss emotional connection when need it most; isolation increases individual distress; problems don't get solved through avoidance; partners feel alone despite being in relationship; research shows emotional disengagement during crisis predicts relationship dissolution; children sense parental stress with no explanation. <em>Outcome:</em> High crisis level (X)—avoidant perception (C) prevents using resources (B) effectively. Relationship at risk. Individuals suffer separately instead of together. Shows how Module 3 communication patterns (avoidance) create vulnerability in Module 7 crisis.</span>
                     </label>
                 </div>
+            </div>
+
+            <!-- Connection Box -->
+            <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
+                <strong>💡 CONNECT: ABC-X Model in Your Life</strong><br>
+                • <strong>A (Stressor):</strong> Medical emergency = same for everyone in this scenario<br>
+                • <strong>B (Resources):</strong> Determined by Module 2 (career/income), Module 4 (partner economic security), Module 5 (marriage insurance benefits), Module 6 (savings from work-family strategy)<br>
+                • <strong>C (Perception):</strong> Shaped by Module 3 (communication skills), Module 4 (relationship quality), sociological awareness<br>
+                • <strong>X (Crisis Level):</strong> Result of A + B + C interaction<br><br>
+                <em>Same event, different outcomes = structural inequality. The <span class="glossary-term" data-term="divorce-gap">divorce gap<span class="glossary-tooltip"><strong>Divorce Gap</strong><br>Growing class divide in divorce rates—college-educated couples have low, stable divorce rates while working-class couples have high rates, driven by economic stress not values.<br><em>Hammond Ch. 12</em></span></span> shows working-class marriages dissolve from economic stress while affluent marriages survive—not because of different "values" but different resources (B) to buffer stress.</em>
             </div>
 
             <div style="margin-top: 40px; text-align: center;">
@@ -1381,12 +1244,16 @@
 
             <div class="alert alert-info">
                 <strong>⏱️ Time:</strong> 25 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapters 15-17 & Entire Course
+                <strong>📚 Connect to:</strong> Hammond Chapter 15 & Entire Course Synthesis
             </div>
 
-            <p style="margin-bottom: 25px; color: var(--text-dark);">
-                You're 38 years old. Let's reflect on your entire journey through the Life Planning Challenge.
-                How did your decisions interconnect? What structural forces shaped your choices?
+            <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
+                <strong>🎯 How Content Connects to This Reflection</strong><br>
+                Hammond Ch. 15 examines <span class="glossary-term" data-term="family-policy">family policy<span class="glossary-tooltip"><strong>Family Policy</strong><br>Government programs and laws affecting families—childcare, parental leave, healthcare, housing, tax policy—showing how politics shape family life.<br><em>Hammond Ch. 15</em></span></span> and cross-national comparisons showing U.S. as outlier (no paid leave, no universal childcare, no healthcare). <span class="glossary-term" data-term="systems-thinking">Systems thinking<span class="glossary-tooltip"><strong>Systems Thinking</strong><br>Analyzing how multiple factors (education, economy, policy, culture, timing) interconnect and affect each other rather than viewing issues in isolation.<br><em>Course synthesis</em></span></span> reveals how your Module 1-7 decisions cascaded—education → income → partner pool → marriage timing → work-family options → crisis resilience. <span class="glossary-term" data-term="marriage-promotion">Marriage promotion<span class="glossary-tooltip"><strong>Marriage Promotion</strong><br>Government programs encouraging marriage (especially for low-income couples) assuming marriage solves poverty—critiqued for ignoring structural barriers like unemployment, low wages.<br><em>Hammond Ch. 15</em></span></span> policies assume marriage solves poverty but ignore the <span class="glossary-term" data-term="marriage-bar">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers preventing marriage formation—couples feel they need financial stability, home ownership, job security before marrying.<br><em>Hammond Ch. 9</em></span></span> (poverty prevents marriage, not vice versa).
+            </div>
+
+            <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                <strong>You're 40 years old.</strong> Looking back at your journey from Module 1 (family background at age 18) through Module 7 (crisis at age 35), you can now see how decisions cascaded, how structures constrained "choices," and how policy gaps shaped your life. This is the sociological imagination: connecting biography to history to social structure.
             </p>
 
             <div class="character-profile" id="finalProfile">
@@ -1394,71 +1261,58 @@
                 <div id="profileSummary"></div>
             </div>
 
+            <!-- DECISION 15: Policy Stance & Political Consciousness -->
             <div class="question-group">
-                <label>28. Looking back, which decision had the BIGGEST impact on your life?</label>
+                <label><strong>DECISION 15:</strong> What is your stance on family policy after experiencing this life journey?</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    Having navigated education, careers, relationships, parenthood, work-family conflict, and crises with current U.S. policy context (no paid leave, no universal childcare, employer-based healthcare, minimal safety net), what structural changes do you now advocate?
+                </p>
                 <div class="options">
                     <label class="option-label">
-                        <input type="radio" name="q28" value="education">
-                        <span>Education/career choice</span>
+                        <input type="radio" name="q15" value="comprehensive_social_democracy" required>
+                        <span><strong>Comprehensive Social Democratic Policies:</strong> Advocate for full European-style <span class="glossary-term" data-term="family-policy">family policy<span class="glossary-tooltip"><strong>Family Policy</strong><br>Government programs and laws affecting families—childcare, parental leave, healthcare, housing, tax policy—showing how politics shape family life.<br><em>Hammond Ch. 15</em></span></span>: universal childcare, 12+ months paid parental leave, universal healthcare, subsidized housing, strong safety net. Your life journey showed how policy gaps created impossible choices—Module 6 work-family conflict, Module 7 crisis vulnerability—all preventable through structural supports. <em>Stance:</em> "Family formation is social responsibility, not individual problem. Government must provide resources enabling all families to thrive. U.S. individualism creates suffering. Cross-national evidence shows these policies work—higher maternal employment, higher fertility, lower child poverty, lower divorce rates in countries with supports." <em>Trade-offs acknowledged:</em> Higher taxes, larger government role, different cultural values about self-reliance vs. collective responsibility.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q28" value="relationship">
-                        <span>Relationship/partnership decision</span>
+                        <input type="radio" name="q15" value="targeted_supports" required>
+                        <span><strong>Targeted Support for Working-Class Families:</strong> Advocate for means-tested programs helping low-income families specifically—expanded SNAP, housing vouchers, Medicaid expansion, subsidized childcare for families under 200% poverty line. Your journey revealed class inequality—affluent families bought solutions while working-class struggled. Focus aid where need is greatest. <em>Stance:</em> "Government should help vulnerable families but not middle/upper class who can afford market solutions. Target scarce resources to prevent child poverty and support working parents who can't afford private childcare. Preserve market for those who can pay." <em>Trade-offs acknowledged:</em> Means-testing creates stigma ("welfare"), cliff effects (earn $1 more, lose $5K benefits), doesn't address middle-class squeeze, maintains two-tier system where affluent and poor have different family experiences.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q28" value="parenthood">
-                        <span>Parenthood decision (whether to have kids)</span>
+                        <input type="radio" name="q15" value="market_solutions_minimal_government" required>
+                        <span><strong>Market Solutions with Minimal Government:</strong> Oppose expanded <span class="glossary-term" data-term="family-policy">family policy<span class="glossary-tooltip"><strong>Family Policy</strong><br>Government programs and laws affecting families—childcare, parental leave, healthcare, housing, tax policy—showing how politics shape family life.<br><em>Hammond Ch. 15</em></span></span>. Believe families should solve childcare, healthcare, work-family balance through private markets, family networks, and individual choices. Government programs create dependency. Your journey showed you made choices—education, career, partner—that created your outcomes. <em>Stance:</em> "Personal responsibility and free choice determine family outcomes. Government programs are inefficient, expensive, reduce freedom. Families should save for emergencies, purchase private insurance, negotiate with employers. Success comes from good decisions, not government handouts." <em>Trade-offs acknowledged:</em> Ignores structural constraints (Module 1 family background advantages, Module 2 education costs, marriage bar, crisis vulnerability for uninsured). Assumes everyone has equal opportunity to "choose" wisely despite evidence of cumulative advantage/disadvantage. Accepts high inequality as natural.</span>
                     </label>
                     <label class="option-label">
-                        <input type="radio" name="q28" value="crisis_response">
-                        <span>How I responded to crisis/challenge</span>
+                        <input type="radio" name="q15" value="marriage_promotion_traditional_values" required>
+                        <span><strong><span class="glossary-term" data-term="marriage-promotion">Marriage Promotion<span class="glossary-tooltip"><strong>Marriage Promotion</strong><br>Government programs encouraging marriage (especially for low-income couples) assuming marriage solves poverty—critiqued for ignoring structural barriers like unemployment, low wages.<br><em>Hammond Ch. 15</em></span></span> & Traditional Family Values:</strong> Advocate for programs encouraging marriage and two-parent families as solution to poverty and family instability. Government should fund marriage education, relationship skills classes, tax incentives for married couples. Your Module 5 marriage provided insurance benefits; Module 7 showed partner support during crisis. Solution is more marriage, not more government programs. <em>Stance:</em> "Family breakdown causes poverty, not other way around. Government should promote marriage and discourage single parenthood. Two-parent married families provide best outcomes for children. Cohabitation and non-marriage create instability." <em>Trade-offs acknowledged:</em> Ignores <span class="glossary-term" data-term="marriage-bar">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers preventing marriage formation—couples feel they need financial stability, home ownership, job security before marrying.<br><em>Hammond Ch. 9</em></span></span> (poverty prevents marriage, not reverse). Marriage education doesn't address unemployment, low wages, lack of childcare. Research shows these programs ineffective. Stigmatizes non-traditional families. Ignores domestic violence risks.</span>
                     </label>
                 </div>
             </div>
 
+            <!-- DECISION 16: Systems Reflection (Open-Ended Synthesis) -->
             <div class="question-group">
-                <label>29. What surprised you most about this game?</label>
-                <textarea id="q29_reflection" placeholder="Reflect on what surprised you about how decisions interconnected..."></textarea>
+                <label><strong>REFLECTION 16:</strong> Sociological Imagination - Connect Your Biography to Social Structure</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    <span class="glossary-term" data-term="systems-thinking">Systems thinking<span class="glossary-tooltip"><strong>Systems Thinking</strong><br>Analyzing how multiple factors (education, economy, policy, culture, timing) interconnect and affect each other rather than viewing issues in isolation.<br><em>Course synthesis</em></span></span> means tracing how your Module 1-7 decisions cascaded. C. Wright Mills called this the "sociological imagination"—understanding how biography (your life) intersects with history (time period) and social structure (economy, policy, inequality). Write your synthesis below:
+                </p>
+                <textarea id="q16_systems_reflection" rows="10" style="width: 100%; padding: 15px; font-size: 1em; border: 2px solid #ddd; border-radius: 8px;" placeholder="Synthesize your journey:
+
+• How did Module 1 (family background) affect later modules?
+• Which structural factors constrained your 'choices' most (economic? gender? policy gaps?)?
+• Where did you see privilege or disadvantage accumulate across modules?
+• What surprised you about how decisions cascaded?
+• How would different U.S. policies have changed your journey?
+• Did playing this game change how you understand 'family' as a social institution?
+
+Use specific examples from your gameplay. Reference Hammond concepts: homogamy, marriage bar, second shift, ABC-X model, divorce gap, intensive mothering, work-family conflict, deinstitutionalization, etc.
+
+Aim for 300-500 words demonstrating sociological analysis, not just personal opinion."></textarea>
             </div>
 
-            <div class="question-group">
-                <label>30. Which structural forces most constrained your choices? (Select all that apply)</label>
-                <div class="options">
-                    <label class="option-label">
-                        <input type="checkbox" name="q30" value="economic">
-                        <span>Economic constraints (income, debt, childcare costs)</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="checkbox" name="q30" value="time">
-                        <span>Time scarcity (work-family balance)</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="checkbox" name="q30" value="gender">
-                        <span>Gender expectations and norms</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="checkbox" name="q30" value="policy">
-                        <span>Lack of supportive policies (parental leave, healthcare, etc.)</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="checkbox" name="q30" value="life_course">
-                        <span>Life course timing (age-related pressures)</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="checkbox" name="q30" value="none">
-                        <span>I felt I had complete freedom to choose</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="question-group">
-                <label>31. How has this game changed your understanding of "family"?</label>
-                <textarea id="q31_reflection" placeholder="Reflect on how your understanding of family as a social institution has evolved..."></textarea>
-            </div>
-
-            <div class="question-group">
-                <label>32. What policy changes would have made your life journey easier?</label>
-                <textarea id="q32_reflection" placeholder="Think about structural supports that could help families..."></textarea>
+            <!-- Final Connection Box -->
+            <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
+                <strong>💡 COURSE SYNTHESIS: What Did You Learn?</strong><br><br>
+                This game demonstrated <span class="glossary-term" data-term="systems-thinking">systems thinking<span class="glossary-tooltip"><strong>Systems Thinking</strong><br>Analyzing how multiple factors (education, economy, policy, culture, timing) interconnect and affect each other rather than viewing issues in isolation.<br><em>Course synthesis</em></span></span>: decisions cascade across life domains and time. Your Module 1 family background → Module 2 education access → Module 2 career income → Module 4 marriage market → Module 5 clearing marriage bar → Module 6 work-family options → Module 7 crisis resilience. Early advantages/disadvantages compound.<br><br>
+                <strong>Key takeaway:</strong> "Personal choices" happen within structural constraints. Same decisions (work hard, get married, have kids) produce different outcomes based on class position, gender, race, policy context. This is sociology—revealing how biography connects to social structure.<br><br>
+                <em>Hammond Ch. 15 shows U.S. as outlier among wealthy nations—no paid leave, no universal childcare, no healthcare, weak safety net. Cross-national comparisons reveal policy choices matter. Family outcomes aren't "natural" but politically constructed.</em>
             </div>
 
             <div class="alert alert-success">
