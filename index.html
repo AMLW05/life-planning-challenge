@@ -1673,97 +1673,215 @@
             </div>
 
             <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
-                <strong>🎯 How Content Connects to This Decision</strong><br>
-                Hammond Ch. 9 explores <span class="glossary-term" data-term="deinstitutionalization">deinstitutionalization of marriage<span class="glossary-tooltip"><strong>Deinstitutionalization of Marriage</strong><br>The historical shift where marriage changed from required life stage with rigid rules to optional lifestyle choice with flexible arrangements.<br><em>Hammond Ch. 9</em></span></span>—marriage transformed from required institution to optional choice. The <span class="glossary-term" data-term="marriage-bar">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers preventing marriage formation—couples feel they need financial stability, home ownership, job security before marrying.<br><em>Hammond Ch. 9</em></span></span> describes economic barriers to marriage: couples delay marriage until achieving job stability, debt payoff, savings. <span class="glossary-term" data-term="cohabitation">Cohabitation<span class="glossary-tooltip"><strong>Cohabitation</strong><br>Living together in a sexual relationship without legal marriage—increasingly common alternative or precursor to marriage.<br><em>Hammond Ch. 9</em></span></span> has become normative alternative/pathway. Your Module 2 career and Module 4 partner choices created economic context.
+                <strong>🎯 Life Course Perspective in Action</strong><br>
+                Hammond Ch. 9: <span class="glossary-term">Marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers to marriage.<br><em>Hammond Ch. 9</em></span></span>, <span class="glossary-term">deinstitutionalization<span class="glossary-tooltip"><strong>Deinstitutionalization</strong><br>Marriage shifts from required to optional.<br><em>Hammond Ch. 9</em></span></span>, and <span class="glossary-term">cohabitation<span class="glossary-tooltip"><strong>Cohabitation</strong><br>Living together unmarried.<br><em>Hammond Ch. 9</em></span></span> patterns vary by life stage—first marriage at 29 differs from remarriage at 40 or sustaining 30-year partnerships.
             </div>
 
-            <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                <strong>You're 29 years old.</strong> Many friends are marrying or cohabiting. Your Module 4 sexual scripts and economic situation shape whether you can "afford" marriage, whether cohabitation fits your values, and what legal/financial arrangements make sense. These choices affect Module 6 work-family balance and Module 7 crisis resilience.
-            </p>
+            <div class="alert" style="background: #ffe4e1; border-left: 4px solid #ff6b6b; padding: 15px; margin: 20px 0;">
+                <strong>💾 SAVE YOUR PROGRESS!</strong> Export data regularly for Canvas!
+            </div>
 
-            <div id="module5_single" style="display: none;">
-                <div class="alert alert-info">
-                    You're currently single. You can choose to seek a partnership or remain single.
-                </div>
+            <!-- BRANCH 1: TRADITIONAL (18-24) -->
+            <div id="module5_traditional" class="branch-content" style="display:none;">
+                <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                    <strong>You're 29 years old.</strong> Many peers are marrying. Your Module 2 career and Module 4 partner determine if you've "cleared" the <span class="glossary-term">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic readiness needed for marriage.<br><em>Hammond Ch. 9</em></span></span>.
+                </p>
+
                 <div class="question-group">
-                    <label>17. Your relationship status decision:</label>
+                    <label><strong>DECISION 9:</strong> Marriage Timing - When will you formalize partnership?</label>
                     <div class="options">
                         <label class="option-label">
-                            <input type="radio" name="q17_single" value="seek_partner">
-                            <span>Actively seek a committed partner</span>
+                            <input type="radio" name="q11_traditional" value="marry_now_cleared_bar">
+                            <span><strong>Marry Now (Cleared Marriage Bar):</strong> Stable jobs, savings, ready. <em>Sociology:</em> Legal benefits (insurance, taxes), social recognition. Expensive wedding reduces savings. Enables Module 6 benefits.</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q17_single" value="stay_single">
-                            <span>Remain single by choice</span>
+                            <input type="radio" name="q11_traditional" value="cohabit_pathway">
+                            <span><strong>Cohabit First, Marry Later:</strong> Test compatibility, save money, work toward bar. <em>Sociology:</em> Tests domestic labor before commitment. No legal protections yet. Delays Module 6 benefits.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q11_traditional" value="marry_despite_bar">
+                            <span><strong>Marry Despite Barriers:</strong> Debt, unstable jobs but marry for love/values. <em>Sociology:</em> Economic stress predicts divorce. Marriage doesn't solve poverty. Affects Module 6 childcare affordability.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q11_traditional" value="cohabit_alternative">
+                            <span><strong>Long-term Cohabitation (No Marriage):</strong> Permanent cohabitation, reject marriage institution. <em>Sociology:</em> Deinstitutionalization. Requires creating legal protections manually. Affects Module 6 benefits.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label><strong>DECISION 10:</strong> Partnership Structure - Financial arrangement?</label>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q12_traditional" value="traditional_merged">
+                            <span><strong>Traditional Merged:</strong> Joint finances, gender-typed labor division. <em>Sociology:</em> Clear scripts but loss of autonomy. Determines Module 6 arrangements (one partner reduces work).</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q12_traditional" value="egalitarian_dual_career">
+                            <span><strong>Egalitarian Dual-Career:</strong> Joint finances, equal domestic labor, both work. <em>Sociology:</em> Gender equality but constant negotiation. Requires purchased childcare (Module 6).</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q12_traditional" value="semi_autonomous">
+                            <span><strong>Semi-Autonomous:</strong> Shared expenses, separate personal accounts. <em>Sociology:</em> Balances autonomy and commitment. Must renegotiate with Module 6 kids.</span>
                         </label>
                     </div>
                 </div>
             </div>
 
-            <div id="module5_partnered">
-                <!-- DECISION 9: Marriage Timing & Economic Readiness -->
+            <!-- BRANCH 2: RETURNING (25-35) -->
+            <div id="module5_returning" class="branch-content" style="display:none;">
+                <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                    <strong>You're 35 years old.</strong> You may already be married (Module 3-4 partnership) OR considering remarriage after divorce. Partnership decisions differ with established life.
+                </p>
+
                 <div class="question-group">
-                    <label><strong>DECISION 9:</strong> When will you formalize your partnership? (Marriage timing decision)</label>
-                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        The <span class="glossary-term" data-term="marriage-bar">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers preventing marriage formation—couples feel they need financial stability, home ownership, job security before marrying.<br><em>Hammond Ch. 9</em></span></span> means most couples feel they need economic stability before marrying. Your Module 2 education/career and Module 4 partner economic security choices determine whether you've "cleared" the marriage bar.
-                    </p>
+                    <label><strong>DECISION 9:</strong> Partnership Status - Where are you?</label>
                     <div class="options">
                         <label class="option-label">
-                            <input type="radio" name="q9" value="marry_now_achieved_bar" required>
-                            <span><strong>Marry Now—Cleared the Marriage Bar:</strong> You have stable jobs, saved money, paid off student loans, can afford wedding. You meet cultural expectations for marriage readiness (financial security, career establishment, homeownership or path to it). <em>Advantage:</em> Legal benefits (taxes, insurance, inheritance), social recognition, family approval, <span class="glossary-term" data-term="companionate-marriage">companionate marriage<span class="glossary-tooltip"><strong>Companionate Marriage</strong><br>Modern marriage based on love, emotional intimacy, and mutual fulfillment rather than economic necessity or social obligation.<br><em>Hammond Ch. 9</em></span></span> based on love and choice. <em>Trade-off:</em> Expensive wedding reduces savings; legally complex to exit if relationship fails; may delay childbearing until after marriage (Module 6 timing). <em>Future impact:</em> Legal protections help Module 6 (benefits for childcare, maternity leave) and Module 7 (insurance for crisis resilience).</span>
+                            <input type="radio" name="q11_returning" value="already_married_stable">
+                            <span><strong>Already Married (5-8 years):</strong> Married in late 20s, stable partnership. Navigating career/family balance, possibly planning kids. <em>Sociology:</em> Marriage maintenance phase. Legal protections established. Moving toward Module 6 decisions.</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q9" value="marry_despite_bar" required>
-                            <span><strong>Marry Despite Economic Barriers:</strong> You have debt, unstable jobs, no savings—haven't cleared marriage bar—but marry anyway for love, religious values, or family pressure. Prioritize relationship formalization over economic readiness. <em>Advantage:</em> Legal protections even with economic vulnerability; fulfills cultural/religious values; family approval; companionate marriage commitment. <em>Trade-off:</em> Financial stress strains relationship (research shows economic strain → higher divorce); can't afford big wedding; may face housing insecurity. <em>Future impact:</em> Economic stress affects Module 6 work-family decisions (can't afford childcare) and Module 7 crisis vulnerability (no savings buffer). Marriage won't solve poverty—may intensify stress.</span>
+                            <input type="radio" name="q11_returning" value="already_married_struggling">
+                            <span><strong>Already Married, Struggling:</strong> Married but facing challenges—work stress, communication issues, considering counseling or separation. <em>Sociology:</em> Early marriage strain common. Sunk cost dilemma. Affects Module 6 coparenting capacity.</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q9" value="cohabit_before_marriage" required>
-                            <span><strong>Cohabit First, Marry Later:</strong> Live together to test compatibility, share expenses, and save for wedding while working toward clearing marriage bar. <span class="glossary-term" data-term="cohabitation">Cohabitation<span class="glossary-tooltip"><strong>Cohabitation</strong><br>Living together in a sexual relationship without legal marriage—increasingly common alternative or precursor to marriage.<br><em>Hammond Ch. 9</em></span></span> as pathway to marriage (not alternative). <em>Advantage:</em> Test domestic labor division, financial compatibility, daily habits before legal commitment; share rent reduces costs; aligns with Module 4 egalitarian/practical scripts. <em>Trade-off:</em> No legal protections (inheritance, insurance, medical decisions); family disapproval if traditional background; ambiguity about commitment timeline may create anxiety. <em>Future impact:</em> Cohabitation shapes Module 6 (already tested work-family arrangements) but may delay legal benefits until later marriage.</span>
+                            <input type="radio" name="q11_returning" value="remarrying_postdivorce">
+                            <span><strong>Remarrying After Divorce:</strong> First marriage ended, now committing to new partner. May have kids from previous (blended family). <em>Sociology:</em> Second marriages 60% divorce rate but deeper self-knowledge. Complex Module 6 (stepfamily dynamics).</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q9" value="cohabit_alternative" required>
-                            <span><strong>Long-term Cohabitation (Marriage Alternative):</strong> Never marry—cohabitation as permanent partnership form reflecting <span class="glossary-term" data-term="deinstitutionalization">deinstitutionalization<span class="glossary-tooltip"><strong>Deinstitutionalization of Marriage</strong><br>The historical shift where marriage changed from required life stage with rigid rules to optional lifestyle choice with flexible arrangements.<br><em>Hammond Ch. 9</em></span></span>. Reject marriage as outdated institution; prioritize flexibility and personal choice over legal/social recognition. <em>Advantage:</em> Maximum flexibility; easier exit if relationship deteriorates; avoid expensive wedding; resist institutional control of relationship; authentic to non-traditional values. <em>Trade-off:</em> No automatic legal protections (must create contracts for inheritance, medical proxy, property); social stigma from traditional family; complications if having children (custody, benefits); housing discrimination (some rentals prefer married). <em>Future impact:</em> Must actively create legal protections; affects Module 6 (childcare benefits tied to marriage); Module 7 (insurance gaps in crisis).</span>
+                            <input type="radio" name="q11_returning" value="cohabiting_longterm">
+                            <span><strong>Long-term Cohabitation (Not Marrying):</strong> Together 3-5+ years, no plans to marry. Functional partnership without legal formalization. <em>Sociology:</em> Deinstitutionalization accepted. Must create legal protections. Affects Module 6 benefits.</span>
                         </label>
                     </div>
                 </div>
 
-                <!-- DECISION 10: Partnership Structure & Financial Integration -->
                 <div class="question-group">
-                    <label><strong>DECISION 10:</strong> How will you structure your partnership? (Legal & financial arrangement)</label>
-                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        Modern partnerships range from fully merged (traditional model) to economically independent. Your Module 4 partner selection (economic security vs. emotional compatibility) and sexual scripts shape which arrangement fits your relationship.
-                    </p>
+                    <label><strong>DECISION 10:</strong> Partnership Priority - What needs attention?</label>
                     <div class="options">
                         <label class="option-label">
-                            <input type="radio" name="q10" value="traditional_merged" required>
-                            <span><strong>Traditional Merged Model:</strong> Marry with fully combined finances (joint bank accounts, shared credit, pooled income). Traditional gender-typed division of labor (based on Module 4 sexual scripts). Legal marriage with conventional expectations about roles. <em>Advantage:</em> Clear social script reduces ambiguity; family approval; simplified finances; aligned if both want traditional arrangement; economic efficiency of specialization. <em>Trade-off:</em> Loss of financial autonomy; vulnerable if relationship ends (economically dependent partner disadvantaged); rigid gender roles may conflict with career ambitions; assumes trust and equal power. <em>Future impact:</em> Determines Module 6 work-family arrangements (likely one partner reduces work for childcare); shapes Module 7 (economic dependence affects crisis options).</span>
+                            <input type="radio" name="q12_returning" value="strengthen_communication">
+                            <span><strong>Strengthen Communication:</strong> Invest in relationship quality—counseling, date nights, explicit negotiation. <em>Sociology:</em> Maintenance work prevents drift. Enables Module 6 coparenting negotiations.</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q10" value="egalitarian_merged" required>
-                            <span><strong>Egalitarian Partnership:</strong> Marry with joint finances BUT explicit commitment to equal domestic labor, equal career priority, and shared decision-making. Reject gendered scripts from Module 4. Both maintain careers. <em>Advantage:</em> Gender equality; both partners economically secure; legal benefits of marriage; shared financial resources; authentic to progressive values; supports dual-career Module 6 arrangements. <em>Trade-off:</em> Requires constant negotiation (who does what, career sacrifices); work-family conflict when both have demanding jobs; expensive childcare costs (Module 6); no "default" gendered script to fall back on. <em>Future impact:</em> Enables Module 6 dual-career strategy; requires purchased childcare; both vulnerable to job loss (Module 7) but also both have income.</span>
+                            <input type="radio" name="q12_returning" value="renegotiate_structure">
+                            <span><strong>Renegotiate Financial Structure:</strong> Life changes require new agreements—income shifts, debt, preparing for kids. <em>Sociology:</em> Partnerships must adapt. Critical before Module 6 (kids = major financial shift).</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q10" value="semi_autonomous" required>
-                            <span><strong>Semi-Autonomous Partnership:</strong> Marry OR cohabit with partially separate finances—joint account for shared expenses (rent, groceries), but each keeps separate accounts for personal spending. Hybrid legal/financial model. <em>Advantage:</em> Balances commitment with autonomy; financial independence protects both partners; flexibility if income gap exists; reduces money conflict by maintaining personal control; aligns with practical Module 4 scripts. <em>Trade-off:</em> Requires detailed negotiation about "fair" contribution; ambiguity about what's "ours" vs. "mine"; complicated if children arrive (Module 6 costs); less romantic/trusting than full merger. <em>Future impact:</em> Financial autonomy helps if Module 7 crisis causes relationship strain; but must renegotiate when Module 6 parenting creates income changes.</span>
+                            <input type="radio" name="q12_returning" value="accept_status_quo">
+                            <span><strong>Accept Current Arrangement:</strong> Partnership works as-is. Don't fix what isn't broken. <em>Sociology:</em> Stability valuable but may miss needed adaptations for Module 6 transitions.</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BRANCH 3: MID-CAREER (36-50) -->
+            <div id="module5_midcareer" class="branch-content" style="display:none;">
+                <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                    <strong>You're 47 years old.</strong> You're likely in a long-term marriage (15-25 years) assessing its health OR you're navigating gray divorce or remarriage. Partnership at midlife means evaluating decades together or rebuilding.
+                </p>
+
+                <div class="question-group">
+                    <label><strong>DECISION 9:</strong> Long-Term Partnership Status</label>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q11_midcareer" value="longterm_strong">
+                            <span><strong>Long-Term Marriage, Still Strong:</strong> 20+ years, weathered challenges, deep companionship. Partnership evolved successfully. <em>Sociology:</em> Sustained compatibility predicts wellbeing. Empty nest may allow reconnection.</span>
                         </label>
                         <label class="option-label">
-                            <input type="radio" name="q10" value="lat_living_apart" required>
-                            <span><strong>LAT (Living Apart Together):</strong> Committed partnership (may include marriage legally) but maintain separate households. Maximum autonomy model. Spend time together but keep separate homes, finances, daily routines. <em>Advantage:</em> Maximum independence; no domestic labor negotiations; maintains personal space; good for partners with demanding careers, different schedules, or previous failed cohabitations; avoids Module 3 communication conflicts from daily proximity. <em>Trade-off:</em> Expensive (two rents/mortgages); not practical for childcare (Module 6—where would child live?); social confusion about relationship status; miss daily intimacy and spontaneity; limits economic efficiency of shared household. <em>Future impact:</em> Prevents coparenting arrangements in Module 6; relationship may feel less "real" during Module 7 crisis without daily support.</span>
+                            <input type="radio" name="q11_midcareer" value="longterm_drifted">
+                            <span><strong>Long-Term Marriage, Drifted Apart:</strong> Years together but lost intimacy. Coparenting roommates. Questioning whether to stay or pursue gray divorce. <em>Sociology:</em> Common at empty nest. Women initiate 66% of gray divorces. Financial devastation risk.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q11_midcareer" value="postdivorce_new_partnership">
+                            <span><strong>Post-Gray Divorce, New Partnership:</strong> Ended long marriage, now in new relationship. Different expectations—companionship over passion, LAT common. <em>Sociology:</em> Prioritize autonomy after decades of interdependence. Lower remarriage rates.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q11_midcareer" value="single_postdivorce">
+                            <span><strong>Single After Gray Divorce:</strong> Ended marriage, embracing solo life. Building new identity as single at midlife. <em>Sociology:</em> Financially challenging but may improve quality of life if escaping unhappy marriage.</span>
                         </label>
                     </div>
                 </div>
 
-                <!-- Connection Box -->
-                <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
-                    <strong>💡 CONNECT: How will these choices affect future modules?</strong><br>
-                    • <strong>Module 6 (Parenthood & Work-Family):</strong> Marriage provides legal benefits for parental leave, insurance; cohabitation lacks protections. Financial structure (merged vs. separate) determines how you afford childcare and negotiate career sacrifices.<br>
-                    • <strong>Module 7 (Crisis & Resilience):</strong> Legal marriage provides protections during crisis (insurance, medical decisions, inheritance). Economic integration affects vulnerability—merged finances mean shared crisis but also shared resources; separate finances mean individual exposure.<br><br>
-                    <em>The <span class="glossary-term" data-term="marriage-bar">marriage bar<span class="glossary-tooltip"><strong>Marriage Bar</strong><br>Economic barriers preventing marriage formation—couples feel they need financial stability, home ownership, job security before marrying.<br><em>Hammond Ch. 9</em></span></span> shows marriage is increasingly class-stratified: college-educated delay marriage but eventually marry; working-class face persistent economic barriers.</em>
+                <div class="question-group">
+                    <label><strong>DECISION 10:</strong> Midlife Partnership Focus</label>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q12_midcareer" value="reinvest_empty_nest">
+                            <span><strong>Reinvest at Empty Nest:</strong> Kids launched, rediscover partnership. Travel, hobbies, reconnection. <em>Sociology:</em> Marital satisfaction U-shaped—rebounds after child-rearing if reinvested.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q12_midcareer" value="accept_companionate">
+                            <span><strong>Accept Companionate Marriage:</strong> Passion gone but companionship remains. Accept "good enough" partnership. <em>Sociology:</em> Pragmatic approach. Stability over romance.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q12_midcareer" value="pursue_gray_divorce">
+                            <span><strong>Pursue Gray Divorce:</strong> End unsatisfying marriage. Financial hit but pursue fulfillment in remaining decades. <em>Sociology:</em> Gray divorce rates doubled. Women especially willing to leave for quality of life.</span>
+                        </label>
+                    </div>
                 </div>
+            </div>
+
+            <!-- BRANCH 4: LATER-LIFE (50+) -->
+            <div id="module5_laterlife" class="branch-content" style="display:none;">
+                <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                    <strong>You're 63 years old.</strong> You're sustaining a decades-long marriage (30-40+ years), navigating widowhood, or in new late-life partnerships. Partnership at this stage focuses on caregiving, companionship, legacy.
+                </p>
+
+                <div class="question-group">
+                    <label><strong>DECISION 9:</strong> Late-Life Partnership Status</label>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q11_laterlife" value="decades_marriage_strong">
+                            <span><strong>Decades-Long Marriage (30-40+ years):</strong> Together through all stages. Deep companionship, shared history. Partnership is identity. <em>Sociology:</em> Long marriages predict health, wellbeing. Quality varies widely.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q11_laterlife" value="widowhood">
+                            <span><strong>Widowhood:</strong> Spouse died. Navigating grief, identity shift, solo aging. Considering dating or embracing singlehood. <em>Sociology:</em> Women more likely widowed (live longer, marry older men). Widow poverty common.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q11_laterlife" value="new_latelife_partnership">
+                            <span><strong>New Late-Life Partnership (LAT):</strong> New companionship after loss/divorce. Often LAT—companionship without merging lives. <em>Sociology:</em> Increasingly common. Women value autonomy after decades of caregiving.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q11_laterlife" value="single_by_choice">
+                            <span><strong>Single by Choice:</strong> Widowed or divorced, embracing solo aging. Companionship through friends, adult children, community. <em>Sociology:</em> Challenges couple-centric society. Older single women report high satisfaction.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label><strong>DECISION 10:</strong> Late-Life Partnership Priorities</label>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q12_laterlife" value="caregiving_partnership">
+                            <span><strong>Mutual Caregiving:</strong> As health declines, become each other's caregivers. Medical management, mobility support. <em>Sociology:</em> Spousal caregiving highly gendered. Wives more likely to care for husbands.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q12_laterlife" value="companionship_active">
+                            <span><strong>Active Companionship:</strong> Travel, grandchildren, hobbies while health good. Maximize remaining active years together. <em>Sociology:</em> "Successful aging" includes relationships. Requires financial resources.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q12_laterlife" value="independent_community">
+                            <span><strong>Independent with Community:</strong> Solo but embedded in community—friends, adult children, organizations. <em>Sociology:</em> Social connection predicts longevity even without romantic partner.</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
+                <strong>💡 SYSTEMS THINKING: Partnership cascades</strong><br>
+                • <strong>Module 6:</strong> Marriage structure determines work-family negotiations<br>
+                • <strong>Module 7:</strong> Legal/financial arrangements affect crisis resilience<br><br>
+                <em>Marriage bar increasingly class-stratified—college-educated delay but marry; working-class face persistent barriers.</em>
+            </div>
+
+            <div class="alert" style="background: #ffe4e1; border-left: 4px solid #ff6b6b; padding: 15px; margin: 20px 0;">
+                <strong>💾 SAVE NOW!</strong> Canvas Module 5 assignment requires this data.
             </div>
 
             <div style="margin-top: 40px; text-align: center;">
-                <button class="btn btn-primary" onclick="completeModule5()">Finalize Partnership Decision →</button>
+                <button class="btn btn-primary" onclick="completeModule5()">Complete Module 5 →</button>
             </div>
         </div>
 
