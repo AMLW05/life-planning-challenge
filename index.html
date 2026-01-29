@@ -764,9 +764,9 @@
             </div>
 
             <div class="question-group">
-                <label><strong>REFLECTION:</strong> What's your vision of family at age 35?</label>
+                <label><strong>REFLECTION:</strong> What's your vision of family at age <span id="reflectionAge">35</span>?</label>
                 <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                    Describe what "family" might look like for your character at age 35. This is aspirational—future modules will show how structures and circumstances shape whether this vision is possible.
+                    Describe what "family" might look like for your character at age <span id="reflectionAge2">35</span>. This is aspirational—future modules will show how structures and circumstances shape whether this vision is possible.
                 </p>
                 <textarea id="idealLife" placeholder="Write 2-3 sentences describing your character's imagined family life at age 35. Consider: Who is in your family? What does daily life look like? What matters most to you?" style="min-height: 100px; width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 1em;"></textarea>
             </div>
@@ -2348,6 +2348,27 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             };
 
             introDiv.innerHTML = intros[lifeStage];
+
+            // Update reflection question ages based on life stage
+            const ages = {
+                traditional: 25,
+                returning: 35,
+                midcareer: 50,
+                laterlife: 65
+            };
+            const age = ages[lifeStage];
+
+            // Update age in reflection question text
+            const reflectionAge = document.getElementById('reflectionAge');
+            const reflectionAge2 = document.getElementById('reflectionAge2');
+            if (reflectionAge) reflectionAge.textContent = age;
+            if (reflectionAge2) reflectionAge2.textContent = age;
+
+            // Update textarea placeholder
+            const textarea = document.getElementById('idealLife');
+            if (textarea) {
+                textarea.placeholder = `Write 2-3 sentences describing your character's imagined family life at age ${age}. Consider: Who is in your family? What does daily life look like? What matters most to you?`;
+            }
         }
 
         function completeModule1() {
