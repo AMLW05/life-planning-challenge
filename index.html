@@ -714,6 +714,14 @@
             </div>
 
             <div class="question-group">
+                <label><strong>YOUR CURRENT AGE:</strong> How old are you right now?</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    This helps us personalize the reflection questions to your actual life trajectory. We'll ask you to envision your family life 10-15 years from your current age.
+                </p>
+                <input type="number" id="currentAge" min="18" max="99" placeholder="Enter your age (e.g., 43)" style="width: 200px; padding: 10px; border: 2px solid #ddd; border-radius: 8px; font-size: 1em;">
+            </div>
+
+            <div class="question-group">
                 <label><strong>DECISION 1:</strong> What family structure did you grow up in?</label>
                 <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
                     Family structure affects economic resources, social capital, and caregiving models. Each form has both advantages and constraints.
@@ -2349,25 +2357,57 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
 
             introDiv.innerHTML = intros[lifeStage];
 
-            // Update reflection question ages based on life stage
-            const ages = {
-                traditional: 25,
-                returning: 35,
-                midcareer: 50,
-                laterlife: 65
-            };
-            const age = ages[lifeStage];
+            // Update reflection question age - call the calculation function
+            updateReflectionAge();
+        }
+
+        function updateReflectionAge() {
+            // Get current age from input field
+            const currentAgeInput = document.getElementById('currentAge');
+            const currentAge = parseInt(currentAgeInput?.value) || null;
+
+            // Calculate future age for reflection
+            let reflectionAge;
+
+            if (currentAge && currentAge >= 18) {
+                // Use actual age + 10-15 years based on life stage
+                const lifeStage = document.querySelector('input[name="q0_lifestage"]:checked')?.value || 'traditional';
+
+                if (currentAge < 30) {
+                    // Younger: look ahead 10-15 years
+                    reflectionAge = currentAge + 12;
+                } else if (currentAge < 45) {
+                    // Mid-range: look ahead 10 years
+                    reflectionAge = currentAge + 10;
+                } else if (currentAge < 60) {
+                    // Mid-career: look ahead 10 years
+                    reflectionAge = currentAge + 10;
+                } else {
+                    // Later life: look ahead 8-10 years
+                    reflectionAge = currentAge + 8;
+                }
+            } else {
+                // Fallback to life stage defaults if no age entered yet
+                const lifeStage = document.querySelector('input[name="q0_lifestage"]:checked')?.value || 'traditional';
+                const defaultAges = {
+                    traditional: 35,
+                    returning: 45,
+                    midcareer: 55,
+                    laterlife: 70
+                };
+                reflectionAge = defaultAges[lifeStage];
+            }
 
             // Update age in reflection question text
-            const reflectionAge = document.getElementById('reflectionAge');
-            const reflectionAge2 = document.getElementById('reflectionAge2');
-            if (reflectionAge) reflectionAge.textContent = age;
-            if (reflectionAge2) reflectionAge2.textContent = age;
+            const reflectionAgeSpan = document.getElementById('reflectionAge');
+            const reflectionAge2Span = document.getElementById('reflectionAge2');
+            if (reflectionAgeSpan) reflectionAgeSpan.textContent = reflectionAge;
+            if (reflectionAge2Span) reflectionAge2Span.textContent = reflectionAge;
 
             // Update textarea placeholder
             const textarea = document.getElementById('idealLife');
             if (textarea) {
-                textarea.placeholder = `Write 2-3 sentences describing your character's imagined family life at age ${age}. Consider: Who is in your family? What does daily life look like? What matters most to you?`;
+                textarea.placeholder = `Write 2-3 sentences describing your character's imagined family life at age ${reflectionAge}. Consider: Who is in your family? What does daily life look like? What matters most to you?`;
             }
         }
 
@@ -2378,14 +2418,21 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             const q2 = document.querySelector('input[name="q2"]:checked');
             const q3 = document.querySelector('input[name="q3"]:checked');
             const idealLife = document.getElementById('idealLife').value;
+            const currentAge = document.getElementById('currentAge').value;
 
             if (!q0 || !q1 || !q2 || !q3 || !idealLife.trim()) {
                 alert('Please answer all questions before continuing.');
                 return;
             }
 
-            // Save character data including life stage
+            if (!currentAge || parseInt(currentAge) < 18 || parseInt(currentAge) > 99) {
+                alert('Please enter your current age (18-99) before continuing.');
+                return;
+            }
+
+            // Save character data including life stage and current age
             gameState.characterData.lifeStage = q0.value;
+            gameState.characterData.currentAge = parseInt(currentAge);
             gameState.characterData.familyValues = q1.value;
             gameState.characterData.parentsWork = q2.value;
             gameState.characterData.moneyRelationship = q3.value;
@@ -3396,6 +3443,13 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             document.querySelectorAll('input[name="q0_lifestage"]').forEach(radio => {
                 radio.addEventListener('change', updateLifeStageIntro);
             });
+
+            // Add event listener to age input field
+            const ageInput = document.getElementById('currentAge');
+            if (ageInput) {
+                ageInput.addEventListener('input', updateReflectionAge);
+                ageInput.addEventListener('change', updateReflectionAge);
+            }
         });
 // Add these functions for modules 4-8
 
