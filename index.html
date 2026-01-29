@@ -608,8 +608,23 @@
                 <p style="color: var(--text-dark); margin-bottom: 15px;">
                     Download a complete summary of all your decisions and outcomes. You'll need this for Canvas assignments.
                 </p>
+
+                <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 15px; font-weight: bold; border-left: 5px solid #ffc107;">
+                    ⚠️ <strong>EXPORT AFTER EVERY MODULE!</strong><br>
+                    <span style="font-weight: normal;">Your game data is ONLY saved in YOUR browser. You MUST export after completing each module to submit with Canvas assignments!</span>
+                </div>
+
                 <div class="alert alert-info" style="margin-bottom: 15px;">
-                    <strong>IMPORTANT:</strong> Save your game data BEFORE closing your browser! Choose either:
+                    <strong>Why export matters:</strong>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>✅ <strong>Required for Canvas</strong> - Each module assignment needs your exported data</li>
+                        <li>✅ <strong>Backup your work</strong> - Browser data can be lost if you clear cookies/cache</li>
+                        <li>✅ <strong>Replay protection</strong> - Export BEFORE replaying modules to save original choices</li>
+                    </ul>
+                </div>
+
+                <div class="alert alert-info" style="margin-bottom: 15px;">
+                    <strong>Export methods:</strong>
                     <ul style="margin: 10px 0 0 20px;">
                         <li><strong>Print to PDF</strong> - Most reliable method. Works on all devices.</li>
                         <li><strong>Export as Text</strong> - Download a text file you can upload to Canvas.</li>
@@ -621,6 +636,33 @@
                     <button class="btn btn-success" onclick="exportData('text')">📄 Export as Text</button>
                     <button class="btn btn-success" onclick="exportData('json')">💾 Export as JSON</button>
                 </div>
+            </div>
+
+            <div class="export-section" style="margin-top: 30px; border-top: 2px solid #e1e8ed; padding-top: 30px;">
+                <h3 style="color: var(--navy); margin-bottom: 15px;">🔁 Replay Modules</h3>
+                <p style="color: var(--text-dark); margin-bottom: 15px;">
+                    Want to try different choices? You can click any completed module to replay it.
+                </p>
+                <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 15px;">
+                    <strong>⚠️ IMPORTANT:</strong> Replaying a module will <strong>OVERWRITE</strong> your previous answers!<br><br>
+                    <strong>Before replaying:</strong>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>✅ Export your current data to save your original choices</li>
+                        <li>✅ Make sure you've already submitted that module's Canvas assignment</li>
+                        <li>✅ Remember: New choices will replace old ones in your saved game</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="export-section" style="margin-top: 30px; border-top: 2px solid #e1e8ed; padding-top: 30px;">
+                <h3 style="color: var(--navy); margin-bottom: 15px;">🔄 Start Over</h3>
+                <p style="color: var(--text-dark); margin-bottom: 15px;">
+                    Want to explore different life paths? Reset the game to start fresh with new decisions.
+                </p>
+                <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 15px;">
+                    <strong>⚠️ WARNING:</strong> This will permanently delete your current progress and all saved decisions. Make sure you've exported your data first if you need it for assignments!
+                </div>
+                <button class="btn btn-secondary" onclick="resetGame()" style="background: var(--secondary); border-color: var(--secondary);">🗑️ Reset Game & Start Over</button>
             </div>
         </div>
 
@@ -639,8 +681,37 @@
             </div>
 
             <p style="margin-bottom: 25px; color: var(--text-dark);">
-                You're 18 years old and about to launch into adulthood. Your family background has shaped your values, resources, and worldview. These decisions establish your character's <strong>starting resources</strong> for the rest of the simulation.
+                This game adapts to YOUR life stage. Your age and current circumstances will shape which decisions you make throughout the simulation, making this experience relevant to where YOU are in your life journey.
             </p>
+
+            <div class="question-group">
+                <label><strong>STARTING POINT:</strong> What is your current life stage?</label>
+                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                    This is a <strong>life course perspective</strong> game. Your age and life stage determine which decisions you'll face. Select the stage that best matches where you are NOW (or where you'd like to simulate from). This creates a personalized experience that reflects the sociology of YOUR life trajectory.
+                </p>
+                <div class="options">
+                    <label class="option-label">
+                        <input type="radio" name="q0_lifestage" value="traditional" checked>
+                        <span><strong>Traditional-Age Student (Ages 18-24):</strong> You're just starting your adult journey. You're making foundational decisions about education, career pathways, and early relationships. Your focus is launching into independence, exploring identity, and building your future. <em>Life Course Stage: Emerging Adulthood / Transition to Independence</em></span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q0_lifestage" value="returning">
+                        <span><strong>Returning Adult Student (Ages 25-35):</strong> You're balancing existing commitments while pursuing education or career change. You may have a partner, children, or established career. Your decisions involve managing multiple roles and responsibilities simultaneously. <em>Life Course Stage: Established Adulthood / Role Juggling</em></span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q0_lifestage" value="midcareer">
+                        <span><strong>Mid-Career Adult (Ages 36-50):</strong> You're in the thick of work-family demands. You likely have teenage or young adult children, aging parents, and career responsibilities. Your decisions involve navigating the "sandwich generation" pressures and balancing competing caregiving demands. <em>Life Course Stage: Peak Demands / Sandwich Generation</em></span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q0_lifestage" value="laterlife">
+                        <span><strong>Later-Life Student (Ages 50+):</strong> You're approaching or in late career, possibly with adult children and grandchildren. Your decisions involve transitions, legacy, and managing relationships across multiple adult generations. You may be navigating retirement, health changes, or life reinvention. <em>Life Course Stage: Late Adulthood / Generativity</em></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-group" id="ageSpecificIntro">
+                <!-- This will be dynamically populated based on life stage selection -->
+            </div>
 
             <div class="question-group">
                 <label><strong>DECISION 1:</strong> What family structure did you grow up in?</label>
@@ -705,7 +776,7 @@
             </div>
         </div>
 
-        <!-- MODULE 2: EDUCATION & CAREER -->
+        <!-- MODULE 2: EDUCATION & CAREER (AGE-RESPONSIVE BRANCHING) -->
         <div id="module2" class="content game-section">
             <h2 style="color: var(--navy); margin-bottom: 20px;">Module 2: Education & Career Pathways</h2>
 
@@ -715,75 +786,262 @@
             </div>
 
             <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
-                <strong>🎯 How Content Connects to This Decision</strong><br>
-                Hammond Ch. 4 explains the <span class="glossary-term" data-term="life-course">life course perspective<span class="glossary-tooltip"><strong>Life Course Perspective</strong><br>A sociological framework examining how the timing and sequencing of life events (education, marriage, parenthood) shape individual trajectories.<br><em>Hammond Ch. 3, 4</em></span></span>: <strong>the timing and sequencing of decisions matters as much as the decisions themselves.</strong> Your education/career choice at age 22 will create <span class="glossary-term" data-term="path-dependency">path dependency<span class="glossary-tooltip"><strong>Path Dependency</strong><br>How early decisions constrain later options—once on a path, it's harder to switch tracks even if you want to.<br><em>Hammond Ch. 4</em></span></span>—limiting some future options while opening others. <span class="glossary-term" data-term="gender-socialization">Gender socialization<span class="glossary-tooltip"><strong>Gender Socialization</strong><br>The process through which people learn the cultural norms, attitudes, and behaviors considered appropriate for their assigned gender.<br><em>Hammond Ch. 4</em></span></span> influences which paths feel "natural" or "appropriate" for you.
+                <strong>🎯 Life Course Perspective in Action</strong><br>
+                Hammond Ch. 4 explains how <strong>timing matters</strong>. The SAME decision (career change, education) has different meanings and consequences depending on your life stage. This module adapts to show how education/career decisions intersect with your current responsibilities and constraints.
             </div>
 
-            <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                <strong>You're 22 years old.</strong> Your education and career decisions will determine your income trajectory, work-life flexibility, student debt burden, and when you can afford to form a family. Remember your Module 1 values—they should guide this choice.
-            </p>
-
-            <div class="question-group">
-                <label><strong>DECISION 3:</strong> Education Path - What level of education will you pursue?</label>
-                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                    Education is a key site of <span class="glossary-term" data-term="cumulative-advantage">cumulative advantage/disadvantage<span class="glossary-tooltip"><strong>Cumulative Advantage/Disadvantage</strong><br>How advantages (or disadvantages) compound over time—the rich get richer, the poor get poorer, structurally.<br><em>Hammond Ch. 4</em></span></span>: more education = higher lifetime earnings, but also delayed family formation and debt burden. Consider how this interacts with your Module 1 family background resources.
+            <!-- BRANCH 1: TRADITIONAL AGE (18-24) -->
+            <div id="module2_traditional" class="branch-content" style="display:none;">
+                <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                    <strong>You're 22 years old.</strong> You're making foundational decisions that will create <span class="glossary-term">path dependency<span class="glossary-tooltip"><strong>Path Dependency</strong><br>How early decisions constrain later options—once on a path, it's harder to switch tracks.<br><em>Hammond Ch. 4</em></span></span> for the next decade. Your education and career choices will determine income, debt, work-life flexibility, and when you can afford to form a family.
                 </p>
-                <div class="options">
-                    <label class="option-label">
-                        <input type="radio" name="q5" value="bachelor_degree">
-                        <span><strong>Bachelor's Degree (4 years):</strong> You'll complete at age 26 with $30,000 in student loans. Starting salary: $50-60K. <em>Opens doors to:</em> Professional careers, graduate school options, "marriage market" with other college graduates. <em>Costs you:</em> 4 years + debt payments ($300/month for 10 years). Can't afford house/kids until loans managed. <em>Future impact:</em> Higher likelihood of marrying educated partner (homogamy), delayed parenthood to late 20s/early 30s, professional networks.</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q5" value="associate_degree">
-                        <span><strong>Associate Degree (2 years):</strong> You'll complete at age 24 with $12,000 in student loans. Starting salary: $40-45K. <em>Opens doors to:</em> Stable technical careers, quicker workforce entry, sooner financial independence. <em>Costs you:</em> Lower lifetime earnings, limited advancement without bachelor's. <em>Future impact:</em> Can form family by mid-20s if desired, moderate debt burden, may partner with similar education level, potential to pursue bachelor's later while working.</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q5" value="certificate_training">
-                        <span><strong>Certificate/Trade Training (6-18 months):</strong> You'll complete by age 23 with $5,000 in training costs. Starting salary: $35-50K (varies by trade). <em>Opens doors to:</em> Immediate employment, hands-on skills, union opportunities, low debt. <em>Costs you:</em> Physical labor toll, limited upward mobility, less prestige. <em>Future impact:</em> Earliest family formation possible, financial stability without debt, but may face work-family conflict due to rigid schedules and physical demands.</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q5" value="workforce_now">
-                        <span><strong>Workforce Entry Now (no further education):</strong> You start work immediately at age 22. Starting salary: $28-32K. <em>Opens doors to:</em> Zero student debt, immediate income, work experience, financial independence now. <em>Costs you:</em> Lower earning ceiling, limited career advancement, vulnerable to automation/economic shifts. <em>Future impact:</em> Can form family earliest, but economic insecurity may strain relationships. May face "marriage bar" (economic barriers to marriage) if income insufficient.</span>
-                    </label>
+
+                <div class="question-group">
+                    <label><strong>DECISION 3:</strong> Education Path - What level of education will you pursue?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        Education creates <span class="glossary-term">cumulative advantage/disadvantage<span class="glossary-tooltip"><strong>Cumulative Advantage/Disadvantage</strong><br>How advantages compound over time—the rich get richer structurally.<br><em>Hammond Ch. 4</em></span></span>. More education = higher lifetime earnings, but also debt and delayed family formation.
+                    </p>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q5_traditional" value="bachelor">
+                            <span><strong>Bachelor's Degree (4 years):</strong> Complete at 26 with $30K debt. Salary: $50-60K. <em>Opens:</em> Professional careers, grad school, marriage market with college grads. <em>Costs:</em> 4 years + $300/mo debt for 10 years. <em>Impact:</em> Educational homogamy (marry similar education), delayed parenthood to late 20s/early 30s.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_traditional" value="associate">
+                            <span><strong>Associate Degree (2 years):</strong> Complete at 24 with $12K debt. Salary: $40-45K. <em>Opens:</em> Technical careers, faster independence. <em>Costs:</em> Lower lifetime earnings. <em>Impact:</em> Can form family by mid-20s, moderate debt, option to finish bachelor's while working.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_traditional" value="trade">
+                            <span><strong>Trade Certification (1 year):</strong> Complete at 23 with $5K costs. Salary: $35-50K. <em>Opens:</em> Immediate work, union jobs, low debt. <em>Costs:</em> Physical toll, limited mobility. <em>Impact:</em> Earliest family formation, financial stability, but rigid schedules may conflict with caregiving.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_traditional" value="workforce">
+                            <span><strong>Enter Workforce Now:</strong> Start at 22, $0 debt. Salary: $28-32K. <em>Opens:</em> Immediate income, work experience. <em>Costs:</em> Lower ceiling, vulnerable to economic shifts. <em>Impact:</em> Can form family earliest, but economic insecurity may strain relationships (marriage bar).</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label><strong>DECISION 4:</strong> Career Field - What work calls to you?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        <span class="glossary-term">Gender socialization<span class="glossary-tooltip"><strong>Gender Socialization</strong><br>Learning cultural norms for "appropriate" gender behavior.<br><em>Hammond Ch. 4</em></span></span> makes some fields feel "natural." This affects pay, respect, work-family balance.
+                    </p>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q6_traditional" value="healthcare">
+                            <span><strong>Healthcare (Nursing, Med Tech):</strong> $45-60K. Female-dominated. Shift work complicates childcare. High demand = job security. Can work part-time but reduces income. <em>Sociology:</em> Care work undervalued despite societal necessity.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_traditional" value="education">
+                            <span><strong>Education (K-12 Teaching):</strong> $40-48K. Female-dominated. Hours align with kids' schedules (summers off), but work comes home. Lower income may make you default caregiver in partnership. <em>Sociology:</em> "Family-friendly" careers trap women in primary caregiving.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_traditional" value="trades">
+                            <span><strong>Skilled Trades:</strong> $42-55K. Male-dominated. Physical labor, on-call hours. Good income without degree. Hard to do while pregnant/primary caregiver. <em>Sociology:</em> Body as capital—physical toll by 40s limits longevity.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_traditional" value="tech">
+                            <span><strong>Business/Technology:</strong> $50-70K. Male-dominated. Long hours, "always on" culture. Highest income enables childcare options. "Ideal worker" norm assumes no caregiving. <em>Sociology:</em> Motherhood penalty (seen uncommitted) vs fatherhood premium (seen responsible).</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
-            <div class="question-group" id="careerFieldGroup">
-                <label><strong>DECISION 4:</strong> Career Field - What type of work calls to you?</label>
-                <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                    Career fields are <strong>gendered through socialization</strong> (Hammond Ch. 4). Some fields are coded "masculine" (STEM, trades), others "feminine" (care work, education). This affects pay, respect, and work-family balance. Your choice will shape future modules: income affects Module 4 (partner options), Module 5 (marriage timing), Module 6 (childcare affordability).
+            <!-- BRANCH 2: RETURNING ADULT (25-35) -->
+            <div id="module2_returning" class="branch-content" style="display:none;">
+                <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                    <strong>You're 30 years old.</strong> You have work experience, possibly a partner and/or children. You're considering career change while managing existing commitments. This is <span class="glossary-term">role strain<span class="glossary-tooltip"><strong>Role Strain</strong><br>Tension from competing demands of multiple roles (worker, partner, parent, student).<br><em>Hammond Ch. 4</em></span></span>—balancing multiple roles simultaneously.
                 </p>
-                <div class="options">
-                    <label class="option-label">
-                        <input type="radio" name="q6" value="healthcare">
-                        <span><strong>Healthcare (Nursing, Medical Tech):</strong> Starting salary $45-60K. <em>Work-life reality:</em> Shift work (nights/weekends), physically demanding, high burnout. <em>Gender context:</em> Female-dominated field, respect but lower pay than doctors. <em>Family impact:</em> Irregular schedule complicates childcare. High demand = job security. Can work part-time for flexibility but reduces income. <em>Long-term:</em> Stable employment, portable across locations, but "second shift" burden if partnered.</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q6" value="education_teaching">
-                        <span><strong>Education (Teaching K-12):</strong> Starting salary $40-48K. <em>Work-life reality:</em> School hours align with kids' schedules (summers off), but take work home (grading, planning). <em>Gender context:</em> Female-dominated, undervalued care work, modest pay. <em>Family impact:</em> "Family-friendly" schedule makes you default parent if heterosexual partnership. Lower income may create path dependency (partner "must" earn more, so you do more childcare). <em>Long-term:</em> Pension, stability, but income plateau and emotional labor.</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q6" value="skilled_trades">
-                        <span><strong>Skilled Trades (Electrician, Plumber, HVAC):</strong> Starting salary $42-55K. <em>Work-life reality:</em> Physical labor, on-call emergencies, body wears down over time. <em>Gender context:</em> Male-dominated, may face harassment if woman, respect for "real work." <em>Family impact:</em> Irregular hours (service calls), physical exhaustion affects parenting energy. Good income without degree, but hard to do while pregnant or with young kids if primary caregiver. <em>Long-term:</em> Can start own business, strong wages, but physical toll by 40s.</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q6" value="business_tech">
-                        <span><strong>Business/Technology (Management, IT, Software):</strong> Starting salary $50-70K. <em>Work-life reality:</em> Long hours, "always on" culture, advancement requires face-time. <em>Gender context:</em> Male-dominated in tech, women face bias but pay is high. <em>Family impact:</em> Highest income enables childcare options, but work hours conflict with family time. "Ideal worker" norm assumes no caregiving responsibilities. Remote work possible but boundaries blur. <em>Long-term:</em> Highest earning potential, but motherhood penalty steep (seen as uncommitted). Fatherhood premium (seen as responsible).</span>
-                    </label>
+
+                <div class="question-group">
+                    <label><strong>DECISION 3:</strong> Career/Education Path - What change will you pursue?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        Timing affects opportunity costs. Pursuing education at 30 means sacrificing current income, piling debt, and managing family care. But staying put may mean unfulfillment.
+                    </p>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q5_returning" value="fulltime_school">
+                            <span><strong>Return to School Full-Time (2-4 years):</strong> Quit job. Take $20-40K debt. No income during school. <em>Opens:</em> Career reset, degree credentials, new field. <em>Costs:</em> Lost wages, debt, childcare crisis if you have kids, partner must support you. <em>Sociology:</em> Class privilege—only possible with financial cushion or partner income.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_returning" value="parttime_school">
+                            <span><strong>Part-Time School While Working (3-5 years):</strong> Keep job. Take classes nights/weekends. $15-25K debt. <em>Opens:</em> Gradual transition, income stability. <em>Costs:</em> Exhaustion, no time with family, 5 years of grind. <em>Sociology:</em> Time poverty—24 hours becomes constraint when juggling multiple roles.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_returning" value="certification">
+                            <span><strong>Professional Certification (6-12 months):</strong> Keep job or brief break. $5-10K costs. Quick credential. <em>Opens:</em> Targeted skill upgrade, manageable timeline. <em>Costs:</em> Limited transformation, still in similar field. <em>Sociology:</em> Human capital investment with minimal disruption.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_returning" value="stay_advance">
+                            <span><strong>Stay in Current Career, Seek Advancement:</strong> No school. Pursue promotions. Focus on current path. <em>Opens:</em> Stability, build on experience. <em>Costs:</em> May stay unfulfilled, miss change window. <em>Sociology:</em> Path dependency—earlier decisions constrain current options.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_returning" value="lateral_pivot">
+                            <span><strong>Lateral Career Pivot (same field):</strong> Switch roles/companies without school. Use existing skills differently. <em>Opens:</em> Fresh start with experience. <em>Costs:</em> May need to prove yourself again, moderate risk. <em>Sociology:</em> Social capital—networks from current field enable moves.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label><strong>DECISION 4:</strong> Work-Life Considerations - What's your reality?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        Career decisions at 30 intersect with family responsibilities. Your commitments shape what's actually possible.
+                    </p>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q6_returning" value="single_independent">
+                            <span><strong>Single/No Kids - Maximum Flexibility:</strong> You have time and freedom to pursue change. Only constraint is income/debt. Can take risks. <em>Sociology:</em> Unencumbered by care work, can optimize for self. This advantage is classed—assumes no eldercare obligations.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_returning" value="partnered_nokids">
+                            <span><strong>Partnered, No Kids - Moderate Flexibility:</strong> Partner can support income loss if needed. More resources than solo. But partner's career matters too—who adjusts? <em>Sociology:</em> Gender dynamics—whose career is "primary"? Often defaults to higher earner or gendered assumptions.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_returning" value="young_kids">
+                            <span><strong>Young Children (0-5) - High Constraints:</strong> Childcare costs $900-1,350/month. Someone must manage drop-offs, sick days, emergencies. Career change harder. <em>Sociology:</em> Second shift + intensive mothering ideology = mothers more constrained than fathers in pursuing change.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_returning" value="school_age_kids">
+                            <span><strong>School-Age Kids (6-12) - Moderate Constraints:</strong> Kids in school = fewer childcare hours. But still after-school, summers, homework, activities. Some flexibility. <em>Sociology:</em> Parenthood constraints ease as kids age, but "mental labor" of managing family persists.</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
+            <!-- BRANCH 3: MID-CAREER (36-50) -->
+            <div id="module2_midcareer" class="branch-content" style="display:none;">
+                <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                    <strong>You're 42 years old.</strong> You're in peak earning years but also peak demands—likely have teenagers or young adults, aging parents, established career. This is the <span class="glossary-term">sandwich generation<span class="glossary-tooltip"><strong>Sandwich Generation</strong><br>Adults caring for both children AND aging parents simultaneously.<br><em>Hammond Ch. 4, 7</em></span></span> crunch. Career decisions must navigate multiple generations' needs.
+                </p>
+
+                <div class="question-group">
+                    <label><strong>DECISION 3:</strong> Career Direction - Where are you headed?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        At 42, career changes are risky but burnout is real. Your choice affects family income, caregiving capacity, and legacy.
+                    </p>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q5_midcareer" value="continue_current">
+                            <span><strong>Continue Current Trajectory:</strong> Stay the course. Known income, established role. <em>Opens:</em> Stability, predictability, max earnings. <em>Costs:</em> Potential burnout, may feel unfulfilled, stuck. <em>Sociology:</em> Golden handcuffs—high income traps you because family depends on it (mortgage, college tuition, aging parents).</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_midcareer" value="leadership_advancement">
+                            <span><strong>Pursue Leadership/Management:</strong> Go for promotion, more responsibility. $10-30K raise. <em>Opens:</em> Peak earning, status, legacy. <em>Costs:</em> More hours, stress, less family time. <em>Sociology:</em> Gendered—women face bias ("aggressive"), men rewarded. Mothers judged for prioritizing career, fathers praised as "providers."</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_midcareer" value="reduce_caregiving">
+                            <span><strong>Reduce Hours for Caregiving:</strong> Go part-time or less demanding role. $15-30K income cut. <em>Opens:</em> Time for aging parents, teens, life balance. <em>Costs:</em> Career stall, income loss, retirement savings hit. <em>Sociology:</em> Highly gendered—women do this, men don't. "Opting out" narrative masks structural constraints.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_midcareer" value="start_business">
+                            <span><strong>Start Own Business/Consulting:</strong> Go independent. Variable income, high risk. <em>Opens:</em> Flexibility, autonomy, work on terms. <em>Costs:</em> Income instability, loss of benefits (health insurance!), high stress. <em>Sociology:</em> Class privilege—requires safety net. Risky when kids in college, parents needing care.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_midcareer" value="late_pivot">
+                            <span><strong>Late-Career Industry Pivot:</strong> Change fields at 42. Steep learning curve. <em>Opens:</em> Fulfillment, new challenge, purpose. <em>Costs:</em> Ageism (hiring bias), start over in seniority, income risk. <em>Sociology:</em> Age discrimination real—"cultural fit" = young. Late-life reinvention takes privilege.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label><strong>DECISION 4:</strong> Caregiving Reality - Who needs you?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        At 42, you're likely caring for multiple generations. This reality constrains career options.
+                    </p>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q6_midcareer" value="teens_home">
+                            <span><strong>Teenagers at Home:</strong> Kids need you differently—driving, college prep, mental health support, staying connected. Time-intensive but more flexible than young kids. <em>Sociology:</em> Intensive parenting extends through adolescence. College costs loom—affects career risk tolerance.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_midcareer" value="young_adults_college">
+                            <span><strong>Young Adults/College Students:</strong> Kids launching but need financial support. Tuition, rent, emergencies. Emotional support too. <em>Sociology:</em> Intergenerational transfers—parents fund adult children longer than previous generations. Economic inequality means kids can't self-support.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_midcareer" value="aging_parents">
+                            <span><strong>Aging Parents Need Care:</strong> Parents 70s-80s. Medical appointments, home help, possible nursing home decisions. Emotionally draining, time consuming. <em>Sociology:</em> Gendered eldercare—daughters do bulk of parent care even when sons exist. Unpaid care work costs women careers.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_midcareer" value="sandwich_both">
+                            <span><strong>Sandwich Generation (Both!):</strong> Teens/young adults AND aging parents. Peak demand from both directions. You're the "default" for everyone. Exhausted. <em>Sociology:</em> Time poverty + emotional labor + financial strain. Women disproportionately sandwich-crushed. No policy support.</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BRANCH 4: LATER-LIFE (50+) -->
+            <div id="module2_laterlife" class="branch-content" style="display:none;">
+                <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
+                    <strong>You're 58 years old.</strong> You're navigating late-career transitions, possible retirement planning, adult children, maybe grandchildren. Career decisions now involve legacy, health, financial security for old age, and how to spend remaining work years. This is about <span class="glossary-term">generativity<span class="glossary-tooltip"><strong>Generativity</strong><br>Late adulthood focus on passing knowledge, mentoring, legacy work.<br><em>Hammond Ch. 4</em></span></span>—what mark you leave.
+                </p>
+
+                <div class="question-group">
+                    <label><strong>DECISION 3:</strong> Career Transition - What's your path to retirement?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        At 58, retirement looms. But finances, health, purpose, and Social Security timing affect when and how you leave workforce.
+                    </p>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q5_laterlife" value="continue_to_67">
+                            <span><strong>Continue to Standard Retirement (67):</strong> Work 9 more years. Max pension, max Social Security, max stability. <em>Opens:</em> Financial security, known income, gradual transition. <em>Costs:</em> Less time with grandkids, potential health decline, missed life enjoyment. <em>Sociology:</em> Class privilege—can AFFORD to retire at 67 vs forced to work longer.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_laterlife" value="semi_retirement">
+                            <span><strong>Semi-Retirement (Part-Time/Consulting):</strong> Reduce to 20-30 hrs/week now. Lower income but more time. <em>Opens:</em> Gradual transition, balance, grandparenting time. <em>Costs:</em> Reduced retirement savings, loss of benefits. <em>Sociology:</em> Not available to hourly workers—salaried/professional privilege. Bridge between work and full retirement.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_laterlife" value="career_change_fulfillment">
+                            <span><strong>Late-Life Career Change for Fulfillment:</strong> Switch to mission-driven work (nonprofit, teaching, service). Often lower pay. <em>Opens:</em> Purpose, meaning, legacy. <em>Costs:</em> Income cut, learning curve at 58. <em>Sociology:</em> Late-life reinvention for meaning (Erikson: generativity vs stagnation). Class privilege to prioritize purpose over pay.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_laterlife" value="retire_now">
+                            <span><strong>Retire Now (Early at 58):</strong> Leave workforce if financially able. <em>Opens:</em> Time, freedom, grandchildren, travel, health while able. <em>Costs:</em> Reduced Social Security (early claim), spend savings faster, loss of purpose/identity for some. <em>Sociology:</em> Retirement inequality—wealth determines when you CAN retire. Identity tied to work hard to release.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q5_laterlife" value="work_past_67">
+                            <span><strong>Plan to Work Past 67:</strong> Need/want to work into 70s. <em>Opens:</em> Continued income, social connection, purpose. <em>Costs:</em> Health risks, ageism, less life enjoyment. <em>Sociology:</em> Often necessity not choice—insufficient savings force late-life work. Growing trend as pensions disappear, SS insufficient, healthcare expensive.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label><strong>DECISION 4:</strong> Life Stage Realities - What's your situation?</label>
+                    <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
+                        At 58, your family situation affects career flexibility and retirement planning.
+                    </p>
+                    <div class="options">
+                        <label class="option-label">
+                            <input type="radio" name="q6_laterlife" value="adult_kids_independent">
+                            <span><strong>Adult Children, Financially Independent:</strong> Kids launched, self-supporting. Grandchildren possible. You're free to focus on yourself. <em>Sociology:</em> Successful launch = class privilege. Kids with good jobs can self-support. Working-class kids often need ongoing financial help.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_laterlife" value="adult_kids_struggling">
+                            <span><strong>Adult Children, Struggling Financially:</strong> Kids 30s but can't self-support (debt, low wages, housing costs). You're still helping financially. <em>Sociology:</em> Boomerang generation—economic inequality forces extended parental support. You can't fully retire because kids need you.</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_laterlife" value="active_grandparenting">
+                            <span><strong>Active Grandparent (Providing Childcare):</strong> Grandkids nearby. You provide regular childcare. Rewarding but time/energy intensive. <em>Sociology:</em> Intergenerational care—grandparents enable adult children's employment. Unpaid labor that subsidizes economy. Gendered (grandmothers do more).</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="q6_laterlife" value="aging_parents_alive">
+                            <span><strong>Very Elderly Parents (85+) Still Needing Care:</strong> YOUR parents still alive, needing significant help. You're 58 caring for 85-year-olds. Exhausting. <em>Sociology:</em> Longer lifespans = extended caregiving. Daughters still default caregivers even at 58. Impacts YOUR retirement timing.</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SHARED: Career cascades -->
             <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
-                <strong>💡 CONNECT: How will these choices affect future modules?</strong><br>
-                • <strong>Module 4 (Partner Selection):</strong> Your education/career shapes who you meet (marriage market) and educational homogamy<br>
-                • <strong>Module 5 (Marriage Timing):</strong> Income and debt affect when you can "afford" marriage<br>
-                • <strong>Module 6 (Work-Family Balance):</strong> Job flexibility and income determine childcare options<br>
-                • <strong>Module 7 (Crisis Response):</strong> Income stability affects resilience to job loss/medical emergency<br><br>
-                <em>This is systems thinking: one decision cascades through all life domains.</em>
+                <strong>💡 SYSTEMS THINKING: How will your career choices cascade?</strong><br>
+                • <strong>Module 3 (Relationships):</strong> Work hours affect relationship quality and time together<br>
+                • <strong>Module 4-5 (Partnership):</strong> Income affects homogamy, marriage timing, financial dynamics<br>
+                • <strong>Module 6 (Work-Family):</strong> Career flexibility determines caregiving options<br>
+                • <strong>Module 7 (Crisis):</strong> Income stability affects resilience to job loss/emergency<br><br>
+                <em>No decision is isolated—your career choice ripples through every life domain.</em>
             </div>
 
             <div style="margin-top: 40px; text-align: center;">
-                <button class="btn btn-primary" onclick="completeModule2()">Lock In Education & Career Path →</button>
+                <button class="btn btn-primary" onclick="completeModule2()">Complete Module 2 →</button>
             </div>
         </div>
 
@@ -1378,6 +1636,7 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             window.scrollTo(0, 0);
 
             // Initialize modules that need setup
+            if (sectionId === 'module2') initModule2();
             if (sectionId === 'module4') initModule4();
             if (sectionId === 'module5') initModule5();
             if (sectionId === 'module7') initModule7();
@@ -1446,19 +1705,36 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
         }
 
         // Complete Module 1
+        // Handle life stage selection and update intro dynamically
+        function updateLifeStageIntro() {
+            const lifeStage = document.querySelector('input[name="q0_lifestage"]:checked')?.value || 'traditional';
+            const introDiv = document.getElementById('ageSpecificIntro');
+
+            const intros = {
+                traditional: '<p style="color: var(--text-dark); margin-bottom: 25px;"><strong>Your Journey:</strong> You\'re at the starting line of adulthood. Your family background has shaped your values, resources, and worldview. The decisions you make now about education, career, and relationships will set the trajectory for your next decade. <em>Sociological Concept: Life Course Perspective - Early decisions create path dependencies that constrain/enable later choices.</em></p>',
+                returning: '<p style="color: var(--text-dark); margin-bottom: 25px;"><strong>Your Journey:</strong> You\'re managing established commitments while navigating change. You may have a career you\'re reconsidering, a partner, children, or financial obligations. Your family background still influences how you approach these transitions. <em>Sociological Concept: Role Strain - Balancing multiple simultaneous demands (worker, partner, parent, student) creates unique pressures.</em></p>',
+                midcareer: '<p style="color: var(--text-dark); margin-bottom: 25px;"><strong>Your Journey:</strong> You\'re in the peak demand years—career established, children needing support, aging parents requiring care. Your early family experiences shaped how you navigate these simultaneous caregiving demands. <em>Sociological Concept: Sandwich Generation - Caring for both children and aging parents while maintaining career creates time poverty and economic stress.</em></p>',
+                laterlife: '<p style="color: var(--text-dark); margin-bottom: 25px;"><strong>Your Journey:</strong> You\'re navigating late-life transitions—adult children, possible grandchildren, aging parents or their loss, career shifts. Your family of origin continues to influence how you approach legacy, caregiving, and relationships. <em>Sociological Concept: Generativity - Late adulthood involves passing on knowledge, managing intergenerational relationships, and legacy work.</em></p>'
+            };
+
+            introDiv.innerHTML = intros[lifeStage];
+        }
+
         function completeModule1() {
             // Validate all questions answered
+            const q0 = document.querySelector('input[name="q0_lifestage"]:checked');
             const q1 = document.querySelector('input[name="q1"]:checked');
             const q2 = document.querySelector('input[name="q2"]:checked');
             const q3 = document.querySelector('input[name="q3"]:checked');
             const idealLife = document.getElementById('idealLife').value;
 
-            if (!q1 || !q2 || !q3 || !idealLife.trim()) {
+            if (!q0 || !q1 || !q2 || !q3 || !idealLife.trim()) {
                 alert('Please answer all questions before continuing.');
                 return;
             }
 
-            // Save character data
+            // Save character data including life stage
+            gameState.characterData.lifeStage = q0.value;
             gameState.characterData.familyValues = q1.value;
             gameState.characterData.parentsWork = q2.value;
             gameState.characterData.moneyRelationship = q3.value;
@@ -1473,24 +1749,48 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             saveGameState();
 
             // Show success and module 2
-            alert('✅ Character created! Moving to Module 2: Education & Career');
+            alert('✅ Module 1 Complete!\n\n' +
+                  '📥 IMPORTANT: Return to Module Hub and export your data!\n\n' +
+                  'Next Steps:\n' +
+                  '1. Click OK to continue to Module 2\n' +
+                  '2. OR return to Module Hub to export first\n\n' +
+                  'You need your exported data for Canvas assignments!');
             showSection('module2');
         }
 
         // Complete Module 2
+        // Initialize Module 2 based on life stage
+        function initModule2() {
+            const lifeStage = gameState.characterData.lifeStage || 'traditional';
+
+            // Hide all branches
+            document.querySelectorAll('#module2 .branch-content').forEach(div => {
+                div.style.display = 'none';
+            });
+
+            // Show appropriate branch
+            const branchDiv = document.getElementById(`module2_${lifeStage}`);
+            if (branchDiv) {
+                branchDiv.style.display = 'block';
+            }
+        }
+
         function completeModule2() {
-            // Validate
-            const q5 = document.querySelector('input[name="q5"]:checked');
-            const q6 = document.querySelector('input[name="q6"]:checked');
+            const lifeStage = gameState.characterData.lifeStage || 'traditional';
+
+            // Validate based on life stage (different question names per branch)
+            const q5 = document.querySelector(`input[name="q5_${lifeStage}"]:checked`);
+            const q6 = document.querySelector(`input[name="q6_${lifeStage}"]:checked`);
 
             if (!q5 || !q6) {
                 alert('Please answer all questions before continuing.');
                 return;
             }
 
-            // Save data
+            // Save data with life stage context
             gameState.characterData.educationPath = q5.value;
             gameState.characterData.careerField = q6.value;
+            gameState.characterData.module2LifeStage = lifeStage; // Track which path taken
 
             // Mark complete
             if (!gameState.modulesCompleted.includes(2)) {
@@ -1500,7 +1800,9 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
 
             saveGameState();
 
-            alert('✅ Module 2 complete! \n\nREMEMBER: Export your game data now for your Canvas assignment!\n\nClick "Print to PDF" on the next screen.');
+            alert('✅ Module 2 Complete!\n\n' +
+                  '📥 IMPORTANT: Export your game data before continuing!\n\n' +
+                  'You need this for your Canvas Module 2 assignment.');
             showModuleHub();
         }
 
@@ -1547,7 +1849,11 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 ? 'Your communication skills are strong! Healthy communication patterns build relationship quality.'
                 : 'Communication takes practice. Active listening and I-statements help prevent conflict escalation.';
 
-            alert('✅ Module 3 complete!\n\nCommunication Score: ' + commScore + '/8\n' + feedback);
+            alert('✅ Module 3 Complete!\n\n' +
+                  'Communication Score: ' + commScore + '/8\n' +
+                  feedback + '\n\n' +
+                  '📥 IMPORTANT: Export your game data before continuing!\n\n' +
+                  'You need this for your Canvas Module 3 assignment.');
             showModuleHub();
         }
 
@@ -1562,7 +1868,10 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 }
                 gameState.currentModule = 5;
                 saveGameState();
-                alert('✅ Module 4 complete! Continuing your single path.');
+                alert('✅ Module 4 Complete!\n\n' +
+                      'Single path recorded.\n\n' +
+                      '📥 IMPORTANT: Export your game data before continuing!\n\n' +
+                      'You need this for your Canvas Module 4 assignment.');
                 showModuleHub();
                 return;
             }
@@ -1613,7 +1922,11 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 ? 'Moderate compatibility. Differences can work with communication and compromise.'
                 : 'Lower compatibility. Sociologists find major value differences predict relationship challenges.';
 
-            alert('✅ Module 4 complete!\n\nCompatibility Score: ' + compatScore + '/10\n' + feedback);
+            alert('✅ Module 4 Complete!\n\n' +
+                  'Compatibility Score: ' + compatScore + '/10\n' +
+                  feedback + '\n\n' +
+                  '📥 IMPORTANT: Export your game data before continuing!\n\n' +
+                  'You need this for your Canvas Module 4 assignment.');
             showModuleHub();
         }
 
@@ -1636,7 +1949,10 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 }
                 gameState.currentModule = 6;
                 saveGameState();
-                alert('✅ Module 5 complete!');
+                alert('✅ Module 5 Complete!\n\n' +
+                      'Partnership decision recorded.\n\n' +
+                      '📥 IMPORTANT: Export your game data before continuing!\n\n' +
+                      'You need this for your Canvas Module 5 assignment.');
                 showModuleHub();
                 return;
             }
@@ -1675,7 +1991,10 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 feedback = 'LAT (Living Apart Together) is a growing family form, especially for older adults maintaining independence.';
             }
 
-            alert('✅ Module 5 complete!\n\n' + feedback);
+            alert('✅ Module 5 Complete!\n\n' +
+                  feedback + '\n\n' +
+                  '📥 IMPORTANT: Export your game data before continuing!\n\n' +
+                  'You need this for your Canvas Module 5 assignment.');
             showModuleHub();
         }
 
@@ -1734,7 +2053,10 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 feedback = 'Delaying parenthood is increasingly common, especially among college-educated adults.';
             }
 
-            alert('✅ Module 6 complete!\n\n' + feedback);
+            alert('✅ Module 6 Complete!\n\n' +
+                  feedback + '\n\n' +
+                  '📥 IMPORTANT: Export your game data before continuing!\n\n' +
+                  'You need this for your Canvas Module 6 assignment.');
             showModuleHub();
         }
 
@@ -1778,7 +2100,11 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 ? 'Strong support systems buffer stress. Social capital is a key resilience factor.'
                 : 'Limited support increases vulnerability. Economic stress strains relationships without safety nets.';
 
-            alert('✅ Module 7 complete!\n\nResilience Score: ' + resilienceScore + '/8\n' + feedback);
+            alert('✅ Module 7 Complete!\n\n' +
+                  'Resilience Score: ' + resilienceScore + '/8\n' +
+                  feedback + '\n\n' +
+                  '📥 IMPORTANT: Export your game data before continuing!\n\n' +
+                  'You need this for your Canvas Module 7 assignment.');
             showModuleHub();
         }
 
@@ -1813,7 +2139,11 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
 
             saveGameState();
 
-            alert('🎉 Congratulations! You\'ve completed all 8 modules of the Life Planning Challenge!\n\nYour comprehensive game report is ready to export.');
+            alert('🎉 Congratulations! You\'ve completed all 8 modules!\n\n' +
+                  '📥 CRITICAL: Export your COMPLETE game data NOW!\n\n' +
+                  'Your comprehensive report includes ALL 8 modules.\n' +
+                  'You MUST submit this with your Module 8 Canvas assignment!\n\n' +
+                  'Click "Print to PDF" or "Export as Text" on the next screen.');
             showModuleHub();
         }
 
@@ -2362,10 +2692,62 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             if (printModules) printModules.textContent = completedCount;
         });
 
+        // Reset game function
+        function resetGame() {
+            // Confirm with user
+            const confirmed = confirm(
+                '⚠️ RESET GAME WARNING ⚠️\n\n' +
+                'This will permanently delete:\n' +
+                '✗ All your game progress\n' +
+                '✗ All character decisions\n' +
+                '✗ All module completions\n' +
+                '✗ All saved data\n\n' +
+                'Make sure you have exported your data first if you need it for assignments!\n\n' +
+                'Are you absolutely sure you want to reset?'
+            );
+
+            if (!confirmed) {
+                return; // User cancelled
+            }
+
+            // Double confirmation
+            const doubleConfirm = confirm(
+                '🚨 FINAL CONFIRMATION 🚨\n\n' +
+                'This action CANNOT be undone!\n\n' +
+                'Click OK to permanently delete all game data and start over.'
+            );
+
+            if (!doubleConfirm) {
+                return; // User cancelled on second confirmation
+            }
+
+            // Clear all localStorage data
+            localStorage.removeItem('lifePlanningGame');
+            localStorage.removeItem('soc213-module-progress');
+
+            // Show success message
+            alert(
+                '✓ Game Reset Complete!\n\n' +
+                'All data has been cleared.\n' +
+                'The page will now reload to start fresh.'
+            );
+
+            // Reload page to reset UI
+            window.location.reload();
+        }
+
         // Initialize on load
         window.addEventListener('DOMContentLoaded', function() {
             initGame();
             updateModuleCards();
+
+            // Initialize life stage intro on load
+            updateLifeStageIntro();
+
+            // Add event listeners to life stage radio buttons
+            document.querySelectorAll('input[name="q0_lifestage"]').forEach(radio => {
+                radio.addEventListener('change', updateLifeStageIntro);
+            });
         });
     </script>
 
