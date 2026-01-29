@@ -187,11 +187,17 @@
         }
 
         .game-section {
-            display: none;
+            display: none !important;
         }
 
         .game-section.active {
-            display: block;
+            display: block !important;
+        }
+
+        /* Ensure proper stacking and spacing */
+        .content.game-section {
+            position: relative;
+            z-index: 1;
         }
 
         .question-group {
