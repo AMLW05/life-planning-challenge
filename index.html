@@ -234,6 +234,21 @@
             100% { transform: scale(1); }
         }
 
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100px); opacity: 0; }
+        }
+
         .choice-card.selected::after {
             content: '✓';
             position: absolute;
@@ -3965,10 +3980,15 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
         }
 
         // Save state to localStorage
-        function saveGameState() {
+        function saveGameState(showNotification = false) {
             gameState.lastUpdated = new Date().toISOString();
             localStorage.setItem('lifePlanningGame', JSON.stringify(gameState));
             console.log('Saved game state');
+
+            // Show save notification on important saves (module completions)
+            if (showNotification && typeof showSaveNotification === 'function') {
+                showSaveNotification();
+            }
         }
 
         // Initialize game
@@ -4168,7 +4188,7 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             }
             gameState.currentModule = 2;
 
-            saveGameState();
+            saveGameState(true);
 
             // Show success and module 2
             alert('✅ Module 1 Complete!\n\n' +
@@ -4220,7 +4240,7 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             }
             gameState.currentModule = 3;
 
-            saveGameState();
+            saveGameState(true);
 
             alert('✅ Module 2 Complete!\n\n' +
                   '📥 IMPORTANT: Export your game data before continuing!\n\n' +
@@ -4268,7 +4288,7 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             }
             gameState.currentModule = 4;
 
-            saveGameState();
+            saveGameState(true);
 
             alert('✅ Module 3 Complete!\n\n' +
                   '📥 IMPORTANT: Export your game data before continuing!\n\n' +
@@ -4945,7 +4965,7 @@ function completeModule4() {
         gameState.modulesCompleted.push(4);
     }
     gameState.currentModule = 5;
-    saveGameState();
+    saveGameState(true);
 
     alert('✅ Module 4 Complete!\n\n📥 IMPORTANT: Export your game data before continuing!\n\nYou need this for your Canvas Module 4 assignment.');
     showModuleHub();
@@ -4982,7 +5002,7 @@ function completeModule5() {
         gameState.modulesCompleted.push(5);
     }
     gameState.currentModule = 6;
-    saveGameState();
+    saveGameState(true);
 
     alert('✅ Module 5 Complete!\n\n📥 IMPORTANT: Export your game data before continuing!\n\nYou need this for your Canvas Module 5 assignment.');
     showModuleHub();
@@ -5019,7 +5039,7 @@ function completeModule6() {
         gameState.modulesCompleted.push(6);
     }
     gameState.currentModule = 7;
-    saveGameState();
+    saveGameState(true);
 
     alert('✅ Module 6 Complete!\n\n📥 IMPORTANT: Export your game data before continuing!\n\nYou need this for your Canvas Module 6 assignment.');
     showModuleHub();
@@ -5056,7 +5076,7 @@ function completeModule7() {
         gameState.modulesCompleted.push(7);
     }
     gameState.currentModule = 8;
-    saveGameState();
+    saveGameState(true);
 
     alert('✅ Module 7 Complete!\n\n📥 IMPORTANT: Export your game data before continuing!\n\nYou need this for your Canvas Module 7 assignment.');
     showModuleHub();
@@ -5145,7 +5165,12 @@ function completeModule8() {
         gameState.modulesCompleted.push(8);
     }
     gameState.currentModule = 8; // Stay at 8, game complete
-    saveGameState();
+    saveGameState(true);
+
+    // Celebration confetti!
+    if (typeof showConfetti === 'function') {
+        showConfetti();
+    }
 
     alert('🎉 GAME COMPLETE!\n\n' +
           'You have completed all 8 modules of the Life Planning Challenge!\n\n' +
@@ -5710,6 +5735,68 @@ function showAchievement(icon, title, description) {
 }
 
 /**
+ * Celebration confetti for game completion
+ */
+function showConfetti() {
+    const colors = ['#9b59b6', '#e74c3c', '#27ae60', '#f39c12', '#3498db', '#e91e63'];
+    const confettiCount = 150;
+
+    for (let i = 0; i < confettiCount; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.cssText = `
+                position: fixed;
+                width: ${Math.random() * 10 + 5}px;
+                height: ${Math.random() * 10 + 5}px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                left: ${Math.random() * 100}vw;
+                top: -20px;
+                border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                pointer-events: none;
+                z-index: 10000;
+                animation: confettiFall ${Math.random() * 3 + 2}s linear forwards;
+                transform: rotate(${Math.random() * 360}deg);
+            `;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }, i * 20);
+    }
+}
+
+/**
+ * Show auto-save notification
+ */
+function showSaveNotification() {
+    const existing = document.querySelector('.save-notification');
+    if (existing) existing.remove();
+
+    const notification = document.createElement('div');
+    notification.className = 'save-notification';
+    notification.innerHTML = '<span>Progress saved</span>';
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--success, #27ae60);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        font-weight: 500;
+        z-index: 9000;
+        animation: slideInRight 0.3s ease-out;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    `;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease-out forwards';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
+}
+
+/**
  * Generate journey progress visualization
  */
 function renderJourneyProgress(containerId, currentModule = 1) {
@@ -5885,7 +5972,7 @@ const StateManager = {
         }
 
         // Persist to localStorage
-        saveGameState();
+        saveGameState(true);
     },
 
     restore: function() {
@@ -6421,7 +6508,7 @@ const SaveSlots = {
 
         if (slot.gameState && typeof gameState !== 'undefined') {
             Object.assign(gameState, slot.gameState);
-            saveGameState();
+            saveGameState(true);
         }
 
         if (slot.engineState && typeof GameEngine !== 'undefined') {
