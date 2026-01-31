@@ -53,13 +53,13 @@ const GameEngine = {
             const fallbackKey = `m${moduleId}_${questionId}`;
             const fallbackSet = GAME_DATA.choices[fallbackKey];
             if (fallbackSet) {
-                return this.filterChoicesByState(fallbackSet.options);
+                return this.filterChoicesByState(fallbackSet);
             }
             console.warn("Choice set not found:", choiceKey);
             return [];
         }
 
-        return this.filterChoicesByState(choiceSet.options);
+        return this.filterChoicesByState(choiceSet);
     },
 
     /**
@@ -118,12 +118,12 @@ const GameEngine = {
             choiceSet = GAME_DATA.choices[`m${moduleId}_${questionId}`];
         }
 
-        if (!choiceSet || !choiceSet.options[choiceKey]) {
+        if (!choiceSet || !choiceSet[choiceKey]) {
             console.error("Choice not found:", moduleId, questionId, choiceKey);
             return null;
         }
 
-        const choice = choiceSet.options[choiceKey];
+        const choice = choiceSet[choiceKey];
 
         // Store choice
         if (!this.state.choices[moduleId]) {
@@ -358,7 +358,7 @@ const GameEngine = {
 
         const policyStance = this.state.choices[8]?.policyStance;
         if (policyStance) {
-            const policyChoice = GAME_DATA.choices.m8_policy_stance?.options[policyStance];
+            const policyChoice = GAME_DATA.choices.m8_policy?.[policyStance];
             if (policyChoice) {
                 analysis.policyImplications.push(
                     `Your policy stance (${policyChoice.label}) reflects how your game experience shaped your understanding of structural vs individual responsibility.`
