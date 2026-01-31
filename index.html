@@ -4092,11 +4092,10 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             const q0 = document.querySelector('input[name="q0_lifestage"]:checked');
             const q1 = document.querySelector('input[name="q1"]:checked');
             const q2 = document.querySelector('input[name="q2"]:checked');
-            const q3 = document.querySelector('input[name="q3"]:checked');
             const idealLife = document.getElementById('idealLife').value;
             const currentAge = document.getElementById('currentAge').value;
 
-            if (!q0 || !q1 || !q2 || !q3 || !idealLife.trim()) {
+            if (!q0 || !q1 || !q2 || !idealLife.trim()) {
                 alert('Please answer all questions before continuing.');
                 return;
             }
@@ -4110,8 +4109,7 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             gameState.characterData.lifeStage = q0.value;
             gameState.characterData.currentAge = parseInt(currentAge);
             gameState.characterData.familyValues = q1.value;
-            gameState.characterData.parentsWork = q2.value;
-            gameState.characterData.moneyRelationship = q3.value;
+            gameState.characterData.coreValue = q2.value;
             gameState.characterData.idealLife = idealLife;
 
             // Mark module complete
