@@ -3705,6 +3705,12 @@
                 <strong>💾 FINAL SAVE!</strong> Export complete game data for Canvas final reflection.
             </div>
 
+            <!-- PROFILE SUMMARY - Shows player's journey across modules -->
+            <div id="profileSummary" class="profile-summary" style="background: #f8f9fa; border-radius: 12px; padding: 20px; margin: 20px 0; border: 2px solid #e1e8ed;">
+                <h3 style="color: var(--navy); margin-bottom: 15px;">📋 Your Life Course Journey</h3>
+                <!-- Populated by buildProfileSummary() -->
+            </div>
+
             <!-- BRANCH 1: TRADITIONAL -->
             <div id="module8_traditional" class="branch-content" style="display:none;">
                 <p><strong>You're 35.</strong> Reflect on 15 years of cascading decisions from 20-35.</p>
@@ -5322,6 +5328,7 @@ function syncGameEngineState() {
  */
 const QUESTION_TO_DATA_KEY = {
     // Module 1
+    'q0_lifestage': 'm1_lifestage',
     'q1': 'm1_family',
     'q2': 'm1_value',
     // Module 2 - traditional
@@ -5386,8 +5393,16 @@ const QUESTION_TO_DATA_KEY = {
     'q16_laterlife': 'm7_response_laterlife',
     // Module 8 - Synthesis
     'q15': 'm8_policy',
-    'q17': 'm8_reflection',
-    'q18': 'm8_systems_thinking'
+    // Module 8 q17 - Reflection (life-stage variants)
+    'q17_traditional': 'm8_reflection_traditional',
+    'q17_returning': 'm8_reflection_returning',
+    'q17_midcareer': 'm8_reflection_midcareer',
+    'q17_laterlife': 'm8_reflection_laterlife',
+    // Module 8 q18 - Systems Thinking (life-stage variants)
+    'q18_traditional': 'm8_systems_traditional',
+    'q18_returning': 'm8_systems_returning',
+    'q18_midcareer': 'm8_systems_midcareer',
+    'q18_laterlife': 'm8_systems_laterlife'
 };
 
 /**

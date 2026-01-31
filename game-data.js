@@ -904,6 +904,123 @@ const GAME_DATA = {
         },
 
         // ========== MODULE 8: POLICY & REFLECTION ==========
+
+        // Module 8 Q17 - Reflection on most influential decision (life-stage variants)
+        m8_reflection_traditional: {
+            mod1_family: { label: "Module 1 Family", brief: "Class, resources, values", icon: "👨‍👩‍👧",
+                consequence: { immediate: "You recognize how family background shaped opportunities.", sociologicalLink: { concept: "path-dependency", hammondRef: "Ch. 4" }, futureImpacts: ["Structural awareness", "Intergenerational insight"] },
+                stateChanges: { reflectionFocus: "family" }
+            },
+            mod2_education: { label: "Module 2 Education", brief: "College vs no-college divide", icon: "🎓",
+                consequence: { immediate: "Education path created cascading effects.", sociologicalLink: { concept: "cumulative-advantage", hammondRef: "Ch. 3" }, futureImpacts: ["Career trajectory set", "Social network effects"] },
+                stateChanges: { reflectionFocus: "education" }
+            },
+            mod4_partner: { label: "Module 4 Partner", brief: "Who you chose matters", icon: "💑",
+                consequence: { immediate: "Partner selection shaped economic and emotional trajectory.", sociologicalLink: { concept: "educational-homogamy", hammondRef: "Ch. 7-8" }, futureImpacts: ["Household resources", "Division of labor"] },
+                stateChanges: { reflectionFocus: "partner" }
+            }
+        },
+        m8_reflection_returning: {
+            systems_not_individual: { label: "Systems, Not Individual", brief: "Structural policy failure", icon: "🏛️",
+                consequence: { immediate: "You see how policies and systems constrained choices.", sociologicalLink: { concept: "family-policy", hammondRef: "Ch. 15" }, futureImpacts: ["Policy advocacy", "Reduced self-blame"] },
+                stateChanges: { reflectionFocus: "systems" }
+            },
+            cumulative_advantage: { label: "Cumulative Advantage", brief: "Early resources compound", icon: "📈",
+                consequence: { immediate: "Small advantages/disadvantages compounded over time.", sociologicalLink: { concept: "cumulative-advantage", hammondRef: "Ch. 3" }, futureImpacts: ["Structural understanding", "Intergenerational focus"] },
+                stateChanges: { reflectionFocus: "cumulative" }
+            },
+            gender_inequality: { label: "Gender Inequality", brief: "Structural barriers", icon: "⚖️",
+                consequence: { immediate: "Gender shaped opportunities and constraints throughout.", sociologicalLink: { concept: "second-shift", hammondRef: "Ch. 12" }, futureImpacts: ["Feminist perspective", "Work-family lens"] },
+                stateChanges: { reflectionFocus: "gender" }
+            }
+        },
+        m8_reflection_midcareer: {
+            satisfied_trajectory: { label: "Satisfied", brief: "Choices made sense", icon: "😊",
+                consequence: { immediate: "Looking back, your choices aligned with values and context.", futureImpacts: ["Self-acceptance", "Wisdom"] },
+                stateChanges: { reflectionFocus: "satisfied" }
+            },
+            regrets_constraints: { label: "Regrets About Constraints", brief: "Structural barriers limited options", icon: "🚧",
+                consequence: { immediate: "You recognize how structural barriers limited options.", sociologicalLink: { concept: "path-dependency", hammondRef: "Ch. 4" }, futureImpacts: ["Structural awareness", "Policy interest"] },
+                stateChanges: { reflectionFocus: "regrets_structural" }
+            },
+            would_redo_major: { label: "Would Redo", brief: "Major decisions", icon: "🔙",
+                consequence: { immediate: "Given current knowledge, key decisions would change.", futureImpacts: ["Learning from hindsight", "Generativity focus"] },
+                stateChanges: { reflectionFocus: "redo" }
+            }
+        },
+        m8_reflection_laterlife: {
+            fulfilling_journey: { label: "Fulfilling Journey", brief: "Meaning, relationships", icon: "✨",
+                consequence: { immediate: "Life course brought meaning through relationships and contributions.", sociologicalLink: { concept: "generativity", hammondRef: "Ch. 4" }, futureImpacts: ["Legacy focus", "Gratitude"] },
+                stateChanges: { reflectionFocus: "fulfilling" }
+            },
+            mixed_accepting: { label: "Mixed But Accepting", brief: "Peace with both", icon: "☯️",
+                consequence: { immediate: "Both joys and regrets, but acceptance brings peace.", futureImpacts: ["Wisdom", "Balance"] },
+                stateChanges: { reflectionFocus: "accepting" }
+            },
+            regrets_structural: { label: "Structural Awareness", brief: "Class, gender, policy", icon: "🔍",
+                consequence: { immediate: "Looking back, you see how structures shaped outcomes.", sociologicalLink: { concept: "cumulative-disadvantage", hammondRef: "Ch. 3" }, futureImpacts: ["Advocacy", "Intergenerational support"] },
+                stateChanges: { reflectionFocus: "structural_awareness" }
+            }
+        },
+
+        // Module 8 Q18 - Systems thinking / forward action (life-stage variants)
+        m8_systems_traditional: {
+            nothing: { label: "Nothing", brief: "Path makes sense", icon: "✅",
+                consequence: { immediate: "Choices aligned with circumstances and values.", futureImpacts: ["Confidence", "Forward momentum"] },
+                stateChanges: { systemsThinking: "aligned" }
+            },
+            career_different: { label: "Different Career", brief: "Education choice", icon: "💼",
+                consequence: { immediate: "Education/career path would be reconsidered with more information.", sociologicalLink: { concept: "path-dependency", hammondRef: "Ch. 4" }, futureImpacts: ["Career exploration", "Skill building"] },
+                stateChanges: { systemsThinking: "career_rethink" }
+            },
+            relationship_timing: { label: "Relationship Timing", brief: "Too early/late", icon: "⏰",
+                consequence: { immediate: "Relationship timing affected other opportunities.", sociologicalLink: { concept: "marriage-bar", hammondRef: "Ch. 9" }, futureImpacts: ["Timing awareness", "Intentionality"] },
+                stateChanges: { systemsThinking: "timing" }
+            }
+        },
+        m8_systems_returning: {
+            renegotiate_partnership: { label: "Renegotiate Partnership", brief: "Need changes", icon: "💬",
+                consequence: { immediate: "Partnership roles need rebalancing for equity.", sociologicalLink: { concept: "second-shift", hammondRef: "Ch. 12" }, futureImpacts: ["Relationship evolution", "Gender equity"] },
+                stateChanges: { systemsThinking: "renegotiate" }
+            },
+            career_pivot: { label: "Career Pivot", brief: "Work-family balance", icon: "🔄",
+                consequence: { immediate: "Career shift needed to better align work and family.", sociologicalLink: { concept: "work-family-conflict", hammondRef: "Ch. 11" }, futureImpacts: ["New skills", "Better fit"] },
+                stateChanges: { systemsThinking: "pivot" }
+            },
+            accept_trade_offs: { label: "Accept Trade-offs", brief: "Make peace with path", icon: "🤝",
+                consequence: { immediate: "Acceptance of trade-offs brings clarity and focus.", futureImpacts: ["Self-compassion", "Moving forward"] },
+                stateChanges: { systemsThinking: "acceptance" }
+            }
+        },
+        m8_systems_midcareer: {
+            empty_nest_reinvest: { label: "Empty Nest Reinvest", brief: "Partner, hobbies, travel", icon: "🔥",
+                consequence: { immediate: "With children launched, reinvest in partnership and self.", sociologicalLink: { concept: "generativity", hammondRef: "Ch. 4" }, futureImpacts: ["Relationship renewal", "Personal growth"] },
+                stateChanges: { systemsThinking: "reinvest" }
+            },
+            career_final_push: { label: "Career Final Push", brief: "Maximize earnings", icon: "💼",
+                consequence: { immediate: "Focus remaining work years on peak earning and achievement.", futureImpacts: ["Financial security", "Legacy building"] },
+                stateChanges: { systemsThinking: "career_push" }
+            },
+            generativity_focus: { label: "Generativity Focus", brief: "Mentoring, legacy", icon: "🌱",
+                consequence: { immediate: "Shift focus to nurturing next generation and leaving legacy.", sociologicalLink: { concept: "generativity", hammondRef: "Ch. 4" }, futureImpacts: ["Meaning", "Contribution"] },
+                stateChanges: { systemsThinking: "generativity" }
+            }
+        },
+        m8_systems_laterlife: {
+            family_legacy: { label: "Family Legacy", brief: "Children, grandchildren", icon: "👨‍👩‍👧‍👦",
+                consequence: { immediate: "Focus on intergenerational support and family continuity.", sociologicalLink: { concept: "intergenerational-transfers", hammondRef: "Ch. 4" }, futureImpacts: ["Family bonds", "Resource transfer"] },
+                stateChanges: { systemsThinking: "family_legacy" }
+            },
+            community_contribution: { label: "Community Contribution", brief: "Volunteer, mentor", icon: "🤝",
+                consequence: { immediate: "Contribute to broader community through service and mentoring.", sociologicalLink: { concept: "generativity", hammondRef: "Ch. 4" }, futureImpacts: ["Community ties", "Purpose"] },
+                stateChanges: { systemsThinking: "community" }
+            },
+            personal_contentment: { label: "Personal Contentment", brief: "Focus on wellbeing", icon: "🧘",
+                consequence: { immediate: "Prioritize personal health, relationships, and peace.", futureImpacts: ["Self-care", "Quality of life"] },
+                stateChanges: { systemsThinking: "contentment" }
+            }
+        },
+
         m8_policy: {
             comprehensive_social_democracy: {
                 label: "Comprehensive Social Democratic", brief: "Universal family supports", icon: "🏛️",
