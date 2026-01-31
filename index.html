@@ -269,6 +269,50 @@
             line-height: 1.4;
         }
 
+        /* Profile Summary Styles */
+        .profile-summary .profile-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .profile-summary .profile-item:last-child {
+            border-bottom: none;
+        }
+
+        .profile-summary .profile-label {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .profile-summary .profile-value {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* High contrast focus for accessibility */
+        @media (prefers-contrast: high) {
+            .choice-card:focus-within {
+                outline: 4px solid #000;
+                outline-offset: 4px;
+            }
+
+            .choice-card.selected {
+                border-width: 4px;
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .choice-card,
+            .choice-card:hover,
+            .choice-card.selected {
+                transition: none;
+                animation: none;
+            }
+        }
+
         /* ========== CONSEQUENCE REVEAL PANEL ========== */
         .consequence-panel {
             display: none;
@@ -4311,8 +4355,10 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             document.getElementById('profileSummary').innerHTML = html;
         }
 
-        // Format values for display
+        // Format values for display (with null safety)
         function formatValue(value) {
+            if (!value) return 'Not set';
+            if (typeof value !== 'string') return String(value);
             return value.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
         }
 
@@ -5026,15 +5072,28 @@ function initModule8() {
     if (branchDiv) {
         branchDiv.style.display = 'block';
     }
-    // Also build the profile summary if that function exists
-    if (typeof buildProfileSummary === 'function') {
-        buildProfileSummary();
+
+    // Build profile summary with error handling
+    try {
+        if (typeof buildProfileSummary === 'function') {
+            buildProfileSummary();
+        }
+    } catch (err) {
+        console.warn('Could not build profile summary:', err);
+        const summaryEl = document.getElementById('profileSummary');
+        if (summaryEl) {
+            summaryEl.innerHTML = '<p style="color: #666;">Profile summary unavailable. Complete earlier modules to see your journey.</p>';
+        }
     }
 
-    // Show journey dashboard
-    const summaryContainer = document.getElementById('module8-intro-summary');
-    if (summaryContainer && typeof generateJourneyDashboard === 'function') {
-        summaryContainer.innerHTML = generateJourneyDashboard();
+    // Show journey dashboard with error handling
+    try {
+        const summaryContainer = document.getElementById('module8-intro-summary');
+        if (summaryContainer && typeof generateJourneyDashboard === 'function') {
+            summaryContainer.innerHTML = generateJourneyDashboard();
+        }
+    } catch (err) {
+        console.warn('Could not generate journey dashboard:', err);
     }
 
     // Show completion achievement if this is the final module
@@ -6611,8 +6670,75 @@ renderConsequencePanel = function(panelElement, choiceData) {
     }
 };
 
+// ========== ACCESSIBILITY ENHANCEMENTS ==========
+function initAccessibility() {
+    // Add ARIA attributes to all choice cards
+    document.querySelectorAll('.choice-cards-container').forEach((container, groupIdx) => {
+        container.setAttribute('role', 'radiogroup');
+        const questionGroup = container.closest('.question-group');
+        const questionTitle = questionGroup?.querySelector('h3, h4, p strong')?.textContent || `Question ${groupIdx + 1}`;
+        container.setAttribute('aria-label', questionTitle);
+
+        container.querySelectorAll('.choice-card').forEach((card, idx) => {
+            const label = card.querySelector('.choice-label')?.textContent || `Option ${idx + 1}`;
+            const brief = card.querySelector('.choice-brief')?.textContent || '';
+            const radio = card.querySelector('input[type="radio"]');
+
+            // Make card focusable and add descriptive label
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', `${label}${brief ? ': ' + brief : ''}`);
+
+            // Sync selection state
+            if (radio) {
+                card.setAttribute('aria-checked', radio.checked ? 'true' : 'false');
+                radio.addEventListener('change', () => {
+                    container.querySelectorAll('.choice-card').forEach(c => {
+                        c.setAttribute('aria-checked', 'false');
+                    });
+                    card.setAttribute('aria-checked', 'true');
+                });
+            }
+
+            // Allow Enter/Space to select card
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const radio = card.querySelector('input[type="radio"]');
+                    if (radio) {
+                        radio.checked = true;
+                        radio.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                }
+            });
+        });
+    });
+
+    // Add skip link for keyboard users
+    const skipLink = document.createElement('a');
+    skipLink.href = '#main-content';
+    skipLink.className = 'skip-link';
+    skipLink.textContent = 'Skip to main content';
+    skipLink.style.cssText = 'position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;';
+    skipLink.addEventListener('focus', () => {
+        skipLink.style.cssText = 'position:fixed;left:10px;top:10px;padding:10px 20px;background:var(--primary);color:white;border-radius:4px;z-index:9999;text-decoration:none;font-weight:600;';
+    });
+    skipLink.addEventListener('blur', () => {
+        skipLink.style.cssText = 'position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;';
+    });
+    document.body.insertBefore(skipLink, document.body.firstChild);
+
+    // Add main content landmark
+    const contentDiv = document.querySelector('.content');
+    if (contentDiv && !contentDiv.id) {
+        contentDiv.id = 'main-content';
+    }
+}
+
 // ========== INITIALIZE ALL NEW FEATURES ==========
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize accessibility features
+    initAccessibility();
+
     // Initialize reflection journal
     setTimeout(() => {
         ReflectionJournal.init();
