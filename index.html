@@ -208,6 +208,15 @@
             overflow: hidden;
         }
 
+        /* Hide radio inputs accessibly (not display:none which breaks in some browsers) */
+        .choice-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
         .choice-card:hover,
         .choice-card:focus-within {
             border-color: var(--primary);
@@ -2195,7 +2204,7 @@
             <!-- BRANCH 1: TRADITIONAL AGE (18-24) -->
             <div id="module2_traditional" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 22 years old.</strong> You're making foundational decisions that will create <span class="glossary-term">path dependency<span class="glossary-tooltip"><strong>Path Dependency</strong><br>How early decisions constrain later options—once on a path, it's harder to switch tracks.<br><em>Hammond Ch. 4</em></span></span> for the next decade. Your education and career choices will determine income, debt, work-life flexibility, and when you can afford to form a family.
+                    <strong>You're <span class="dynamic-age">22</span> years old.</strong> You're making foundational decisions that will create <span class="glossary-term">path dependency<span class="glossary-tooltip"><strong>Path Dependency</strong><br>How early decisions constrain later options—once on a path, it's harder to switch tracks.<br><em>Hammond Ch. 4</em></span></span> for the next decade. Your education and career choices will determine income, debt, work-life flexibility, and when you can afford to form a family.
                 </p>
 
                 <div class="question-group" id="q5_traditional-group">
@@ -2270,7 +2279,7 @@
             <!-- BRANCH 2: RETURNING ADULT (25-35) -->
             <div id="module2_returning" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 30 years old.</strong> You have work experience, possibly a partner and/or children. You're considering career change while managing existing commitments. This is <span class="glossary-term">role strain<span class="glossary-tooltip"><strong>Role Strain</strong><br>Tension from competing demands of multiple roles (worker, partner, parent, student).<br><em>Hammond Ch. 4</em></span></span>—balancing multiple roles simultaneously.
+                    <strong>You're <span class="dynamic-age">30</span> years old.</strong> You have work experience, possibly a partner and/or children. You're considering career change while managing existing commitments. This is <span class="glossary-term">role strain<span class="glossary-tooltip"><strong>Role Strain</strong><br>Tension from competing demands of multiple roles (worker, partner, parent, student).<br><em>Hammond Ch. 4</em></span></span>—balancing multiple roles simultaneously.
                 </p>
 
                 <div class="question-group" id="q5_returning-group">
@@ -2351,13 +2360,13 @@
             <!-- BRANCH 3: MID-CAREER (36-50) -->
             <div id="module2_midcareer" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 42 years old.</strong> You're in peak earning years but also peak demands—likely have teenagers or young adults, aging parents, established career. This is the <span class="glossary-term">sandwich generation<span class="glossary-tooltip"><strong>Sandwich Generation</strong><br>Adults caring for both children AND aging parents simultaneously.<br><em>Hammond Ch. 4, 7</em></span></span> crunch. Career decisions must navigate multiple generations' needs.
+                    <strong>You're <span class="dynamic-age">42</span> years old.</strong> You're in peak earning years but also peak demands—likely have teenagers or young adults, aging parents, established career. This is the <span class="glossary-term">sandwich generation<span class="glossary-tooltip"><strong>Sandwich Generation</strong><br>Adults caring for both children AND aging parents simultaneously.<br><em>Hammond Ch. 4, 7</em></span></span> crunch. Career decisions must navigate multiple generations' needs.
                 </p>
 
                 <div class="question-group" id="q5_midcareer-group">
                     <label><strong>DECISION 3:</strong> Career Direction - Where are you headed?</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 42, career changes are risky but burnout is real. Your choice affects family income, caregiving capacity, and legacy.
+                        At <span class="dynamic-age">42</span>, career changes are risky but burnout is real. Your choice affects family income, caregiving capacity, and legacy.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="continue_current">
@@ -2397,7 +2406,7 @@
                 <div class="question-group" id="q6_midcareer-group">
                     <label><strong>DECISION 4:</strong> Caregiving Reality - Who needs you?</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 42, you're likely caring for multiple generations. This reality constrains career options.
+                        At <span class="dynamic-age">42</span>, you're likely caring for multiple generations. This reality constrains career options.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="teens_home">
@@ -2432,13 +2441,13 @@
             <!-- BRANCH 4: LATER-LIFE (50+) -->
             <div id="module2_laterlife" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 58 years old.</strong> You're navigating late-career transitions, possible retirement planning, adult children, maybe grandchildren. Career decisions now involve legacy, health, financial security for old age, and how to spend remaining work years. This is about <span class="glossary-term">generativity<span class="glossary-tooltip"><strong>Generativity</strong><br>Late adulthood focus on passing knowledge, mentoring, legacy work.<br><em>Hammond Ch. 4</em></span></span>—what mark you leave.
+                    <strong>You're <span class="dynamic-age">58</span> years old.</strong> You're navigating late-career transitions, possible retirement planning, adult children, maybe grandchildren. Career decisions now involve legacy, health, financial security for old age, and how to spend remaining work years. This is about <span class="glossary-term">generativity<span class="glossary-tooltip"><strong>Generativity</strong><br>Late adulthood focus on passing knowledge, mentoring, legacy work.<br><em>Hammond Ch. 4</em></span></span>—what mark you leave.
                 </p>
 
                 <div class="question-group" id="q5_laterlife-group">
                     <label><strong>DECISION 3:</strong> Career Transition - What's your path to retirement?</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 58, retirement looms. But finances, health, purpose, and Social Security timing affect when and how you leave workforce.
+                        At <span class="dynamic-age">58</span>, retirement looms. But finances, health, purpose, and Social Security timing affect when and how you leave workforce.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="continue_to_67">
@@ -2478,7 +2487,7 @@
                 <div class="question-group" id="q6_laterlife-group">
                     <label><strong>DECISION 4:</strong> Life Stage Realities - What's your situation?</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 58, your family situation affects career flexibility and retirement planning.
+                        At <span class="dynamic-age">58</span>, your family situation affects career flexibility and retirement planning.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="adult_kids_independent">
@@ -2551,7 +2560,7 @@
             <!-- BRANCH 1: TRADITIONAL AGE (18-24) -->
             <div id="module3_traditional" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 25 years old.</strong> You're exploring romantic relationships and learning communication patterns. Your <span class="glossary-term">attachment style<span class="glossary-tooltip"><strong>Attachment Theory</strong><br>Childhood bonds shape adult relationships.<br><em>Hammond Ch. 5</em></span></span> from Module 1 shapes how you approach intimacy. These early relationship patterns will follow you through life.
+                    <strong>You're <span class="dynamic-age">25</span> years old.</strong> You're exploring romantic relationships and learning communication patterns. Your <span class="glossary-term">attachment style<span class="glossary-tooltip"><strong>Attachment Theory</strong><br>Childhood bonds shape adult relationships.<br><em>Hammond Ch. 5</em></span></span> from Module 1 shapes how you approach intimacy. These early relationship patterns will follow you through life.
                 </p>
 
                 <div class="question-group" id="q7_traditional-group">
@@ -2626,7 +2635,7 @@
             <!-- BRANCH 2: RETURNING ADULT (25-35) -->
             <div id="module3_returning" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 32 years old.</strong> You may already be partnered from earlier years, OR you're navigating dating after divorce/breakup, OR forming new relationships while managing work and possibly children. Relationship dynamics at this stage intersect with established responsibilities.
+                    <strong>You're <span class="dynamic-age">32</span> years old.</strong> You may already be partnered from earlier years, OR you're navigating dating after divorce/breakup, OR forming new relationships while managing work and possibly children. Relationship dynamics at this stage intersect with established responsibilities.
                 </p>
 
                 <div class="question-group" id="q7_returning-group">
@@ -2666,7 +2675,7 @@
                 <div class="question-group" id="q8_returning-group">
                     <label><strong>DECISION 6:</strong> Communication Challenges - What's your biggest relationship communication issue?</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 32, relationship communication intersects with work stress, time scarcity, and life demands. Hammond Ch. 6 explains how stress affects communication quality.
+                        At <span class="dynamic-age">32</span>, relationship communication intersects with work stress, time scarcity, and life demands. Hammond Ch. 6 explains how stress affects communication quality.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="established_patterns">
@@ -2701,7 +2710,7 @@
             <!-- BRANCH 3: MID-CAREER (36-50) -->
             <div id="module3_midcareer" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 44 years old.</strong> You're likely in a long-term partnership (15-25 years) OR navigating "gray divorce" OR rebuilding after divorce. Relationships at this stage face different challenges: long-term maintenance, potential staleness, peak life demands, or late-life rediscovery.
+                    <strong>You're <span class="dynamic-age">44</span> years old.</strong> You're likely in a long-term partnership (15-25 years) OR navigating "gray divorce" OR rebuilding after divorce. Relationships at this stage face different challenges: long-term maintenance, potential staleness, peak life demands, or late-life rediscovery.
                 </p>
 
                 <div class="question-group" id="q7_midcareer-group">
@@ -2741,7 +2750,7 @@
                 <div class="question-group" id="q8_midcareer-group">
                     <label><strong>DECISION 6:</strong> Midlife Relationship Challenges - What strains your relationship most?</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 44, relationships face unique pressures: sandwich generation demands, career peak, potential empty nest, aging and health changes.
+                        At <span class="dynamic-age">44</span>, relationships face unique pressures: sandwich generation demands, career peak, potential empty nest, aging and health changes.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="comfortable_routine">
@@ -2776,7 +2785,7 @@
             <!-- BRANCH 4: LATER-LIFE (50+) -->
             <div id="module3_laterlife" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 60 years old.</strong> You may be in a decades-long partnership, navigating widowhood, post-divorce and single, or forming new late-life relationships. Relationships at this stage involve legacy, health changes, retirement transitions, and generativity (focus on next generation).
+                    <strong>You're <span class="dynamic-age">60</span> years old.</strong> You may be in a decades-long partnership, navigating widowhood, post-divorce and single, or forming new late-life relationships. Relationships at this stage involve legacy, health changes, retirement transitions, and generativity (focus on next generation).
                 </p>
 
                 <div class="question-group" id="q7_laterlife-group">
@@ -2893,7 +2902,7 @@
             <!-- BRANCH 1: TRADITIONAL AGE (18-24) -->
             <div id="module4_traditional" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 27 years old.</strong> You're choosing your first serious long-term partner. Your Module 2 education/career shaped your <span class="glossary-term">marriage market<span class="glossary-tooltip"><strong>Marriage Market</strong><br>Who you meet and compete with for partners.<br><em>Hammond Ch. 8</em></span></span>—where you meet potential partners and what you bring to relationships.
+                    <strong>You're <span class="dynamic-age">27</span> years old.</strong> You're choosing your first serious long-term partner. Your Module 2 education/career shaped your <span class="glossary-term">marriage market<span class="glossary-tooltip"><strong>Marriage Market</strong><br>Who you meet and compete with for partners.<br><em>Hammond Ch. 8</em></span></span>—where you meet potential partners and what you bring to relationships.
                 </p>
 
                 <div class="question-group" id="q9_traditional-group">
@@ -2962,13 +2971,13 @@
             <!-- BRANCH 2: RETURNING ADULT (25-35) -->
             <div id="module4_returning" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 34 years old.</strong> You're either evaluating an existing partnership formed earlier OR you're re-partnering after divorce/breakup. Your Module 3 relationship status determines your path. Partner evaluation differs when you have life experience and established responsibilities.
+                    <strong>You're <span class="dynamic-age">34</span> years old.</strong> You're either evaluating an existing partnership formed earlier OR you're re-partnering after divorce/breakup. Your Module 3 relationship status determines your path. Partner evaluation differs when you have life experience and established responsibilities.
                 </p>
 
                 <div class="question-group" id="q9_returning-group">
                     <label><strong>DECISION 7:</strong> Partner Evaluation - Where do you stand?</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 34, you assess partners differently—you know yourself better, have established life.
+                        At <span class="dynamic-age">34</span>, you assess partners differently—you know yourself better, have established life.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="current_partner_strong">
@@ -3002,7 +3011,7 @@
                 <div class="question-group" id="q10_returning-group">
                     <label><strong>DECISION 8:</strong> Relationship Priorities - What matters most?</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 34, experience clarifies what's essential vs. negotiable.
+                        At <span class="dynamic-age">34</span>, experience clarifies what's essential vs. negotiable.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="life_goal_alignment">
@@ -3031,13 +3040,13 @@
             <!-- BRANCH 3: MID-CAREER (36-50) -->
             <div id="module4_midcareer" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 46 years old.</strong> You're likely in a long-term partnership (15-25 years) evaluating compatibility OR you're re-partnering after gray divorce/widowhood. Partner assessment at midlife involves reassessing long relationships or navigating dating after decades.
+                    <strong>You're <span class="dynamic-age">46</span> years old.</strong> You're likely in a long-term partnership (15-25 years) evaluating compatibility OR you're re-partnering after gray divorce/widowhood. Partner assessment at midlife involves reassessing long relationships or navigating dating after decades.
                 </p>
 
                 <div class="question-group" id="q9_midcareer-group">
                     <label><strong>DECISION 7:</strong> Midlife Partnership Evaluation</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 46, assessing decades-long partnerships or starting over.
+                        At <span class="dynamic-age">46</span>, assessing decades-long partnerships or starting over.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="longterm_satisfying">
@@ -3100,13 +3109,13 @@
             <!-- BRANCH 4: LATER-LIFE (50+) -->
             <div id="module4_laterlife" class="branch-content" style="display:none;">
                 <p style="margin-bottom: 25px; color: var(--text-dark); font-weight: 500;">
-                    <strong>You're 62 years old.</strong> You're either sustaining a decades-long partnership (30-40+ years), navigating widowhood, post-divorce single, or forming new late-life relationships. Partner dynamics at this stage involve health, caregiving, legacy, and companionship rather than romance or reproduction.
+                    <strong>You're <span class="dynamic-age">62</span> years old.</strong> You're either sustaining a decades-long partnership (30-40+ years), navigating widowhood, post-divorce single, or forming new late-life relationships. Partner dynamics at this stage involve health, caregiving, legacy, and companionship rather than romance or reproduction.
                 </p>
 
                 <div class="question-group" id="q9_laterlife-group">
                     <label><strong>DECISION 7:</strong> Late-Life Partnership Status</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 62, sustaining long marriages, coping with loss, or forming new relationships.
+                        At <span class="dynamic-age">62</span>, sustaining long marriages, coping with loss, or forming new relationships.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="decades_long_partnership">
@@ -3140,7 +3149,7 @@
                 <div class="question-group" id="q10_laterlife-group">
                     <label><strong>DECISION 8:</strong> Late-Life Partnership Priorities</label>
                     <p style="font-size: 0.95em; color: #555; margin: 10px 0 15px 0;">
-                        At 62, priorities: health, caregiving, legacy, companionship.
+                        At <span class="dynamic-age">62</span>, priorities: health, caregiving, legacy, companionship.
                     </p>
                     <div class="choice-cards-container">
                         <label class="choice-card" data-value="health_caregiving_focus">
@@ -4137,6 +4146,13 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             const currentAgeInput = document.getElementById('currentAge');
             const currentAge = parseInt(currentAgeInput?.value) || null;
 
+            // Update all dynamic age displays throughout the game
+            if (currentAge && currentAge >= 18) {
+                document.querySelectorAll('.dynamic-age').forEach(el => {
+                    el.textContent = currentAge;
+                });
+            }
+
             // Calculate future age for reflection
             let reflectionAge;
 
@@ -4239,6 +4255,13 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             const branchDiv = document.getElementById(`module2_${lifeStage}`);
             if (branchDiv) {
                 branchDiv.style.display = 'block';
+            }
+
+            // Update dynamic ages to match user's entered age
+            if (gameState.characterData?.currentAge) {
+                document.querySelectorAll('.dynamic-age').forEach(el => {
+                    el.textContent = gameState.characterData.currentAge;
+                });
             }
         }
 
@@ -5598,6 +5621,18 @@ const QUESTION_TO_DATA_KEY = {
  * Includes keyboard navigation, smooth scroll, what-if, achievements
  */
 function initChoiceCards() {
+    // FALLBACK: Click handler to ensure radio gets checked (fixes display:none issues)
+    document.addEventListener('click', function(e) {
+        const card = e.target.closest('.choice-card');
+        if (card) {
+            const radio = card.querySelector('input[type="radio"]');
+            if (radio && !radio.checked) {
+                radio.checked = true;
+                radio.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        }
+    });
+
     // Listen for radio input changes (triggered by clicking labels)
     document.addEventListener('change', function(e) {
         if (e.target.type === 'radio' && e.target.closest('.choice-card')) {
@@ -6239,11 +6274,33 @@ window.addEventListener('DOMContentLoaded', function() {
     // Initialize choice card interactions
     initChoiceCards();
 
+    // Listen for age input changes to update dynamic ages throughout game
+    const ageInput = document.getElementById('currentAge');
+    if (ageInput) {
+        ageInput.addEventListener('input', function() {
+            if (typeof updateReflectionAge === 'function') {
+                updateReflectionAge();
+            }
+        });
+        ageInput.addEventListener('change', function() {
+            if (typeof updateReflectionAge === 'function') {
+                updateReflectionAge();
+            }
+        });
+    }
+
     // Delay sync to ensure gameState is loaded
     setTimeout(() => {
         syncGameEngineState();
         StateManager.restore();
         updateAdvantageDisplays();
+
+        // Update dynamic ages from saved state
+        if (typeof gameState !== 'undefined' && gameState.characterData?.currentAge) {
+            document.querySelectorAll('.dynamic-age').forEach(el => {
+                el.textContent = gameState.characterData.currentAge;
+            });
+        }
 
         // Initialize journey progress if container exists
         const journeyContainer = document.getElementById('journey-progress-main');
