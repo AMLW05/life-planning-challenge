@@ -1246,10 +1246,22 @@
 
         /* ========== WHAT-IF REPLAY MODE ========== */
         .whatif-mode {
+            display: none; /* Hidden by default */
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             border-radius: 16px;
             padding: 20px;
             margin: 20px 0;
+        }
+
+        /* Show what-if panels when mode is active */
+        body.whatif-active .whatif-mode {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .whatif-header {
@@ -1945,9 +1957,17 @@
                 <div class="progress-fill" id="overallProgress" style="width: 0%;"></div>
             </div>
 
-            <p style="margin-bottom: 25px; color: var(--text-dark);">
-                Progress: <strong id="progressText">0/8 modules completed</strong>
-            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 10px;">
+                <p style="margin: 0; color: var(--text-dark);">
+                    Progress: <strong id="progressText">0/8 modules completed</strong>
+                </p>
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <span id="lastSavedTime" style="font-size: 0.85em; color: #7f8c8d;"></span>
+                    <button id="whatIfToggle" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9em;" onclick="toggleWhatIfMode()">
+                        🔮 What If Mode
+                    </button>
+                </div>
+            </div>
 
             <div class="module-grid" id="moduleGrid">
                 <!-- Modules will be populated by JavaScript -->
@@ -4036,6 +4056,11 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
         function showModuleHub() {
             populateModuleHub();
             showSection('moduleHub');
+
+            // Update last saved timestamp
+            if (typeof updateLastSavedDisplay === 'function') {
+                updateLastSavedDisplay();
+            }
         }
 
         // Populate module hub
@@ -4757,6 +4782,84 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                             <p><strong>Family Understanding Evolution:</strong></p>
                             <p style="margin-left: 20px; font-style: italic;">${profile.finalReflection.familyUnderstanding}</p>
                         </div>
+                    </div>
+                `;
+            }
+
+            // Add GameEngine analysis if available
+            if (typeof GameEngine !== 'undefined' && GameEngine.state.consequences.length > 0) {
+                const score = GameEngine.state.advantageScore;
+                const scoreLabel = score > 0 ? 'Cumulative Advantage' : score < 0 ? 'Cumulative Disadvantage' : 'Neutral';
+                const scoreColor = score > 0 ? '#27ae60' : score < 0 ? '#e74c3c' : '#7f8c8d';
+
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border: 2px solid ${scoreColor}; border-radius: 8px;">
+                        <h2 style="color: ${scoreColor}; margin-bottom: 15px;">Cumulative Life Course Score</h2>
+                        <div style="text-align: center; margin: 20px 0;">
+                            <span style="font-size: 48px; font-weight: bold; color: ${scoreColor};">${score > 0 ? '+' : ''}${score}</span>
+                            <p style="color: #666; margin-top: 10px;">${scoreLabel}</p>
+                        </div>
+                        <p style="font-style: italic; color: #666; text-align: center;">
+                            This score reflects how structural advantages and disadvantages accumulated across your life course decisions.
+                        </p>
+                    </div>
+                `;
+
+                // Add sociological concepts encountered
+                const synthesis = GameEngine.generateSynthesisAnalysis();
+                if (synthesis.sociologicalInsights.length > 0) {
+                    html += `
+                        <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #3498db; border-radius: 8px;">
+                            <h2 style="color: #3498db; margin-bottom: 15px;">Sociological Concepts Encountered</h2>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: #3498db; color: white;">
+                                        <th style="padding: 10px; text-align: left;">Concept</th>
+                                        <th style="padding: 10px; text-align: left;">Definition</th>
+                                        <th style="padding: 10px; text-align: left;">Hammond Ref</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${synthesis.sociologicalInsights.map(s => `
+                                        <tr style="border-bottom: 1px solid #ddd;">
+                                            <td style="padding: 10px; font-weight: bold;">${s.concept}</td>
+                                            <td style="padding: 10px;">${s.definition || 'See textbook'}</td>
+                                            <td style="padding: 10px;">${s.hammondRef || ''}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                }
+
+                // Add path dependency patterns
+                if (synthesis.pathDependencies.length > 0) {
+                    html += `
+                        <div style="margin-bottom: 30px; padding: 20px; background: #fff3cd; border: 2px solid #f39c12; border-radius: 8px;">
+                            <h2 style="color: #856404; margin-bottom: 15px;">Path Dependency Patterns Identified</h2>
+                            ${synthesis.pathDependencies.map(p => `
+                                <div style="margin-bottom: 15px;">
+                                    <p style="font-weight: bold; color: #856404;">${p.pattern}</p>
+                                    <p style="margin-left: 15px; color: #666;">${p.description}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+            }
+
+            // Add journal entries if available
+            if (typeof ReflectionJournal !== 'undefined' && ReflectionJournal.entries.length > 0) {
+                html += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: white; border: 2px solid #9b59b6; border-radius: 8px;">
+                        <h2 style="color: #9b59b6; margin-bottom: 15px;">Your Reflection Journal</h2>
+                        ${ReflectionJournal.entries.map(e => `
+                            <div style="margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px;">
+                                <p style="font-size: 12px; color: #7f8c8d;">${new Date(e.timestamp).toLocaleString()}</p>
+                                <p style="margin-top: 5px;">${e.entry}</p>
+                            </div>
+                        `).join('')}
                     </div>
                 `;
             }
@@ -5952,6 +6055,90 @@ function insertWhatIfPanel(questionGroupId, questionKey, selectedValue) {
             questionGroup.insertAdjacentHTML('beforeend', whatIfHtml);
         }
     }
+}
+
+/**
+ * Toggle What If Mode - shows/hides alternate path comparisons
+ */
+let whatIfModeActive = false;
+
+function toggleWhatIfMode() {
+    whatIfModeActive = !whatIfModeActive;
+    const btn = document.getElementById('whatIfToggle');
+
+    if (whatIfModeActive) {
+        btn.classList.add('btn-primary');
+        btn.classList.remove('btn-secondary');
+        btn.innerHTML = '🔮 What If Mode: ON';
+        document.body.classList.add('whatif-active');
+
+        // Generate what-if panels for all completed choices
+        generateAllWhatIfPanels();
+    } else {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-secondary');
+        btn.innerHTML = '🔮 What If Mode';
+        document.body.classList.remove('whatif-active');
+    }
+}
+
+/**
+ * Generate What If panels for all choices made
+ */
+function generateAllWhatIfPanels() {
+    if (typeof GameEngine === 'undefined' || typeof GAME_DATA === 'undefined') return;
+
+    const consequences = GameEngine.state.consequences || [];
+
+    consequences.forEach(c => {
+        const questionKey = `m${c.moduleId}_${c.questionId}`;
+        const choiceSet = GAME_DATA.choices[questionKey];
+        if (!choiceSet) return;
+
+        // Find an alternate choice
+        const allChoices = Object.keys(choiceSet);
+        const alternate = allChoices.find(k => k !== c.choiceValue);
+        if (!alternate) return;
+
+        // Find the question group in the DOM
+        const questionGroups = document.querySelectorAll('.question-group');
+        questionGroups.forEach(group => {
+            const radio = group.querySelector(`input[value="${c.choiceValue}"]`);
+            if (radio) {
+                const whatIfHtml = showWhatIfComparison(questionKey, c.choiceValue, alternate);
+                if (whatIfHtml && !group.querySelector('.whatif-mode')) {
+                    group.insertAdjacentHTML('beforeend', whatIfHtml);
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Update last saved timestamp display
+ */
+function updateLastSavedDisplay() {
+    const el = document.getElementById('lastSavedTime');
+    if (!el || !gameState.lastUpdated) return;
+
+    const saved = new Date(gameState.lastUpdated);
+    const now = new Date();
+    const diffMs = now - saved;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+
+    let timeAgo;
+    if (diffMins < 1) {
+        timeAgo = 'just now';
+    } else if (diffMins < 60) {
+        timeAgo = `${diffMins} min${diffMins > 1 ? 's' : ''} ago`;
+    } else if (diffHours < 24) {
+        timeAgo = `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+    } else {
+        timeAgo = saved.toLocaleDateString();
+    }
+
+    el.innerHTML = `<span title="${saved.toLocaleString()}">💾 Saved ${timeAgo}</span>`;
 }
 
 /**
