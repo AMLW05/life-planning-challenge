@@ -1047,10 +1047,12 @@ const GAME_DATA = {
 
     // Sociological concepts dictionary
     concepts: {
-        // Family Structure
+        // Family Structure & Origins
         "nuclear-family": { term: "Nuclear Family", definition: "Two parents and children in one household.", hammondRef: "Ch. 1" },
         "extended-family": { term: "Extended Family", definition: "Multiple generations living together with shared resources.", hammondRef: "Ch. 1" },
         "chosen-family": { term: "Chosen Family", definition: "Non-biological 'kin' providing family-like support.", hammondRef: "Ch. 1" },
+        "family-of-origin": { term: "Family of Origin", definition: "The family you grew up in that shaped your beliefs, patterns, and expectations about relationships.", hammondRef: "Ch. 1" },
+        "socialization": { term: "Socialization", definition: "The lifelong process of learning norms, values, and behaviors from family, peers, and institutions.", hammondRef: "Ch. 2-3" },
 
         // Partner Selection & Marriage
         "educational-homogamy": { term: "Educational Homogamy", definition: "Tendency to marry partners with similar education levels.", hammondRef: "Ch. 7-8" },
@@ -1082,6 +1084,9 @@ const GAME_DATA = {
         "intergenerational-transfers": { term: "Intergenerational Transfers", definition: "Resources (money, time, housing) flowing between generations.", hammondRef: "Ch. 4" },
         "gendered-eldercare": { term: "Gendered Eldercare", definition: "Daughters disproportionately provide care for aging parents.", hammondRef: "Ch. 4" },
 
+        // Social Networks
+        "social-capital": { term: "Social Capital", definition: "Resources available through social networks—connections that provide information, support, and opportunities.", hammondRef: "Ch. 4" },
+
         // Inequality & Stratification
         "cumulative-advantage": { term: "Cumulative Advantage", definition: "Early advantages compound over time—the rich get richer.", hammondRef: "Ch. 3" },
         "cumulative-disadvantage": { term: "Cumulative Disadvantage", definition: "Early disadvantages compound—setbacks cascade into larger problems.", hammondRef: "Ch. 3" },
@@ -1103,6 +1108,2032 @@ const GAME_DATA = {
         "m2_to_m4": {
             "educationLevel_bachelor": { note: "College education affects marriage market position." },
             "educationLevel_highschool": { note: "Without credentials, may face marriage bar." }
+        }
+    },
+
+    // ========== EXERCISE SYSTEM ==========
+    // Six exercise types: ranking, calculator, quiz, reflection, mapping, scenario
+    exercises: {
+        // MODULE 1 EXERCISES - Character Creation & Family Origins
+        m1_ex1_genogram: {
+            id: "m1_ex1_genogram",
+            type: "mapping",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Family Genogram",
+            instructions: "Create a visual map of your family of origin. Add family members and mark the types of relationships between them. This helps you see patterns that shaped your development.",
+            nodeTypes: [
+                { id: "self", label: "You", color: "#4a90d9", icon: "⭐" },
+                { id: "parent", label: "Parent/Guardian", color: "#50c878", icon: "👤" },
+                { id: "sibling", label: "Sibling", color: "#9b59b6", icon: "👥" },
+                { id: "grandparent", label: "Grandparent", color: "#f39c12", icon: "👴" },
+                { id: "extended", label: "Extended Family", color: "#e74c3c", icon: "👨‍👩‍👧" },
+                { id: "chosen", label: "Chosen Family", color: "#1abc9c", icon: "🤝" }
+            ],
+            connectionTypes: [
+                { id: "close", label: "Close/Supportive", color: "#27ae60", style: "solid" },
+                { id: "distant", label: "Distant", color: "#95a5a6", style: "dashed" },
+                { id: "conflict", label: "Conflict/Tension", color: "#e74c3c", style: "dotted" },
+                { id: "cutoff", label: "Cut Off", color: "#2c3e50", style: "none" }
+            ],
+            prompts: [
+                "Who raised you? Add them first.",
+                "Did you have siblings? What were those relationships like?",
+                "Were grandparents or extended family involved in your upbringing?",
+                "Were there 'chosen family' members - non-relatives who played family roles?"
+            ],
+            metrics: [
+                { id: "family_size", label: "Family Network Size", formula: "nodes.length", format: "number" },
+                { id: "close_ties", label: "Close Relationships", formula: "connections.filter(c => c.type === 'close').length", format: "number" },
+                { id: "conflict_ties", label: "Conflicted Relationships", formula: "connections.filter(c => c.type === 'conflict').length", format: "number" }
+            ],
+            sociologyLink: {
+                concept: "family-of-origin",
+                hammondRef: "Ch. 1",
+                explanation: "Your family of origin shapes your 'family schema' - your internalized beliefs about what families should look like and how they should function."
+            },
+            maxNodes: 15,
+            required: false,
+            skippable: true
+        },
+
+        m1_ex2_values_sort: {
+            id: "m1_ex2_values_sort",
+            type: "ranking",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Life Values Card Sort",
+            instructions: "Rank these life values from most important (top) to least important (bottom). There are no wrong answers - this reflects your priorities shaped by your upbringing and experiences.",
+            items: [
+                { id: "financial_security", label: "Financial Security", description: "Having stable income and savings" },
+                { id: "family_closeness", label: "Family Closeness", description: "Strong bonds with family members" },
+                { id: "career_success", label: "Career Achievement", description: "Professional advancement and recognition" },
+                { id: "personal_freedom", label: "Personal Freedom", description: "Independence and autonomy" },
+                { id: "community_service", label: "Helping Others", description: "Contributing to community/society" },
+                { id: "romantic_partnership", label: "Romantic Partnership", description: "Finding/maintaining love relationship" },
+                { id: "health_wellness", label: "Health & Wellness", description: "Physical and mental wellbeing" },
+                { id: "education_learning", label: "Lifelong Learning", description: "Continuous growth and education" }
+            ],
+            sociologyLink: {
+                concept: "socialization",
+                hammondRef: "Ch. 2-3",
+                explanation: "Values aren't purely individual - they're shaped by family socialization, social class, culture, and historical context. Your ranking reflects both personal preference AND structural influences."
+            },
+            narrativeFlags: {
+                top1: "primary_value",
+                top3: "core_values",
+                bottom1: "lowest_priority"
+            },
+            required: false,
+            skippable: true
+        },
+
+        m1_ex3_quiz: {
+            id: "m1_ex3_quiz",
+            type: "quiz",
+            section: "COMPREHENSION_CHECK",
+            title: "Family Diversity Check",
+            instructions: "Test your understanding of how sociologists think about family.",
+            questions: [
+                {
+                    id: "q1",
+                    question: "According to Hammond, why do sociologists avoid defining one 'correct' family structure?",
+                    options: [
+                        { id: "a", text: "Because all family structures produce identical outcomes" },
+                        { id: "b", text: "Because family forms vary by culture, time period, and social context", correct: true },
+                        { id: "c", text: "Because the government prohibits such definitions" },
+                        { id: "d", text: "Because sociologists can't agree on anything" }
+                    ],
+                    explanation: "Hammond Ch. 1 emphasizes that 'family' is a social construction that varies dramatically across cultures and historical periods. The nuclear family norm is relatively recent and culturally specific.",
+                    hammondRef: "Ch. 1, p. 5-12"
+                },
+                {
+                    id: "q2",
+                    question: "What does 'family of origin' refer to in life course sociology?",
+                    options: [
+                        { id: "a", text: "The family you create through marriage or partnership" },
+                        { id: "b", text: "Your ancestors from previous generations" },
+                        { id: "c", text: "The family you grew up in that shaped your development", correct: true },
+                        { id: "d", text: "Your biological relatives only" }
+                    ],
+                    explanation: "Your family of origin is the family context in which you were raised. It shapes your expectations, communication patterns, and beliefs about relationships - regardless of biological connection.",
+                    hammondRef: "Ch. 1"
+                }
+            ],
+            passingScore: 50,
+            maxAttempts: 3,
+            showExplanations: true
+        },
+
+        m1_ex4_reflection: {
+            id: "m1_ex4_reflection",
+            type: "reflection",
+            section: "REFLECTION_PROMPT",
+            title: "Family Influences Reflection",
+            prompt: "Think about one specific way your family of origin shaped who you are today. This could be a value they taught you, a pattern you learned, or a belief about relationships. How does this influence show up in your life now?",
+            minLength: 100,
+            maxLength: 2000,
+            placeholder: "Consider: What did you learn about money, work, relationships, or conflict from your family? What family patterns do you want to continue or change?",
+            tags: ["family-of-origin", "socialization", "values", "patterns"],
+            journalEntry: true,
+            sociologyLink: {
+                concept: "socialization",
+                hammondRef: "Ch. 2-3",
+                explanation: "Socialization is the lifelong process of learning norms, values, and behaviors. Family is the primary agent of socialization in childhood."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m1_ex5_scenario: {
+            id: "m1_ex5_scenario",
+            type: "scenario",
+            section: "TRANSITION",
+            title: "The Family Gathering",
+            setup: "It's a holiday gathering with your family of origin. A relative makes a comment criticizing your life choices - maybe about your career, relationship status, or lifestyle. This touches on values you ranked as important. How do you respond?",
+            branches: [
+                {
+                    id: "defend",
+                    label: "Defend Your Choices",
+                    description: "Explain why your path is valid and important to you",
+                    consequence: "You assert your independence, but tension rises. Some family members seem hurt that you're 'different.'",
+                    advantageChange: 0,
+                    narrativeFlag: "asserts_independence",
+                    sociologyLink: {
+                        concept: "agency",
+                        hammondRef: "Ch. 1",
+                        explanation: "Individual agency - making choices that differ from family expectations - is constrained but not eliminated by structure."
+                    }
+                },
+                {
+                    id: "deflect",
+                    label: "Change the Subject",
+                    description: "Redirect to safer topics to keep the peace",
+                    consequence: "The gathering stays pleasant, but you feel unseen. Your choices remain unvalidated by family.",
+                    advantageChange: 0,
+                    narrativeFlag: "keeps_peace",
+                    sociologyLink: {
+                        concept: "emotional-labor",
+                        hammondRef: "Ch. 6",
+                        explanation: "Managing family emotions and avoiding conflict is emotional labor - often invisible work of maintaining relationships."
+                    }
+                },
+                {
+                    id: "engage",
+                    label: "Ask Questions Back",
+                    description: "Try to understand their perspective and share yours",
+                    consequence: "The conversation deepens. Some understanding emerges, though full agreement doesn't. You've modeled healthy communication.",
+                    advantageChange: 1,
+                    narrativeFlag: "bridges_difference",
+                    sociologyLink: {
+                        concept: "communication",
+                        hammondRef: "Ch. 6",
+                        explanation: "Constructive conflict - engaging with differences rather than avoiding or escalating - builds relationship resilience."
+                    }
+                },
+                {
+                    id: "withdraw",
+                    label: "Excuse Yourself",
+                    description: "Step away to avoid escalation",
+                    consequence: "You protect your peace but feel disconnected. Later, you wonder if there was another way.",
+                    advantageChange: 0,
+                    narrativeFlag: "self_protective",
+                    sociologyLink: {
+                        concept: "boundaries",
+                        hammondRef: "Ch. 5",
+                        explanation: "Setting boundaries is healthy, but can also limit opportunities for relationship repair and growth."
+                    }
+                }
+            ],
+            defaultAdvantage: 0
+        },
+
+        // MODULE 2 EXERCISES
+        m2_ex1_ranking: {
+            id: "m2_ex1_ranking",
+            type: "ranking",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Career Priority Ranking",
+            instructions: "Drag to rank these career values from most important (top) to least important (bottom). Your ranking will influence how we personalize the module's narrative.",
+            items: [
+                { id: "income", label: "Income Potential", description: "High earnings and financial security" },
+                { id: "flexibility", label: "Work Flexibility", description: "Control over schedule and location" },
+                { id: "meaning", label: "Meaningful Work", description: "Purpose-driven, helping others" },
+                { id: "security", label: "Job Security", description: "Stable employment, low layoff risk" },
+                { id: "growth", label: "Growth Potential", description: "Advancement and skill development" }
+            ],
+            sociologyLink: {
+                concept: "path-dependency",
+                hammondRef: "Ch. 4",
+                explanation: "Your career priorities create path dependency - early choices about what matters constrain later options."
+            },
+            narrativeHooks: {
+                income: "Your priority on income will shape how you weigh education debt against earning potential.",
+                flexibility: "Valuing flexibility suggests work-family balance will be central to your decisions.",
+                meaning: "Prioritizing meaning may lead to lower-paid but purpose-driven career paths.",
+                security: "Job security focus connects to risk tolerance in education and career decisions.",
+                growth: "Growth priority suggests willingness to invest in education and skills."
+            },
+            required: false,
+            skippable: true,
+            skipWarning: "Skipping this exercise means we'll use default values, which may make the module feel less personalized."
+        },
+
+        m2_ex2_calculator: {
+            id: "m2_ex2_calculator",
+            type: "calculator",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Education ROI Calculator",
+            instructions: "Enter your estimates to see the financial implications of different education paths. All numbers are approximations for learning purposes.",
+            inputs: [
+                { id: "tuition_annual", label: "Annual Tuition Cost", type: "currency", default: 12000, min: 0, max: 80000, step: 500 },
+                { id: "years", label: "Years of Study", type: "number", default: 4, min: 1, max: 8, step: 1 },
+                { id: "living_costs", label: "Monthly Living Costs", type: "currency", default: 1500, min: 500, max: 5000, step: 100 },
+                { id: "work_hours", label: "Work Hours/Week During School", type: "number", default: 15, min: 0, max: 40, step: 5 },
+                { id: "hourly_wage", label: "Current/Potential Hourly Wage", type: "currency", default: 15, min: 10, max: 50, step: 1 },
+                { id: "post_grad_salary", label: "Expected Post-Graduation Salary", type: "currency", default: 50000, min: 25000, max: 150000, step: 1000 }
+            ],
+            formulas: {
+                total_tuition: "tuition_annual * years",
+                total_living: "living_costs * 12 * years",
+                work_income: "work_hours * hourly_wage * 48 * years",
+                total_debt: "total_tuition + total_living - work_income",
+                opportunity_cost: "(40 - work_hours) * hourly_wage * 48 * years",
+                break_even_years: "Math.max(0, total_debt) / (post_grad_salary - (hourly_wage * 2080))"
+            },
+            outputs: [
+                { id: "total_debt", label: "Estimated Total Debt", format: "currency", highlight: true },
+                { id: "opportunity_cost", label: "Opportunity Cost (Lost Wages)", format: "currency" },
+                { id: "break_even_years", label: "Years to Break Even", format: "decimal", decimals: 1 }
+            ],
+            interpretations: [
+                { condition: "total_debt > 50000", message: "High debt warning: Debt over $50K significantly constrains future choices - delaying home purchase, family formation, and limiting career flexibility.", type: "warning" },
+                { condition: "total_debt > 30000 && total_debt <= 50000", message: "Moderate debt level: Manageable but requires consistent income. Consider income-driven repayment options.", type: "info" },
+                { condition: "break_even_years > 10", message: "Long payback period: It will take over 10 years to recoup this investment financially. Non-financial returns (fulfillment, credentials) may justify this.", type: "warning" },
+                { condition: "break_even_years <= 5", message: "Quick payback: This education investment pays off relatively quickly in pure financial terms.", type: "success" }
+            ],
+            sociologyLink: {
+                concept: "cumulative-advantage",
+                hammondRef: "Ch. 3",
+                explanation: "Those who start with resources (family help, no debt) have more options. Debt creates constraints that compound over time."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m2_ex3_quiz: {
+            id: "m2_ex3_quiz",
+            type: "quiz",
+            section: "COMPREHENSION_CHECK",
+            title: "Path Dependency Check",
+            instructions: "Test your understanding of how early decisions shape later options. You'll get detailed explanations after each question.",
+            questions: [
+                {
+                    id: "q1",
+                    question: "According to the life course perspective, why might taking out student loans at 22 affect someone's ability to have children at 32?",
+                    options: [
+                        { id: "a", text: "Loans directly prevent pregnancy" },
+                        { id: "b", text: "Debt constrains housing, savings, and perceived readiness for parenthood", correct: true },
+                        { id: "c", text: "Educated people don't want children" },
+                        { id: "d", text: "There is no connection between education debt and family formation" }
+                    ],
+                    explanation: "Path dependency shows how decisions cascade. Student debt affects monthly cash flow, delays home purchases, and shapes perceptions of 'readiness' for parenthood. Research shows education debt correlates with delayed marriage and childbearing (Hammond Ch. 4).",
+                    hammondRef: "Ch. 4, pp. 87-92"
+                },
+                {
+                    id: "q2",
+                    question: "What does 'cumulative advantage' mean in the context of education and career?",
+                    options: [
+                        { id: "a", text: "Everyone gets the same opportunities if they work hard" },
+                        { id: "b", text: "Early advantages compound over time, creating larger gaps", correct: true },
+                        { id: "c", text: "Disadvantages can be overcome through individual effort" },
+                        { id: "d", text: "Education is the only factor that matters for career success" }
+                    ],
+                    explanation: "Cumulative advantage describes how small initial differences (family resources, early education access, social capital) compound over time. A child with college-educated parents has more help navigating applications, financial safety nets, and professional networks - advantages that multiply across the life course.",
+                    hammondRef: "Ch. 3, pp. 58-64"
+                }
+            ],
+            passingScore: 0.5,
+            maxAttempts: 3,
+            showAnswersAfterFail: true,
+            required: true
+        },
+
+        m2_ex4_reflection: {
+            id: "m2_ex4_reflection",
+            type: "reflection",
+            section: "REFLECTION_PROMPT",
+            title: "Personal Connection",
+            prompt: "How have structural factors (family resources, geography, economic conditions, social networks) shaped your own education and career decisions? Think beyond individual 'choices' to the constraints and opportunities you've experienced.",
+            minLength: 100,
+            maxLength: 2000,
+            placeholder: "Consider: What options were available to you? What was never really an option? How did family resources or lack thereof affect your path? What structural factors (not just individual choices) shaped where you are now?",
+            tags: ["education", "structure", "constraints", "personal"],
+            journalEntry: true,
+            sociologyLink: {
+                concept: "path-dependency",
+                hammondRef: "Ch. 4",
+                explanation: "Connecting personal biography to structural forces is the core of sociological imagination."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m2_ex5_mapping: {
+            id: "m2_ex5_mapping",
+            type: "mapping",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Support Network Map",
+            instructions: "Build a visual map of people who could support you through education/career decisions. This helps identify resources and gaps.",
+            nodeTypes: [
+                { id: "family", label: "Family Member", color: "#e74c3c", icon: "👨‍👩‍👧" },
+                { id: "friend", label: "Friend", color: "#3498db", icon: "👥" },
+                { id: "mentor", label: "Mentor/Advisor", color: "#9b59b6", icon: "🎓" },
+                { id: "professional", label: "Professional Contact", color: "#27ae60", icon: "💼" }
+            ],
+            connectionTypes: [
+                { id: "strong", label: "Strong Support", style: "solid", width: 3 },
+                { id: "moderate", label: "Moderate Support", style: "solid", width: 2 },
+                { id: "weak", label: "Weak/Potential", style: "dashed", width: 1 },
+                { id: "tension", label: "Tension/Complicated", style: "dotted", width: 2, color: "#e74c3c" }
+            ],
+            metrics: [
+                { id: "network_size", label: "Network Size", formula: "nodes.length" },
+                { id: "support_density", label: "Support Density", formula: "(connections.filter(c => c.type !== 'tension').length / nodes.length) * 100", format: "percent" },
+                { id: "diversity", label: "Network Diversity", formula: "new Set(nodes.map(n => n.type)).size / 4 * 100", format: "percent" }
+            ],
+            sociologyLink: {
+                concept: "social-capital",
+                hammondRef: "Ch. 4",
+                explanation: "Social capital - your networks and relationships - significantly affects what opportunities you can access and what support you have during transitions."
+            },
+            maxNodes: 15,
+            required: false,
+            skippable: true
+        },
+
+        m2_ex6_scenario: {
+            id: "m2_ex6_scenario",
+            type: "scenario",
+            section: "TRANSITION",
+            title: "Career vs. Relationship Crossroads",
+            setup: "Your employer offers to pay for your master's degree if you commit to staying 3 more years. But your partner has been offered their dream job in another city. You can't do both. This is a classic 'tied mover' dilemma.",
+            branches: [
+                {
+                    id: "take_offer",
+                    label: "Take Employer's Offer",
+                    brief: "Stay, get degree, partner goes alone or stays",
+                    narrative: "You accept the employer's offer. Your partner must decide whether to decline their opportunity or attempt long-distance. Research shows 'tied stayers' (usually women) sacrifice career for partner's job, while 'tied movers' relocate for partner. Either way, someone's career is constrained.",
+                    consequences: {
+                        advantageScore: 1,
+                        narrativeFlags: ["chose_career_over_relocation", "tied_stayer_dynamic"]
+                    },
+                    sociologyLink: {
+                        concept: "gender-dynamics",
+                        hammondRef: "Ch. 4",
+                        explanation: "The 'two-body problem' is highly gendered. Women are more likely to be tied movers/stayers, sacrificing career for partner's job."
+                    }
+                },
+                {
+                    id: "relocate",
+                    label: "Relocate with Partner",
+                    brief: "Decline offer, move for partner's job",
+                    narrative: "You relocate for your partner's opportunity. You'll need to find new employment and education options in the new location. This is the 'tied mover' experience - your career trajectory is now shaped by your partner's opportunity.",
+                    consequences: {
+                        advantageScore: -1,
+                        narrativeFlags: ["tied_mover", "career_disruption"]
+                    },
+                    sociologyLink: {
+                        concept: "gender-dynamics",
+                        hammondRef: "Ch. 4",
+                        explanation: "Tied movers often experience career setbacks - loss of seniority, network disruption, and starting over in a new job market."
+                    }
+                },
+                {
+                    id: "negotiate",
+                    label: "Negotiate Remote/Hybrid",
+                    brief: "Try to keep both opportunities",
+                    narrative: "You attempt to negotiate remote work or a hybrid arrangement. This option depends heavily on your employer's flexibility and the nature of your work. Success requires workplace policies that support flexibility - not available to everyone.",
+                    consequences: {
+                        advantageScore: 0,
+                        narrativeFlags: ["negotiated_flexibility", "class_privilege_option"]
+                    },
+                    sociologyLink: {
+                        concept: "occupational-segregation",
+                        hammondRef: "Ch. 4",
+                        explanation: "Remote work flexibility is a class privilege - available mainly in knowledge work, not service, healthcare, or trades."
+                    }
+                },
+                {
+                    id: "decline_both",
+                    label: "Decline Both",
+                    brief: "Maintain current situation",
+                    narrative: "You and your partner both decline the offers to preserve your current life together. You avoid disruption but may wonder about missed opportunities. Sometimes stability is the right choice - but it's still shaped by structural constraints.",
+                    consequences: {
+                        advantageScore: 0,
+                        narrativeFlags: ["chose_stability", "opportunity_cost"]
+                    },
+                    sociologyLink: {
+                        concept: "path-dependency",
+                        hammondRef: "Ch. 4",
+                        explanation: "Not choosing is also a choice with path-dependent consequences. Missed opportunities shape future options."
+                    }
+                }
+            ],
+            required: true
+        },
+
+        // MODULE 3 EXERCISES: Relationships & Communication
+        m3_ex1_ranking: {
+            id: "m3_ex1_ranking",
+            type: "ranking",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Relationship Priorities",
+            instructions: "Rank what matters most to you in a romantic relationship. Your ranking helps personalize this module's content.",
+            items: [
+                { id: "emotional_intimacy", label: "Emotional Intimacy", description: "Deep sharing, vulnerability, feeling understood" },
+                { id: "physical_attraction", label: "Physical Attraction", description: "Chemistry, passion, physical connection" },
+                { id: "shared_values", label: "Shared Values", description: "Agreement on religion, politics, life goals" },
+                { id: "financial_stability", label: "Financial Stability", description: "Partner's economic security and responsibility" },
+                { id: "communication", label: "Communication", description: "Ability to discuss issues openly and resolve conflict" }
+            ],
+            sociologyLink: {
+                concept: "educational-homogamy",
+                hammondRef: "Ch. 7",
+                explanation: "What we prioritize in partners reflects both personal preferences AND structural position. Research shows people systematically marry similar others (homogamy) - our 'preferences' are shaped by our social location."
+            },
+            narrativeHooks: {
+                emotional_intimacy: "Prioritizing emotional intimacy suggests you value deep connection over practical considerations.",
+                physical_attraction: "Physical attraction as top priority reflects the romantic love ideology that dominates Western culture.",
+                shared_values: "Valuing shared values suggests a practical approach to long-term compatibility.",
+                financial_stability: "Prioritizing financial stability connects to the 'marriage bar' - economic prerequisites for partnership.",
+                communication: "Communication focus suggests awareness of relationship maintenance work."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m3_ex2_quiz: {
+            id: "m3_ex2_quiz",
+            type: "quiz",
+            section: "COMPREHENSION_CHECK",
+            title: "Attachment & Communication Check",
+            instructions: "Test your understanding of relationship sociology concepts.",
+            questions: [
+                {
+                    id: "q1",
+                    question: "What is 'emotional labor' in relationships according to sociologists?",
+                    options: [
+                        { id: "a", text: "Having difficult emotional conversations" },
+                        { id: "b", text: "The invisible work of managing relationships, remembering, and maintaining social ties", correct: true },
+                        { id: "c", text: "Working a job that requires emotional expression" },
+                        { id: "d", text: "Feeling exhausted after arguments" }
+                    ],
+                    explanation: "Emotional labor refers to the ongoing, often invisible work of relationship maintenance - remembering birthdays, planning social events, noticing when something is wrong, initiating difficult conversations. Research shows this labor is disproportionately performed by women, even in 'equal' partnerships.",
+                    hammondRef: "Ch. 6, pp. 142-148"
+                },
+                {
+                    id: "q2",
+                    question: "According to Gottman's research, which communication pattern most strongly predicts relationship failure?",
+                    options: [
+                        { id: "a", text: "Frequent disagreements" },
+                        { id: "b", text: "Different communication styles" },
+                        { id: "c", text: "Contempt - treating partner with disrespect and superiority", correct: true },
+                        { id: "d", text: "Avoiding conflict entirely" }
+                    ],
+                    explanation: "Gottman's 'Four Horsemen' research found that contempt is the strongest predictor of divorce. Contempt communicates disgust and superiority, making the partner feel worthless. Healthy relationships can have conflict - it's HOW couples fight that matters.",
+                    hammondRef: "Ch. 6, pp. 156-162"
+                }
+            ],
+            passingScore: 0.5,
+            maxAttempts: 3,
+            showAnswersAfterFail: true,
+            required: true
+        },
+
+        m3_ex3_reflection: {
+            id: "m3_ex3_reflection",
+            type: "reflection",
+            section: "REFLECTION_PROMPT",
+            title: "Communication Patterns Reflection",
+            prompt: "Think about communication patterns you observed growing up. How did adults in your family handle conflict? How might those patterns influence your own relationship communication style?",
+            minLength: 100,
+            maxLength: 2000,
+            placeholder: "Consider: Did adults in your family argue openly or avoid conflict? Were emotions expressed or suppressed? Who did the emotional labor of maintaining relationships? How have these patterns shown up in your own relationships?",
+            tags: ["communication", "family-of-origin", "patterns", "emotional-labor"],
+            journalEntry: true,
+            sociologyLink: {
+                concept: "emotional-labor",
+                hammondRef: "Ch. 6",
+                explanation: "We learn relationship patterns in our families of origin. These patterns feel 'natural' but are actually socially learned."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m3_ex4_scenario: {
+            id: "m3_ex4_scenario",
+            type: "scenario",
+            section: "TRANSITION",
+            title: "The Conflict Crossroads",
+            setup: "Your partner just got a significant promotion that requires relocating across the country. They're excited and assumed you'd be happy to move. You have a stable job and close friendships here. They didn't consult you before accepting. How do you handle this conversation?",
+            branches: [
+                {
+                    id: "direct_confrontation",
+                    label: "Direct Confrontation",
+                    brief: "Express hurt immediately and firmly",
+                    narrative: "You tell your partner directly that you're hurt they made this decision without consulting you. The conversation is difficult but honest. Your partner apologizes for the unilateral decision. You work together to evaluate options - but the underlying issue about decision-making in your relationship surfaces.",
+                    consequences: {
+                        advantageScore: 0,
+                        narrativeFlags: ["direct_communicator", "addressed_power_dynamic"]
+                    },
+                    sociologyLink: {
+                        concept: "emotional-labor",
+                        hammondRef: "Ch. 6",
+                        explanation: "Direct communication can address power imbalances, but often the person with less structural power (frequently women) must do the work of initiating difficult conversations."
+                    }
+                },
+                {
+                    id: "accommodating",
+                    label: "Accommodate Their Needs",
+                    brief: "Agree to move, suppress concerns",
+                    narrative: "You agree to move, telling yourself it will be fine. You suppress your concerns to avoid conflict. Your partner is relieved. But research shows suppressed resentment compounds - this decision will resurface later in your relationship.",
+                    consequences: {
+                        advantageScore: -1,
+                        narrativeFlags: ["conflict_avoidant", "suppressed_needs", "tied_mover"]
+                    },
+                    sociologyLink: {
+                        concept: "gender-dynamics",
+                        hammondRef: "Ch. 6",
+                        explanation: "Accommodation is gendered - women are socialized to prioritize relationship harmony over personal needs. This pattern enables inequality."
+                    }
+                },
+                {
+                    id: "negotiate_compromise",
+                    label: "Negotiate a Compromise",
+                    brief: "Propose alternatives together",
+                    narrative: "You express concern but focus on finding middle ground - maybe a delayed start date, trying long-distance first, or negotiating remote work. This approach requires both partners to have relatively equal power and willingness to compromise.",
+                    consequences: {
+                        advantageScore: 1,
+                        narrativeFlags: ["negotiator", "egalitarian_approach"]
+                    },
+                    sociologyLink: {
+                        concept: "gender-dynamics",
+                        hammondRef: "Ch. 6",
+                        explanation: "True negotiation requires structural equality. When one partner has more resources or power, 'compromise' often means the less powerful partner gives more."
+                    }
+                },
+                {
+                    id: "ultimatum",
+                    label: "Draw a Hard Line",
+                    brief: "Refuse to move, period",
+                    narrative: "You tell your partner you won't move and they need to decline or choose between you and the job. This creates immediate crisis. The relationship may not survive - but neither would a pattern of unilateral decisions continue.",
+                    consequences: {
+                        advantageScore: 0,
+                        narrativeFlags: ["boundary_setter", "relationship_crisis"]
+                    },
+                    sociologyLink: {
+                        concept: "path-dependency",
+                        hammondRef: "Ch. 4",
+                        explanation: "Sometimes setting firm boundaries ends relationships that would have been unsatisfying anyway. Not all relationship preservation is healthy."
+                    }
+                }
+            ],
+            required: true
+        },
+
+        m3_ex5_mapping: {
+            id: "m3_ex5_mapping",
+            type: "mapping",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Relationship History Map",
+            instructions: "Map significant relationships in your life - romantic and otherwise. This helps visualize patterns in how you connect with others.",
+            nodeTypes: [
+                { id: "romantic", label: "Romantic Partner", color: "#e74c3c", icon: "❤️" },
+                { id: "close_friend", label: "Close Friend", color: "#3498db", icon: "👥" },
+                { id: "family", label: "Family Member", color: "#9b59b6", icon: "👨‍👩‍👧" },
+                { id: "mentor", label: "Mentor/Role Model", color: "#27ae60", icon: "🌟" }
+            ],
+            connectionTypes: [
+                { id: "strong", label: "Strong Bond", style: "solid", width: 3 },
+                { id: "complicated", label: "Complicated", style: "dashed", width: 2 },
+                { id: "distant", label: "Distant/Faded", style: "dotted", width: 1 },
+                { id: "conflict", label: "Conflict", style: "dotted", width: 2, color: "#e74c3c" }
+            ],
+            metrics: [
+                { id: "network_size", label: "Relationship Count", formula: "nodes.length" },
+                { id: "romantic_count", label: "Romantic Relationships", formula: "nodes.filter(n => n.type === 'romantic').length" },
+                { id: "support_ratio", label: "Support Network Strength", formula: "(connections.filter(c => c.type === 'strong').length / Math.max(1, nodes.length)) * 100", format: "percent" }
+            ],
+            sociologyLink: {
+                concept: "social-capital",
+                hammondRef: "Ch. 4",
+                explanation: "Your relationship network IS your social capital. The strength and diversity of connections affects opportunities, support during crises, and even health outcomes."
+            },
+            maxNodes: 12,
+            required: false,
+            skippable: true
+        },
+
+        // MODULE 4 EXERCISES - Partner Selection & Compatibility
+        m4_ex1_ranking: {
+            id: "m4_ex1_ranking",
+            type: "ranking",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Partner Attribute Ranking",
+            instructions: "Rank these partner qualities from most to least important to you. Your ranking reveals what you prioritize in mate selection - and how that aligns with sociological patterns.",
+            items: [
+                { id: "physical_attraction", label: "Physical Attraction", description: "Chemistry and physical compatibility" },
+                { id: "shared_values", label: "Shared Values", description: "Similar beliefs about life, family, and priorities" },
+                { id: "financial_stability", label: "Financial Stability", description: "Economic security and career success" },
+                { id: "emotional_intelligence", label: "Emotional Intelligence", description: "Communication skills and emotional availability" },
+                { id: "similar_background", label: "Similar Background", description: "Comparable education, class, or cultural background" },
+                { id: "family_orientation", label: "Family Orientation", description: "Desire for children and family life" },
+                { id: "independence", label: "Independence", description: "Self-sufficiency and personal autonomy" },
+                { id: "sense_of_humor", label: "Sense of Humor", description: "Ability to laugh together and not take life too seriously" }
+            ],
+            sociologyLink: {
+                concept: "educational-homogamy",
+                hammondRef: "Ch. 7-8",
+                explanation: "Research shows people consistently say 'personality' matters most, but actual partner choices show strong homogamy - we choose partners similar to ourselves in education, class, and background."
+            },
+            narrativeFlags: {
+                top1: "partner_priority",
+                top3: "partner_values"
+            },
+            required: false,
+            skippable: true
+        },
+
+        m4_ex2_calculator: {
+            id: "m4_ex2_calculator",
+            type: "calculator",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Homogamy Calculator",
+            instructions: "Enter information about yourself and a potential (real or imagined) partner. The calculator shows your 'homogamy score' - how similar you are across dimensions that predict relationship stability.",
+            inputs: [
+                { id: "your_education", label: "Your Education Level", type: "select", options: [
+                    { value: 1, label: "High school or less" },
+                    { value: 2, label: "Some college" },
+                    { value: 3, label: "Bachelor's degree" },
+                    { value: 4, label: "Graduate degree" }
+                ]},
+                { id: "partner_education", label: "Partner's Education Level", type: "select", options: [
+                    { value: 1, label: "High school or less" },
+                    { value: 2, label: "Some college" },
+                    { value: 3, label: "Bachelor's degree" },
+                    { value: 4, label: "Graduate degree" }
+                ]},
+                { id: "your_income", label: "Your Income Bracket", type: "select", options: [
+                    { value: 1, label: "Under $30k" },
+                    { value: 2, label: "$30k - $60k" },
+                    { value: 3, label: "$60k - $100k" },
+                    { value: 4, label: "Over $100k" }
+                ]},
+                { id: "partner_income", label: "Partner's Income Bracket", type: "select", options: [
+                    { value: 1, label: "Under $30k" },
+                    { value: 2, label: "$30k - $60k" },
+                    { value: 3, label: "$60k - $100k" },
+                    { value: 4, label: "Over $100k" }
+                ]},
+                { id: "age_difference", label: "Age Difference (years)", type: "number", min: 0, max: 50 },
+                { id: "same_religion", label: "Same Religious Background?", type: "select", options: [
+                    { value: 1, label: "Yes" },
+                    { value: 0, label: "No" }
+                ]},
+                { id: "same_politics", label: "Similar Political Views?", type: "select", options: [
+                    { value: 1, label: "Yes" },
+                    { value: 0, label: "No" }
+                ]}
+            ],
+            calculations: [
+                { id: "education_match", label: "Education Match", formula: "100 - (Math.abs(your_education - partner_education) * 25)", format: "percent", description: "Similarity in educational attainment" },
+                { id: "income_match", label: "Income Match", formula: "100 - (Math.abs(your_income - partner_income) * 25)", format: "percent", description: "Economic similarity" },
+                { id: "age_score", label: "Age Compatibility", formula: "Math.max(0, 100 - (age_difference * 5))", format: "percent", description: "Smaller age gaps = higher score" },
+                { id: "values_match", label: "Values Alignment", formula: "((same_religion + same_politics) / 2) * 100", format: "percent", description: "Shared beliefs and worldview" },
+                { id: "homogamy_score", label: "Overall Homogamy Score", formula: "(education_match + income_match + age_score + values_match) / 4", format: "percent", highlight: true, description: "Higher scores predict greater relationship stability according to research" }
+            ],
+            interpretation: {
+                high: { threshold: 75, message: "High homogamy - research suggests strong compatibility on structural factors." },
+                medium: { threshold: 50, message: "Moderate homogamy - some differences that may require negotiation." },
+                low: { threshold: 0, message: "Lower homogamy - relationships can succeed but may face additional challenges." }
+            },
+            sociologyLink: {
+                concept: "educational-homogamy",
+                hammondRef: "Ch. 7-8",
+                explanation: "Homogamy isn't about 'settling' - it's about shared reference points. Couples with similar backgrounds often share communication styles, expectations, and social networks that ease daily life."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m4_ex3_quiz: {
+            id: "m4_ex3_quiz",
+            type: "quiz",
+            section: "COMPREHENSION_CHECK",
+            title: "Mate Selection Concepts",
+            instructions: "Test your understanding of partner selection sociology.",
+            questions: [
+                {
+                    id: "q1",
+                    question: "What does 'homogamy' mean in sociology of relationships?",
+                    options: [
+                        { id: "a", text: "Marrying someone of the same gender" },
+                        { id: "b", text: "The tendency to partner with someone similar in education, class, and background", correct: true },
+                        { id: "c", text: "Living together before marriage" },
+                        { id: "d", text: "Having children within marriage" }
+                    ],
+                    explanation: "Homogamy refers to 'like marrying like' - the strong pattern of partnering with people similar to ourselves. This happens partly through marriage markets (where we meet partners) and partly through preferences shaped by our own socialization.",
+                    hammondRef: "Ch. 8"
+                },
+                {
+                    id: "q2",
+                    question: "According to Hammond, what is a 'marriage market'?",
+                    options: [
+                        { id: "a", text: "Dating apps and websites" },
+                        { id: "b", text: "The social contexts where we meet and evaluate potential partners", correct: true },
+                        { id: "c", text: "Economic exchanges between families arranging marriages" },
+                        { id: "d", text: "The wedding industry" }
+                    ],
+                    explanation: "Marriage markets are the social settings (colleges, workplaces, neighborhoods, social circles) where we encounter potential partners. Our position in these markets - shaped by education, location, and social class - constrains who we're likely to meet and partner with.",
+                    hammondRef: "Ch. 8"
+                }
+            ],
+            passingScore: 50,
+            maxAttempts: 3,
+            showExplanations: true
+        },
+
+        m4_ex4_reflection: {
+            id: "m4_ex4_reflection",
+            type: "reflection",
+            section: "REFLECTION_PROMPT",
+            title: "Your Marriage Market",
+            prompt: "Think about where you've met past partners or might meet future ones (school, work, apps, friends, etc.). How has your 'marriage market' been shaped by your education, career, and social circles? Are there types of people you're unlikely to meet given your current social position?",
+            minLength: 100,
+            maxLength: 2000,
+            placeholder: "Consider: Where do you typically meet potential partners? How has this changed over time? What does your 'market' look like in terms of who's available to you?",
+            tags: ["partner-selection", "marriage-market", "homogamy", "social-structure"],
+            journalEntry: true,
+            sociologyLink: {
+                concept: "educational-homogamy",
+                hammondRef: "Ch. 8",
+                explanation: "We don't choose partners from the entire population - we choose from who we meet. And who we meet is structured by education, geography, and social networks."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m4_ex5_scenario: {
+            id: "m4_ex5_scenario",
+            type: "scenario",
+            section: "TRANSITION",
+            title: "The Different Worlds",
+            setup: "You've been dating someone for several months and things are getting serious. But you're realizing you come from different backgrounds - different education levels, family expectations, or economic situations. A situation arises that highlights these differences (maybe meeting each other's families, discussing future plans, or handling a financial decision). How do you approach this?",
+            branches: [
+                {
+                    id: "embrace_difference",
+                    label: "Embrace the Differences",
+                    description: "See your different backgrounds as complementary strengths",
+                    consequence: "You build bridges between your worlds, but face ongoing translation work. Some family members on both sides express concern about 'compatibility.'",
+                    advantageChange: 0,
+                    narrativeFlag: "embraces_heterogamy",
+                    sociologyLink: {
+                        concept: "educational-homogamy",
+                        hammondRef: "Ch. 8",
+                        explanation: "Heterogamous relationships (across difference) can succeed but require more active negotiation of expectations, communication styles, and family dynamics."
+                    }
+                },
+                {
+                    id: "minimize_difference",
+                    label: "Minimize the Differences",
+                    description: "Focus on what you have in common, downplay background gaps",
+                    consequence: "Things feel smoother day-to-day, but unaddressed differences may resurface around major decisions like careers, children, or where to live.",
+                    advantageChange: 0,
+                    narrativeFlag: "minimizes_difference",
+                    sociologyLink: {
+                        concept: "marriage-bar",
+                        hammondRef: "Ch. 8",
+                        explanation: "Avoiding difficult conversations may work short-term but structural differences in expectations and resources eventually require negotiation."
+                    }
+                },
+                {
+                    id: "question_compatibility",
+                    label: "Question Long-Term Compatibility",
+                    description: "Wonder if these differences are too fundamental",
+                    consequence: "You take time to seriously evaluate whether your life visions align. This might strengthen commitment or reveal genuine incompatibilities.",
+                    advantageChange: 0,
+                    narrativeFlag: "evaluates_compatibility",
+                    sociologyLink: {
+                        concept: "path-dependency",
+                        hammondRef: "Ch. 4",
+                        explanation: "Partner selection is a major branching point in the life course. Taking time to evaluate compatibility before deeper commitment can prevent difficult path corrections later."
+                    }
+                },
+                {
+                    id: "adapt_to_partner",
+                    label: "Adapt to Partner's World",
+                    description: "Learn their ways, integrate into their social context",
+                    consequence: "You successfully bridge into their world, but may feel you've left parts of yourself behind. Your original family and friends might feel you've changed.",
+                    advantageChange: 1,
+                    narrativeFlag: "adapts_upward",
+                    sociologyLink: {
+                        concept: "social-capital",
+                        hammondRef: "Ch. 4",
+                        explanation: "Partnering 'up' can provide access to new social capital and opportunities, but may come with costs to identity and original relationships."
+                    }
+                }
+            ],
+            defaultAdvantage: 0
+        },
+
+        // MODULE 5 EXERCISES - Marriage & Partnership Formation
+        m5_ex1_ranking: {
+            id: "m5_ex1_ranking",
+            type: "ranking",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Partnership Priorities",
+            instructions: "Rank what matters most to you in a long-term partnership or marriage. This reveals your expectations about how partnerships should function.",
+            items: [
+                { id: "legal_protection", label: "Legal Protections", description: "Marriage benefits, inheritance, medical decisions" },
+                { id: "public_commitment", label: "Public Commitment", description: "Social recognition and ceremony" },
+                { id: "shared_finances", label: "Financial Merger", description: "Combined assets, joint accounts" },
+                { id: "cohabitation", label: "Living Together", description: "Shared daily life and home" },
+                { id: "raising_children", label: "Parenting Together", description: "Raising children as a unit" },
+                { id: "emotional_intimacy", label: "Emotional Partnership", description: "Deep connection and support" },
+                { id: "independence", label: "Maintained Independence", description: "Separate identities and autonomy" },
+                { id: "family_integration", label: "Family Merging", description: "Becoming part of each other's families" }
+            ],
+            sociologyLink: {
+                concept: "marriage-bar",
+                hammondRef: "Ch. 9",
+                explanation: "What we expect from marriage has changed dramatically. Earlier generations prioritized economic partnership and child-rearing; contemporary expectations often center on emotional fulfillment and personal growth."
+            },
+            narrativeFlags: {
+                top1: "partnership_priority",
+                top3: "partnership_values"
+            },
+            required: false,
+            skippable: true
+        },
+
+        m5_ex2_quiz: {
+            id: "m5_ex2_quiz",
+            type: "quiz",
+            section: "COMPREHENSION_CHECK",
+            title: "Marriage & Partnership Concepts",
+            instructions: "Test your understanding of marriage sociology.",
+            questions: [
+                {
+                    id: "q1",
+                    question: "What is the 'marriage bar' according to Hammond?",
+                    options: [
+                        { id: "a", text: "A law preventing certain people from marrying" },
+                        { id: "b", text: "The economic prerequisites (job, savings, stability) seen as necessary before marriage", correct: true },
+                        { id: "c", text: "The social pressure to marry by a certain age" },
+                        { id: "d", text: "A type of wedding venue" }
+                    ],
+                    explanation: "The 'marriage bar' refers to economic benchmarks people feel they must reach before they're 'ready' for marriage. This bar has risen over time, contributing to delayed marriage among those without economic stability.",
+                    hammondRef: "Ch. 9"
+                },
+                {
+                    id: "q2",
+                    question: "How has the meaning of marriage changed over time?",
+                    options: [
+                        { id: "a", text: "Marriage was always primarily about love and emotional fulfillment" },
+                        { id: "b", text: "Marriage has shifted from economic/practical partnership toward personal fulfillment and emotional connection", correct: true },
+                        { id: "c", text: "Marriage has become less important in society" },
+                        { id: "d", text: "Marriage expectations have remained constant across history" }
+                    ],
+                    explanation: "Historically, marriage was primarily an economic and practical arrangement. The expectation that marriage should provide emotional fulfillment, personal growth, and romantic love is relatively recent and culturally specific.",
+                    hammondRef: "Ch. 9"
+                }
+            ],
+            passingScore: 50,
+            maxAttempts: 3,
+            showExplanations: true
+        },
+
+        m5_ex3_reflection: {
+            id: "m5_ex3_reflection",
+            type: "reflection",
+            section: "REFLECTION_PROMPT",
+            title: "Partnership Expectations",
+            prompt: "What do you expect from a long-term partnership or marriage? How have these expectations been shaped by what you observed in your family of origin, your cultural background, or your generation's experiences with relationships?",
+            minLength: 100,
+            maxLength: 2000,
+            placeholder: "Consider: What did you learn about marriage from your parents or other adults? How do your expectations differ from theirs? What non-negotiables do you have for a partnership?",
+            tags: ["marriage", "expectations", "partnership", "family-of-origin"],
+            journalEntry: true,
+            sociologyLink: {
+                concept: "marriage-bar",
+                hammondRef: "Ch. 9",
+                explanation: "Our expectations for partnership are shaped by historical period, social class, and family experience. What seems 'natural' to expect from marriage varies dramatically across contexts."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m5_ex4_scenario: {
+            id: "m5_ex4_scenario",
+            type: "scenario",
+            section: "TRANSITION",
+            title: "The Partnership Negotiation",
+            setup: "You and your partner are discussing formalizing your relationship. You have different ideas about what this should look like - one of you wants a traditional marriage with merged finances, the other prefers a less traditional arrangement (cohabitation, separate finances, or a different timeline). How do you navigate this?",
+            branches: [
+                {
+                    id: "traditional_path",
+                    label: "Advocate for Traditional Marriage",
+                    description: "Push for legal marriage with full integration",
+                    consequence: "Your partner agrees, though with some reservations. You gain legal protections but may have unresolved tension about the decision process.",
+                    advantageChange: 1,
+                    narrativeFlag: "chooses_traditional_marriage",
+                    sociologyLink: {
+                        concept: "marriage-bar",
+                        hammondRef: "Ch. 9",
+                        explanation: "Legal marriage provides significant benefits (tax, insurance, inheritance, medical decisions) that cohabitation doesn't, creating real incentives for the traditional path."
+                    }
+                },
+                {
+                    id: "alternative_path",
+                    label: "Embrace Alternative Arrangement",
+                    description: "Pursue partnership without traditional marriage structure",
+                    consequence: "You create your own partnership terms. You have more flexibility but fewer legal protections. Family members may not recognize your relationship equally.",
+                    advantageChange: 0,
+                    narrativeFlag: "chooses_alternative_partnership",
+                    sociologyLink: {
+                        concept: "cohabitation",
+                        hammondRef: "Ch. 8",
+                        explanation: "Cohabitation has become increasingly common but still lacks many legal protections of marriage. It can be a stepping stone or a permanent alternative to marriage."
+                    }
+                },
+                {
+                    id: "compromise_path",
+                    label: "Find Middle Ground",
+                    description: "Create a hybrid approach that honors both perspectives",
+                    consequence: "You marry but maintain some independence (separate accounts, clear agreements). This requires more explicit communication but honors both needs.",
+                    advantageChange: 1,
+                    narrativeFlag: "negotiates_partnership",
+                    sociologyLink: {
+                        concept: "gender-dynamics",
+                        hammondRef: "Ch. 4",
+                        explanation: "Negotiating partnership terms explicitly - rather than assuming traditional roles - can create more equitable relationships but requires ongoing communication."
+                    }
+                },
+                {
+                    id: "delay_path",
+                    label: "Table the Discussion",
+                    description: "Agree you're not ready to decide and continue as-is",
+                    consequence: "The pressure eases temporarily, but the fundamental difference remains unresolved. External events may eventually force the decision.",
+                    advantageChange: 0,
+                    narrativeFlag: "delays_partnership_decision",
+                    sociologyLink: {
+                        concept: "emerging-adulthood",
+                        hammondRef: "Ch. 4",
+                        explanation: "Extended emerging adulthood means major commitments like marriage are increasingly delayed, but eventually structural pressures (children, health, aging parents) often force decisions."
+                    }
+                }
+            ],
+            defaultAdvantage: 0
+        },
+
+        m5_ex5_mapping: {
+            id: "m5_ex5_mapping",
+            type: "mapping",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Partnership Agreement Builder",
+            instructions: "Map out the key areas of your partnership and how you'd want to handle them. Add topics and indicate your preferred approach for each.",
+            nodeTypes: [
+                { id: "finances", label: "Finances", color: "#27ae60", icon: "💰" },
+                { id: "housing", label: "Housing", color: "#3498db", icon: "🏠" },
+                { id: "career", label: "Career Decisions", color: "#9b59b6", icon: "💼" },
+                { id: "family", label: "Family/Children", color: "#e74c3c", icon: "👨‍👩‍👧" },
+                { id: "household", label: "Household Labor", color: "#f39c12", icon: "🧹" },
+                { id: "social", label: "Social Life", color: "#1abc9c", icon: "👥" }
+            ],
+            connectionTypes: [
+                { id: "joint", label: "Joint/Shared", style: "solid", width: 3 },
+                { id: "primary_me", label: "I Lead", style: "dashed", width: 2 },
+                { id: "primary_partner", label: "Partner Leads", style: "dashed", width: 2 },
+                { id: "independent", label: "Independent", style: "dotted", width: 1 }
+            ],
+            metrics: [
+                { id: "topics_covered", label: "Areas Discussed", formula: "nodes.length" },
+                { id: "shared_areas", label: "Joint Decisions", formula: "connections.filter(c => c.type === 'joint').length" }
+            ],
+            sociologyLink: {
+                concept: "gender-dynamics",
+                hammondRef: "Ch. 4",
+                explanation: "Who 'leads' in different areas of partnership often follows gendered patterns. Making these explicit allows for more intentional choices."
+            },
+            maxNodes: 10,
+            required: false,
+            skippable: true
+        },
+
+        // MODULE 6 EXERCISES - Parenthood & Work-Family Balance
+        m6_ex1_calculator: {
+            id: "m6_ex1_calculator",
+            type: "calculator",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Childcare Cost Calculator",
+            instructions: "Estimate the costs of different childcare arrangements. These calculations reveal why childcare is often called a 'second mortgage.'",
+            inputs: [
+                { id: "daycare_monthly", label: "Daycare Cost (monthly)", type: "number", min: 0, max: 5000, default: 1500 },
+                { id: "num_children", label: "Number of Children", type: "number", min: 1, max: 5, default: 1 },
+                { id: "years_needed", label: "Years of Care Needed", type: "number", min: 1, max: 18, default: 5 },
+                { id: "lost_income", label: "Income Lost if Parent Stays Home (annual)", type: "number", min: 0, max: 200000, default: 50000 }
+            ],
+            outputs: [
+                { id: "annual_daycare", label: "Annual Daycare Cost", formula: "daycare_monthly * 12 * num_children", format: "currency" },
+                { id: "total_daycare", label: "Total Daycare Cost", formula: "daycare_monthly * 12 * num_children * years_needed", format: "currency" },
+                { id: "stay_home_cost", label: "Cost of Staying Home", formula: "lost_income * years_needed", format: "currency" },
+                { id: "difference", label: "Difference (Work vs Stay Home)", formula: "(lost_income * years_needed) - (daycare_monthly * 12 * num_children * years_needed)", format: "currency", highlight: true }
+            ],
+            interpretation: {
+                high: { threshold: 50000, message: "Working provides significant financial advantage over staying home - if you can find quality affordable care." },
+                medium: { threshold: 0, message: "Costs are roughly comparable - the decision involves factors beyond pure finances." },
+                low: { threshold: -999999, message: "Staying home may be financially comparable to or better than working after childcare costs." }
+            },
+            sociologyLink: {
+                concept: "second-shift",
+                hammondRef: "Ch. 12",
+                explanation: "The 'choice' to stay home is rarely purely individual - it's shaped by childcare costs, wage gaps, and whose career is seen as primary."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m6_ex2_ranking: {
+            id: "m6_ex2_ranking",
+            type: "ranking",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Work-Family Priorities",
+            instructions: "Rank these work-family considerations from most to least important in your decision-making.",
+            items: [
+                { id: "career_advancement", label: "Career Advancement", description: "Maintaining professional growth trajectory" },
+                { id: "time_with_children", label: "Time with Children", description: "Being present for daily moments and milestones" },
+                { id: "financial_security", label: "Financial Security", description: "Stable income and benefits" },
+                { id: "personal_identity", label: "Personal Identity", description: "Maintaining sense of self beyond parent role" },
+                { id: "partner_equity", label: "Partner Equity", description: "Fair division of paid and unpaid work" },
+                { id: "child_quality_care", label: "Quality Childcare", description: "Best developmental environment for children" },
+                { id: "flexibility", label: "Schedule Flexibility", description: "Ability to handle unexpected needs" },
+                { id: "extended_family", label: "Family Support", description: "Involvement of grandparents/relatives" }
+            ],
+            sociologyLink: {
+                concept: "work-family-conflict",
+                hammondRef: "Ch. 11",
+                explanation: "Work-family conflict is structural, not personal failure. The way work and care are organized in society creates impossible choices."
+            },
+            narrativeFlags: { top1: "workfamily_priority", top3: "workfamily_values" },
+            required: false,
+            skippable: true
+        },
+
+        m6_ex3_quiz: {
+            id: "m6_ex3_quiz",
+            type: "quiz",
+            section: "COMPREHENSION_CHECK",
+            title: "Work-Family Concepts",
+            instructions: "Test your understanding of work-family dynamics.",
+            questions: [
+                {
+                    id: "q1",
+                    question: "What is the 'second shift' according to Hochschild?",
+                    options: [
+                        { id: "a", text: "Working a second job for extra income" },
+                        { id: "b", text: "The unpaid domestic labor performed after paid work, disproportionately by women", correct: true },
+                        { id: "c", text: "Night shift work at a factory" },
+                        { id: "d", text: "Overtime hours at one's primary job" }
+                    ],
+                    explanation: "The 'second shift' refers to the unpaid housework and childcare that workers (predominantly women) do after their paid workday ends. This creates a 'leisure gap' between partners.",
+                    hammondRef: "Ch. 12"
+                },
+                {
+                    id: "q2",
+                    question: "What is 'intensive parenting'?",
+                    options: [
+                        { id: "a", text: "Spending more time with children than previous generations" },
+                        { id: "b", text: "A cultural expectation that good parenting requires constant enrichment, supervision, and child-centered family life", correct: true },
+                        { id: "c", text: "A parenting style used only by wealthy families" },
+                        { id: "d", text: "Strict disciplinary approaches to child-rearing" }
+                    ],
+                    explanation: "Intensive parenting standards have risen dramatically, creating pressure (especially on mothers) to invest enormous time, money, and emotional energy into children's development and enrichment.",
+                    hammondRef: "Ch. 10"
+                }
+            ],
+            passingScore: 50,
+            maxAttempts: 3,
+            showExplanations: true
+        },
+
+        m6_ex4_reflection: {
+            id: "m6_ex4_reflection",
+            type: "reflection",
+            section: "REFLECTION_PROMPT",
+            title: "Division of Labor Reflection",
+            prompt: "If you have or plan to have children, how would you want to divide paid work and unpaid caregiving with a partner? What factors would influence this decision? If you don't plan to have children, reflect on how you've seen other families navigate this challenge.",
+            minLength: 100,
+            maxLength: 2000,
+            placeholder: "Consider: Who would reduce work hours or stay home? How would you handle the 'second shift'? What role would extended family play? How would you maintain equity if incomes differ?",
+            tags: ["work-family", "division-of-labor", "gender", "caregiving"],
+            journalEntry: true,
+            sociologyLink: {
+                concept: "second-shift",
+                hammondRef: "Ch. 12",
+                explanation: "Even in dual-earner couples, women typically do more housework and childcare. This 'stalled revolution' affects careers, relationships, and wellbeing."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m6_ex5_scenario: {
+            id: "m6_ex5_scenario",
+            type: "scenario",
+            section: "TRANSITION",
+            title: "The Daycare Crisis",
+            setup: "Your childcare arrangement suddenly falls through - the daycare closes, or your nanny quits, or a family member can no longer help. You and your partner both have demanding jobs. Someone needs to solve this immediately. How do you handle it?",
+            branches: [
+                {
+                    id: "i_handle",
+                    label: "I'll Handle It",
+                    description: "Take time off work to find new care and cover the gap",
+                    consequence: "You solve the immediate crisis but your work suffers. Your boss is understanding but you sense it's noted. Your partner's career continues uninterrupted.",
+                    advantageChange: -1,
+                    narrativeFlag: "absorbs_care_crisis",
+                    sociologyLink: {
+                        concept: "opting-out",
+                        hammondRef: "Ch. 4",
+                        explanation: "Small accommodations for caregiving can accumulate into major career impacts. The person who 'flexes' first often continues to be the default crisis-handler."
+                    }
+                },
+                {
+                    id: "partner_handles",
+                    label: "Partner Handles It",
+                    description: "Ask partner to take the lead on solving this",
+                    consequence: "Your career stays on track, but there may be relationship tension about who sacrifices. Your partner may feel the burden fell unfairly on them.",
+                    advantageChange: 0,
+                    narrativeFlag: "partner_absorbs_crisis",
+                    sociologyLink: {
+                        concept: "gender-dynamics",
+                        hammondRef: "Ch. 4",
+                        explanation: "When partners have different incomes or career trajectories, it often 'makes sense' for one to sacrifice - but this logic perpetuates inequality."
+                    }
+                },
+                {
+                    id: "split_equally",
+                    label: "Split It Equally",
+                    description: "Both take partial time off and share the burden",
+                    consequence: "Neither career takes the full hit, but both are affected. Some colleagues judge the 'lack of commitment' while others admire the partnership.",
+                    advantageChange: 0,
+                    narrativeFlag: "shares_care_burden",
+                    sociologyLink: {
+                        concept: "work-family-conflict",
+                        hammondRef: "Ch. 11",
+                        explanation: "Sharing caregiving equally requires both partners to push against workplace expectations of 'ideal workers' who have no family demands."
+                    }
+                },
+                {
+                    id: "emergency_solution",
+                    label: "Pay for Emergency Care",
+                    description: "Hire expensive temporary help to avoid any work disruption",
+                    consequence: "Work continues smoothly but at significant financial cost. You realize how precarious your work-family balance really is.",
+                    advantageChange: 0,
+                    narrativeFlag: "buys_way_out",
+                    sociologyLink: {
+                        concept: "care-work",
+                        hammondRef: "Ch. 4",
+                        explanation: "Those with resources can 'outsource' the care crisis, but this option isn't available to everyone - class shapes work-family solutions."
+                    }
+                }
+            ],
+            defaultAdvantage: 0
+        },
+
+        // MODULE 7 EXERCISES - Family Challenges & Crises
+        m7_ex1_mapping: {
+            id: "m7_ex1_mapping",
+            type: "mapping",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Support Network Map",
+            instructions: "Map your support network - the people you could turn to in a crisis. Consider who provides emotional support, practical help, financial assistance, and information/advice.",
+            nodeTypes: [
+                { id: "emotional", label: "Emotional Support", color: "#e74c3c", icon: "❤️" },
+                { id: "practical", label: "Practical Help", color: "#27ae60", icon: "🔧" },
+                { id: "financial", label: "Financial Support", color: "#f39c12", icon: "💰" },
+                { id: "information", label: "Advice/Information", color: "#3498db", icon: "💡" }
+            ],
+            connectionTypes: [
+                { id: "strong", label: "Reliable/Close", style: "solid", width: 3 },
+                { id: "moderate", label: "Sometimes Available", style: "dashed", width: 2 },
+                { id: "weak", label: "Distant/Uncertain", style: "dotted", width: 1 }
+            ],
+            metrics: [
+                { id: "network_size", label: "Network Size", formula: "nodes.length" },
+                { id: "strong_ties", label: "Strong Ties", formula: "connections.filter(c => c.type === 'strong').length" },
+                { id: "support_diversity", label: "Support Types", formula: "new Set(nodes.map(n => n.type)).size" }
+            ],
+            sociologyLink: {
+                concept: "social-capital",
+                hammondRef: "Ch. 4",
+                explanation: "Social capital - resources available through relationships - is a crucial buffer against crisis. Network size, strength, and diversity all matter for resilience."
+            },
+            maxNodes: 15,
+            required: false,
+            skippable: true
+        },
+
+        m7_ex2_quiz: {
+            id: "m7_ex2_quiz",
+            type: "quiz",
+            section: "COMPREHENSION_CHECK",
+            title: "Crisis & Resilience Concepts",
+            instructions: "Test your understanding of family crisis theory.",
+            questions: [
+                {
+                    id: "q1",
+                    question: "In the ABC-X model of family crisis, what does 'B' represent?",
+                    options: [
+                        { id: "a", text: "The behavior of family members during crisis" },
+                        { id: "b", text: "The resources available to the family for coping", correct: true },
+                        { id: "c", text: "The biological factors affecting health" },
+                        { id: "d", text: "The budget constraints during hardship" }
+                    ],
+                    explanation: "In the ABC-X model: A = the stressor event, B = the family's resources for coping, C = the family's perception/definition of the crisis, and X = the crisis outcome.",
+                    hammondRef: "Ch. 12"
+                },
+                {
+                    id: "q2",
+                    question: "Why do some families recover from crises while others don't?",
+                    options: [
+                        { id: "a", text: "Some families are just stronger than others" },
+                        { id: "b", text: "Recovery depends on resources, perception, and prior family functioning - not just individual strength", correct: true },
+                        { id: "c", text: "Religious families always recover better" },
+                        { id: "d", text: "Wealthy families never experience real crises" }
+                    ],
+                    explanation: "Crisis outcomes depend on structural resources (money, networks, support), how the family perceives/frames the crisis, and their baseline functioning. 'Resilience' is contextual, not a fixed trait.",
+                    hammondRef: "Ch. 12"
+                }
+            ],
+            passingScore: 50,
+            maxAttempts: 3,
+            showExplanations: true
+        },
+
+        m7_ex3_reflection: {
+            id: "m7_ex3_reflection",
+            type: "reflection",
+            section: "REFLECTION_PROMPT",
+            title: "Crisis Experience Reflection",
+            prompt: "Think about a challenging time your family experienced (any family - origin, current, or chosen). Using the ABC-X framework, consider: What was the stressor (A)? What resources did you have (B)? How did family members perceive the situation (C)? What was the outcome (X)?",
+            minLength: 100,
+            maxLength: 2000,
+            placeholder: "Consider: Did some family members have more resources than others? Did people define the crisis differently? What helped or hindered recovery?",
+            tags: ["crisis", "resilience", "ABC-X", "family-stress"],
+            journalEntry: true,
+            sociologyLink: {
+                concept: "social-capital",
+                hammondRef: "Ch. 12",
+                explanation: "The ABC-X model shows that crisis outcomes aren't just about the event itself, but about resources and perceptions that are unequally distributed."
+            },
+            required: false,
+            skippable: true
+        },
+
+        m7_ex4_scenario: {
+            id: "m7_ex4_scenario",
+            type: "scenario",
+            section: "TRANSITION",
+            title: "The Unexpected Crisis",
+            setup: "A major crisis hits your family - a job loss, serious illness, or other significant stressor. Your previous choices (career, partner, support network) now shape your options. Resources are tight and everyone is stressed. How do you respond?",
+            branches: [
+                {
+                    id: "mobilize_network",
+                    label: "Mobilize Support Network",
+                    description: "Reach out to family, friends, and community for help",
+                    consequence: "Your network responds - some help more than expected, others disappoint. You get through but now 'owe' favors. Some relationships are strengthened, others strained.",
+                    advantageChange: 1,
+                    narrativeFlag: "uses_social_capital",
+                    sociologyLink: {
+                        concept: "social-capital",
+                        hammondRef: "Ch. 4",
+                        explanation: "Social capital can be 'spent' during crisis, but must be maintained and reciprocated over time."
+                    }
+                },
+                {
+                    id: "self_reliant",
+                    label: "Handle It Ourselves",
+                    description: "Keep the crisis private and manage within immediate family",
+                    consequence: "You maintain privacy and independence but resources stretch thin. The stress affects relationships. Pride is preserved but at a cost.",
+                    advantageChange: -1,
+                    narrativeFlag: "self_reliant_crisis",
+                    sociologyLink: {
+                        concept: "path-dependency",
+                        hammondRef: "Ch. 4",
+                        explanation: "American culture values self-reliance, but this can prevent people from accessing help that could buffer crisis impacts."
+                    }
+                },
+                {
+                    id: "institutional_help",
+                    label: "Seek Institutional Support",
+                    description: "Apply for programs, benefits, or professional help",
+                    consequence: "You access resources but navigate bureaucracy and sometimes stigma. Some help is available, some isn't. You learn the system has gaps.",
+                    advantageChange: 0,
+                    narrativeFlag: "uses_institutions",
+                    sociologyLink: {
+                        concept: "work-family-conflict",
+                        hammondRef: "Ch. 11",
+                        explanation: "Social safety nets vary dramatically - what's available depends on employment, location, and eligibility rules that don't cover everyone."
+                    }
+                },
+                {
+                    id: "major_change",
+                    label: "Make Major Life Changes",
+                    description: "Relocate, change careers, or restructure family to cope",
+                    consequence: "The crisis forces transformation. Some changes prove positive long-term; others create new challenges. Life will never quite return to 'before.'",
+                    advantageChange: 0,
+                    narrativeFlag: "crisis_transforms",
+                    sociologyLink: {
+                        concept: "path-dependency",
+                        hammondRef: "Ch. 4",
+                        explanation: "Crises are turning points in the life course. They can open new paths but also close off old ones."
+                    }
+                }
+            ],
+            defaultAdvantage: 0
+        },
+
+        m7_ex5_ranking: {
+            id: "m7_ex5_ranking",
+            type: "ranking",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Crisis Resources Ranking",
+            instructions: "Rank these resources by how important you think they are for getting through a family crisis.",
+            items: [
+                { id: "money_savings", label: "Money/Savings", description: "Financial cushion to absorb shocks" },
+                { id: "family_support", label: "Family Support", description: "Relatives who can help practically or emotionally" },
+                { id: "friend_network", label: "Friend Network", description: "Friends who show up when needed" },
+                { id: "health_insurance", label: "Health Insurance", description: "Coverage for medical emergencies" },
+                { id: "job_security", label: "Job Security", description: "Stable employment that allows flexibility" },
+                { id: "mental_health", label: "Mental Health Resources", description: "Access to therapy or counseling" },
+                { id: "community_ties", label: "Community Connections", description: "Religious, neighborhood, or group affiliations" },
+                { id: "information_access", label: "Information/Knowledge", description: "Knowing where to find help and how systems work" }
+            ],
+            sociologyLink: {
+                concept: "cumulative-advantage",
+                hammondRef: "Ch. 3",
+                explanation: "Resources cluster - those with money often also have networks, insurance, and information access. This compounds advantage and disadvantage during crisis."
+            },
+            narrativeFlags: { top1: "crisis_priority", top3: "crisis_resources" },
+            required: false,
+            skippable: true
+        },
+
+        // MODULE 8 EXERCISES - Systems Thinking & Final Reflection
+        m8_ex1_reflection: {
+            id: "m8_ex1_reflection",
+            type: "reflection",
+            section: "REFLECTION_PROMPT",
+            title: "Journey Reflection",
+            prompt: "Look back at your journey through all 8 modules. What surprised you most? Which decisions felt truly 'yours' versus constrained by structure? If you could go back and change one decision, which would it be and why?",
+            minLength: 150,
+            maxLength: 3000,
+            placeholder: "Consider: How did your starting point (Module 1) shape later options? Where did you feel most constrained? Most free? What patterns emerged?",
+            tags: ["reflection", "life-course", "structure-agency", "path-dependency"],
+            journalEntry: true,
+            sociologyLink: {
+                concept: "path-dependency",
+                hammondRef: "All chapters",
+                explanation: "The life course perspective shows how timing, linked lives, and historical context shape trajectories in ways that feel personal but are structurally patterned."
+            },
+            required: true,
+            skippable: false
+        },
+
+        m8_ex2_quiz: {
+            id: "m8_ex2_quiz",
+            type: "quiz",
+            section: "COMPREHENSION_CHECK",
+            title: "Life Course Integration",
+            instructions: "Final comprehension check on life course concepts.",
+            questions: [
+                {
+                    id: "q1",
+                    question: "What does the 'life course perspective' emphasize?",
+                    options: [
+                        { id: "a", text: "Individual choices are the primary determinant of life outcomes" },
+                        { id: "b", text: "Biology determines our life path" },
+                        { id: "c", text: "Lives unfold in social, historical, and structural contexts that shape trajectories", correct: true },
+                        { id: "d", text: "Everyone follows the same developmental stages" }
+                    ],
+                    explanation: "The life course perspective emphasizes that lives are embedded in and shaped by historical times, social contexts, linked lives, and timing of transitions.",
+                    hammondRef: "Ch. 1-14"
+                },
+                {
+                    id: "q2",
+                    question: "What is the relationship between 'structure' and 'agency'?",
+                    options: [
+                        { id: "a", text: "Structure completely determines outcomes; agency is an illusion" },
+                        { id: "b", text: "Individuals have complete freedom to make any choice" },
+                        { id: "c", text: "Structure constrains but doesn't eliminate agency; individuals navigate within constraints", correct: true },
+                        { id: "d", text: "Structure and agency are unrelated" }
+                    ],
+                    explanation: "Structure and agency interact dynamically. Social structures shape options and outcomes, but individuals still make choices within constraints.",
+                    hammondRef: "Throughout"
+                }
+            ],
+            passingScore: 50,
+            maxAttempts: 3,
+            showExplanations: true
+        },
+
+        m8_ex3_scenario: {
+            id: "m8_ex3_scenario",
+            type: "scenario",
+            section: "TRANSITION",
+            title: "Policy Impact",
+            setup: "Imagine a policy change that would have affected your life course: universal childcare, free college, paid family leave, or affordable housing. How might your journey have been different?",
+            branches: [
+                {
+                    id: "universal_childcare",
+                    label: "Universal Childcare",
+                    description: "Free, quality childcare for all families",
+                    consequence: "Work-family decisions would have been easier. The 'choice' between career and caregiving less stark.",
+                    advantageChange: 0,
+                    narrativeFlag: "imagines_childcare_policy",
+                    sociologyLink: { concept: "work-family-conflict", hammondRef: "Ch. 11", explanation: "Countries with universal childcare have higher maternal employment and lower gender wage gaps." }
+                },
+                {
+                    id: "free_college",
+                    label: "Free College Education",
+                    description: "No tuition costs or student debt",
+                    consequence: "Education decisions wouldn't have been constrained by cost. Career paths chosen by passion, not earning potential.",
+                    advantageChange: 0,
+                    narrativeFlag: "imagines_education_policy",
+                    sociologyLink: { concept: "path-dependency", hammondRef: "Ch. 4", explanation: "Education debt shapes career choices, relationship timing, and family formation." }
+                },
+                {
+                    id: "paid_leave",
+                    label: "Paid Family Leave",
+                    description: "12 months paid leave for new parents",
+                    consequence: "Parenthood transitions less financially stressful. Both parents could bond with children. Career penalties reduced.",
+                    advantageChange: 0,
+                    narrativeFlag: "imagines_leave_policy",
+                    sociologyLink: { concept: "second-shift", hammondRef: "Ch. 12", explanation: "Paid leave policies affect who does caregiving and career impacts." }
+                },
+                {
+                    id: "affordable_housing",
+                    label: "Affordable Housing",
+                    description: "Housing costs capped at 25% of income",
+                    consequence: "More income for other life goals. Less geographic constraint on job choices. Family formation less delayed.",
+                    advantageChange: 0,
+                    narrativeFlag: "imagines_housing_policy",
+                    sociologyLink: { concept: "marriage-bar", hammondRef: "Ch. 9", explanation: "Housing costs affect when people can afford to marry or have children." }
+                }
+            ],
+            defaultAdvantage: 0
+        },
+
+        m8_ex4_ranking: {
+            id: "m8_ex4_ranking",
+            type: "ranking",
+            section: "PRE_DECISION_EXERCISE",
+            title: "Key Life Course Insights",
+            instructions: "Rank these sociological insights by how much they changed your understanding of family life.",
+            items: [
+                { id: "path_dependency", label: "Path Dependency", description: "Early decisions constrain later options" },
+                { id: "linked_lives", label: "Linked Lives", description: "Our choices affect and are affected by others" },
+                { id: "timing_matters", label: "Timing Matters", description: "Same event has different meaning at different ages" },
+                { id: "structure_agency", label: "Structure vs Agency", description: "Choices constrained but not determined" },
+                { id: "gender_shapes", label: "Gender Shapes Everything", description: "From work to care to relationships" },
+                { id: "class_matters", label: "Class Matters", description: "Resources compound advantage/disadvantage" },
+                { id: "family_diverse", label: "Family is Diverse", description: "No single 'right' family form" },
+                { id: "policy_shapes", label: "Policy Shapes Choices", description: "What seems personal is often political" }
+            ],
+            sociologyLink: {
+                concept: "path-dependency",
+                hammondRef: "All chapters",
+                explanation: "These concepts interconnect - path dependency shaped by class; timing gendered; policy creates context for choices."
+            },
+            narrativeFlags: { top1: "key_insight", top3: "major_learnings" },
+            required: false,
+            skippable: true
+        }
+    },
+
+    // ========== MODULE SECTION SYSTEM ==========
+    // Each module has 10 standardized sections
+    moduleSections: {
+        // Section type definitions
+        sectionTypes: {
+            MODULE_INTRO: {
+                order: 1,
+                title: "Module Introduction",
+                description: "Objectives, Hammond chapter reference, estimated time",
+                required: true,
+                hasExercise: false
+            },
+            CONCEPT_INTRO: {
+                order: 2,
+                title: "Key Concepts",
+                description: "Core sociological concepts with definitions and examples",
+                required: true,
+                hasExercise: false
+            },
+            PRE_DECISION_EXERCISE: {
+                order: 3,
+                title: "Pre-Decision Activities",
+                description: "Interactive exercises before making choices",
+                required: false,
+                hasExercise: true,
+                exerciseTypes: ["ranking", "calculator", "mapping"]
+            },
+            DECISION_1: {
+                order: 4,
+                title: "First Decision Point",
+                description: "Primary choice card selection",
+                required: true,
+                hasExercise: false,
+                usesExistingChoiceSystem: true
+            },
+            COMPREHENSION_CHECK: {
+                order: 5,
+                title: "Understanding Check",
+                description: "Quiz to verify concept comprehension",
+                required: true,
+                hasExercise: true,
+                exerciseTypes: ["quiz"]
+            },
+            REFLECTION_PROMPT: {
+                order: 6,
+                title: "Personal Reflection",
+                description: "Connect concepts to personal experience",
+                required: false,
+                hasExercise: true,
+                exerciseTypes: ["reflection"]
+            },
+            TRANSITION: {
+                order: 7,
+                title: "Transition Scenario",
+                description: "Branching scenario showing path dependency",
+                required: true,
+                hasExercise: true,
+                exerciseTypes: ["scenario"]
+            },
+            DECISION_2: {
+                order: 8,
+                title: "Second Decision Point",
+                description: "Secondary choice based on first decision",
+                required: true,
+                hasExercise: false,
+                usesExistingChoiceSystem: true
+            },
+            MODULE_SYNTHESIS: {
+                order: 9,
+                title: "Module Synthesis",
+                description: "Summary of key concepts and takeaways",
+                required: true,
+                hasExercise: false
+            },
+            EXPORT_REMINDER: {
+                order: 10,
+                title: "Save & Export",
+                description: "Reminder to export before continuing",
+                required: true,
+                hasExercise: false,
+                blocksContinue: true
+            }
+        },
+
+        // Module 1 section configuration - Character Creation (special handling)
+        module1: {
+            title: "Family Origins & Starting Point",
+            hammondRef: "Ch. 1",
+            estimatedTime: "15-20 min",
+            isCharacterCreation: true, // Flag for special handling
+            sections: {
+                MODULE_INTRO: {
+                    objectives: [
+                        "Understand how family of origin shapes life trajectories",
+                        "Recognize that 'family' is socially constructed and varies across cultures",
+                        "Identify your own values and how they were shaped by socialization"
+                    ],
+                    keyQuestion: "How does where we come from shape where we can go?"
+                },
+                CONCEPT_INTRO: {
+                    concepts: ["family-of-origin", "socialization"],
+                    example: {
+                        title: "The Invisible Curriculum",
+                        description: "Before you ever entered school, your family taught you lessons about money, work, relationships, gender, and conflict. These weren't formal lessons - they were absorbed through daily life. A child who sees parents discuss finances learns different lessons than one whose parents fight about money or never discuss it at all."
+                    }
+                },
+                PRE_DECISION_EXERCISE: {
+                    exercises: ["m1_ex1_genogram", "m1_ex2_values_sort"],
+                    instruction: "Before selecting your character's background, explore your own family patterns and values."
+                },
+                DECISION_1: {
+                    questionKey: "lifestage_and_family",
+                    description: "Select your life stage and family structure",
+                    usesExistingForm: true // Uses the existing Module 1 form elements
+                },
+                COMPREHENSION_CHECK: {
+                    exercises: ["m1_ex3_quiz"]
+                },
+                REFLECTION_PROMPT: {
+                    exercises: ["m1_ex4_reflection"]
+                },
+                TRANSITION: {
+                    exercises: ["m1_ex5_scenario"]
+                },
+                DECISION_2: {
+                    questionKey: "core_values",
+                    description: "Select your guiding value",
+                    usesExistingForm: true
+                },
+                MODULE_SYNTHESIS: {
+                    keyConcepts: ["family-of-origin", "socialization"],
+                    takeaway: "Your starting point isn't destiny, but it shapes the opportunities, constraints, and patterns you bring into adulthood. Understanding these influences is the first step to conscious choice.",
+                    connectionToNext: "Your family background and values now influence how you approach education, career, and life decisions in Module 2."
+                },
+                EXPORT_REMINDER: {
+                    message: "Your character is created! Export your game data before continuing to save your starting point.",
+                    required: true
+                }
+            }
+        },
+
+        // Module 2 section configuration
+        module2: {
+            title: "Education & Career Pathways",
+            hammondRef: "Ch. 4",
+            estimatedTime: "15-20 min",
+            sections: {
+                MODULE_INTRO: {
+                    objectives: [
+                        "Understand how education creates path dependency",
+                        "Recognize cumulative advantage/disadvantage in career paths",
+                        "Explore how structural factors constrain 'choices'"
+                    ],
+                    keyQuestion: "How do early education and career decisions create trajectories that are hard to change?"
+                },
+                CONCEPT_INTRO: {
+                    concepts: ["path-dependency", "cumulative-advantage", "educational-homogamy", "gender-dynamics"],
+                    example: {
+                        title: "The Two-Body Problem",
+                        description: "When dual-career couples must decide whose job to prioritize during relocations, the decision isn't just 'personal' - it's shaped by gender norms, salary gaps, and whose career is seen as 'primary'."
+                    }
+                },
+                PRE_DECISION_EXERCISE: {
+                    exercises: ["m2_ex1_ranking", "m2_ex2_calculator", "m2_ex5_mapping"],
+                    instruction: "Complete these activities to reflect on your priorities before making decisions."
+                },
+                DECISION_1: {
+                    questionKey: "education",
+                    branchesByLifeStage: true
+                },
+                COMPREHENSION_CHECK: {
+                    exercises: ["m2_ex3_quiz"]
+                },
+                REFLECTION_PROMPT: {
+                    exercises: ["m2_ex4_reflection"]
+                },
+                TRANSITION: {
+                    exercises: ["m2_ex6_scenario"]
+                },
+                DECISION_2: {
+                    questionKey: "career",
+                    branchesByLifeStage: true,
+                    dependsOn: "DECISION_1"
+                },
+                MODULE_SYNTHESIS: {
+                    keyConcepts: ["path-dependency", "cumulative-advantage"],
+                    takeaway: "Education and career decisions aren't purely individual choices - they're shaped by family resources, structural constraints, and have cascading effects on later life options.",
+                    connectionToNext: "Your education and career path now shapes your 'marriage market' position and work-family options in upcoming modules."
+                },
+                EXPORT_REMINDER: {
+                    message: "Export your game data before continuing. You'll need this for your Canvas assignment.",
+                    required: true
+                }
+            }
+        },
+
+        // Module 3 section configuration
+        module3: {
+            title: "Relationships & Communication",
+            hammondRef: "Ch. 5-6",
+            estimatedTime: "15-20 min",
+            sections: {
+                MODULE_INTRO: {
+                    objectives: [
+                        "Understand how attachment patterns affect adult relationships",
+                        "Recognize emotional labor and its gendered distribution",
+                        "Explore communication patterns that predict relationship success/failure"
+                    ],
+                    keyQuestion: "How do early relationship experiences and communication patterns shape our adult partnerships?"
+                },
+                CONCEPT_INTRO: {
+                    concepts: ["emotional-labor", "social-capital"],
+                    example: {
+                        title: "The 'Mental Load'",
+                        description: "In heterosexual couples, women typically remember birthdays, schedule appointments, notice when supplies run low, and plan social activities. This invisible 'mental load' is emotional labor - unpaid work that makes family life function but goes unrecognized."
+                    }
+                },
+                PRE_DECISION_EXERCISE: {
+                    exercises: ["m3_ex1_ranking", "m3_ex5_mapping"],
+                    instruction: "Explore your relationship priorities and patterns before making decisions."
+                },
+                DECISION_1: {
+                    questionKey: "relationship",
+                    branchesByLifeStage: true
+                },
+                COMPREHENSION_CHECK: {
+                    exercises: ["m3_ex2_quiz"]
+                },
+                REFLECTION_PROMPT: {
+                    exercises: ["m3_ex3_reflection"]
+                },
+                TRANSITION: {
+                    exercises: ["m3_ex4_scenario"]
+                },
+                DECISION_2: {
+                    questionKey: "communication",
+                    branchesByLifeStage: true,
+                    dependsOn: "DECISION_1"
+                },
+                MODULE_SYNTHESIS: {
+                    keyConcepts: ["emotional-labor", "social-capital"],
+                    takeaway: "Relationship patterns aren't just personal - they're learned in families, shaped by gender socialization, and maintained through unequal emotional labor. Healthy relationships require awareness of these structures.",
+                    connectionToNext: "Your communication patterns and relationship approach now affect partner selection and long-term partnership dynamics."
+                },
+                EXPORT_REMINDER: {
+                    message: "Export your game data before continuing. You'll need this for your Canvas assignment.",
+                    required: true
+                }
+            }
+        },
+
+        // Module 4 section configuration
+        module4: {
+            title: "Partner Selection & Compatibility",
+            hammondRef: "Ch. 7-8",
+            estimatedTime: "15-20 min",
+            sections: {
+                MODULE_INTRO: {
+                    objectives: [
+                        "Understand homogamy and its role in partner selection",
+                        "Recognize how 'marriage markets' constrain romantic choices",
+                        "Explore the tension between 'love' and structural compatibility"
+                    ],
+                    keyQuestion: "Do we really 'choose' our partners, or does social structure choose for us?"
+                },
+                CONCEPT_INTRO: {
+                    concepts: ["educational-homogamy", "marriage-bar"],
+                    example: {
+                        title: "The College Sorting Machine",
+                        description: "Colleges aren't just about education - they're powerful marriage markets. Students meet partners of similar academic ability, ambition, and often class background. By graduation, many have found their future spouse among people pre-sorted by the admissions process."
+                    }
+                },
+                PRE_DECISION_EXERCISE: {
+                    exercises: ["m4_ex1_ranking", "m4_ex2_calculator"],
+                    instruction: "Explore your partner preferences and how they align with homogamy patterns."
+                },
+                DECISION_1: {
+                    questionKey: "partner_selection",
+                    branchesByLifeStage: true
+                },
+                COMPREHENSION_CHECK: {
+                    exercises: ["m4_ex3_quiz"]
+                },
+                REFLECTION_PROMPT: {
+                    exercises: ["m4_ex4_reflection"]
+                },
+                TRANSITION: {
+                    exercises: ["m4_ex5_scenario"]
+                },
+                DECISION_2: {
+                    questionKey: "relationship_approach",
+                    branchesByLifeStage: true,
+                    dependsOn: "DECISION_1"
+                },
+                MODULE_SYNTHESIS: {
+                    keyConcepts: ["educational-homogamy", "marriage-bar"],
+                    takeaway: "Partner selection feels deeply personal, but our choices are profoundly shaped by where we meet people (marriage markets) and what feels 'comfortable' (homogamy). Understanding these patterns doesn't diminish love - it helps us make more conscious choices.",
+                    connectionToNext: "Your partner selection now shapes your path into marriage/partnership and the household structure you'll build together."
+                },
+                EXPORT_REMINDER: {
+                    message: "Export your game data before continuing. You'll need this for your Canvas assignment.",
+                    required: true
+                }
+            }
+        },
+
+        // Module 5 section configuration
+        module5: {
+            title: "Marriage & Partnership Formation",
+            hammondRef: "Ch. 9",
+            estimatedTime: "15-20 min",
+            sections: {
+                MODULE_INTRO: {
+                    objectives: [
+                        "Understand the changing meaning of marriage across history",
+                        "Recognize the 'marriage bar' and its effects on partnership timing",
+                        "Explore different partnership structures and their implications"
+                    ],
+                    keyQuestion: "What does marriage mean today, and who gets to have it?"
+                },
+                CONCEPT_INTRO: {
+                    concepts: ["marriage-bar", "cohabitation"],
+                    example: {
+                        title: "The Waiting Game",
+                        description: "College-educated couples often delay marriage until both partners have established careers and saved money. Working-class couples may never reach these benchmarks, leading to long-term cohabitation or single parenthood - not because they value marriage less, but because the 'bar' keeps rising."
+                    }
+                },
+                PRE_DECISION_EXERCISE: {
+                    exercises: ["m5_ex1_ranking", "m5_ex5_mapping"],
+                    instruction: "Explore your partnership priorities and how you'd structure a long-term relationship."
+                },
+                DECISION_1: {
+                    questionKey: "partnership_timing",
+                    branchesByLifeStage: true
+                },
+                COMPREHENSION_CHECK: {
+                    exercises: ["m5_ex2_quiz"]
+                },
+                REFLECTION_PROMPT: {
+                    exercises: ["m5_ex3_reflection"]
+                },
+                TRANSITION: {
+                    exercises: ["m5_ex4_scenario"]
+                },
+                DECISION_2: {
+                    questionKey: "partnership_structure",
+                    branchesByLifeStage: true,
+                    dependsOn: "DECISION_1"
+                },
+                MODULE_SYNTHESIS: {
+                    keyConcepts: ["marriage-bar", "cohabitation"],
+                    takeaway: "Marriage has transformed from economic necessity to personal choice - but access to marriage remains shaped by class, education, and economic stability. The 'marriage bar' creates different pathways for different groups.",
+                    connectionToNext: "Your partnership structure now affects decisions about children, work-family balance, and household labor division."
+                },
+                EXPORT_REMINDER: {
+                    message: "Export your game data before continuing. You'll need this for your Canvas assignment.",
+                    required: true
+                }
+            }
+        },
+
+        // Module 6 section configuration
+        module6: {
+            title: "Parenthood & Work-Family Balance",
+            hammondRef: "Ch. 10-12",
+            estimatedTime: "15-20 min",
+            sections: {
+                MODULE_INTRO: {
+                    objectives: [
+                        "Understand the 'second shift' and gendered division of household labor",
+                        "Recognize how work-family conflict is structural, not personal",
+                        "Explore childcare costs and their impact on family decisions"
+                    ],
+                    keyQuestion: "Why is 'having it all' so hard, and who pays the price?"
+                },
+                CONCEPT_INTRO: {
+                    concepts: ["second-shift", "work-family-conflict"],
+                    example: {
+                        title: "The Mental Load",
+                        description: "Beyond physical tasks, someone has to remember doctor appointments, track permission slips, notice when clothes are outgrown, and plan meals. This invisible 'mental load' of family management falls disproportionately on mothers, even when physical tasks are shared."
+                    }
+                },
+                PRE_DECISION_EXERCISE: {
+                    exercises: ["m6_ex1_calculator", "m6_ex2_ranking"],
+                    instruction: "Explore childcare costs and your work-family priorities."
+                },
+                DECISION_1: {
+                    questionKey: "parenthood_decision",
+                    branchesByLifeStage: true
+                },
+                COMPREHENSION_CHECK: {
+                    exercises: ["m6_ex3_quiz"]
+                },
+                REFLECTION_PROMPT: {
+                    exercises: ["m6_ex4_reflection"]
+                },
+                TRANSITION: {
+                    exercises: ["m6_ex5_scenario"]
+                },
+                DECISION_2: {
+                    questionKey: "workfamily_arrangement",
+                    branchesByLifeStage: true,
+                    dependsOn: "DECISION_1"
+                },
+                MODULE_SYNTHESIS: {
+                    keyConcepts: ["second-shift", "work-family-conflict"],
+                    takeaway: "Work-family conflict isn't about personal choices or time management - it's about how society organizes work and care. The 'second shift' reveals that gender equality at work requires equality at home.",
+                    connectionToNext: "Your work-family arrangements now shape how you'll handle family challenges and crises in Module 7."
+                },
+                EXPORT_REMINDER: {
+                    message: "Export your game data before continuing. You'll need this for your Canvas assignment.",
+                    required: true
+                }
+            }
+        },
+
+        // Module 7 section configuration
+        module7: {
+            title: "Family Challenges & Crises",
+            hammondRef: "Ch. 12-13",
+            estimatedTime: "15-20 min",
+            sections: {
+                MODULE_INTRO: {
+                    objectives: [
+                        "Understand the ABC-X model of family crisis",
+                        "Recognize how resources shape crisis outcomes",
+                        "Explore how previous life choices affect resilience"
+                    ],
+                    keyQuestion: "Why do some families weather crises while others don't?"
+                },
+                CONCEPT_INTRO: {
+                    concepts: ["social-capital", "cumulative-advantage"],
+                    example: {
+                        title: "The Same Storm, Different Boats",
+                        description: "When COVID hit, all families faced stress - but outcomes varied dramatically. Those with savings, stable remote jobs, and space to isolate fared differently than those in crowded housing, essential jobs, or with pre-existing health conditions. Same crisis, unequal resources, different outcomes."
+                    }
+                },
+                PRE_DECISION_EXERCISE: {
+                    exercises: ["m7_ex1_mapping", "m7_ex5_ranking"],
+                    instruction: "Map your support network and consider what resources matter most in crisis."
+                },
+                DECISION_1: {
+                    questionKey: "crisis_type",
+                    branchesByLifeStage: true
+                },
+                COMPREHENSION_CHECK: {
+                    exercises: ["m7_ex2_quiz"]
+                },
+                REFLECTION_PROMPT: {
+                    exercises: ["m7_ex3_reflection"]
+                },
+                TRANSITION: {
+                    exercises: ["m7_ex4_scenario"]
+                },
+                DECISION_2: {
+                    questionKey: "crisis_response",
+                    branchesByLifeStage: true,
+                    dependsOn: "DECISION_1"
+                },
+                MODULE_SYNTHESIS: {
+                    keyConcepts: ["social-capital", "cumulative-advantage"],
+                    takeaway: "Family resilience isn't a personality trait - it's shaped by resources that are unequally distributed. The ABC-X model shows that crisis outcomes depend on what you have (resources) and how you see it (perception), not just what happens to you.",
+                    connectionToNext: "Your crisis experiences and resources now inform your final reflection on the life course and family systems."
+                },
+                EXPORT_REMINDER: {
+                    message: "Export your game data before continuing. You'll need this for your Canvas assignment.",
+                    required: true
+                }
+            }
+        },
+
+        // Module 8 section configuration
+        module8: {
+            title: "Reflection & Integration",
+            hammondRef: "Conclusion",
+            estimatedTime: "15-20 min",
+            sections: {
+                MODULE_INTRO: {
+                    objectives: [
+                        "Synthesize learnings across all life course decisions",
+                        "Connect personal experience to sociological concepts",
+                        "Reflect on how structural forces shaped your path"
+                    ],
+                    keyQuestion: "Looking back at your life course, what do your choices reveal about the intersection of individual agency and social structure?"
+                },
+                CONCEPT_INTRO: {
+                    concepts: ["path-dependency", "cumulative-advantage"],
+                    example: {
+                        title: "Your Life Course Story",
+                        description: "Every choice you made was shaped by earlier choices, available options, and structural constraints. Your final advantage score isn't about 'winning' - it's about understanding how cumulative processes work. Similar starting points can lead to very different outcomes based on timing, context, and chance."
+                    }
+                },
+                PRE_DECISION_EXERCISE: {
+                    exercises: ["m8_ex1_reflection"],
+                    instruction: "Begin your final reflection by considering your complete life course journey."
+                },
+                COMPREHENSION_CHECK: {
+                    exercises: ["m8_ex2_quiz"]
+                },
+                REFLECTION_PROMPT: {
+                    exercises: ["m8_ex4_ranking"]
+                },
+                TRANSITION: {
+                    exercises: ["m8_ex3_scenario"]
+                },
+                MODULE_SYNTHESIS: {
+                    keyConcepts: ["path-dependency", "cumulative-advantage", "social-capital", "educational-homogamy"],
+                    takeaway: "Your life course demonstrates how individual choices and structural forces intertwine. Understanding these patterns helps you make more conscious decisions and advocate for policies that expand options for everyone.",
+                    connectionToNext: "Complete your final export to submit your life course analysis for the course assignment."
+                },
+                EXPORT_REMINDER: {
+                    message: "This is your FINAL export. Make sure to download your complete life course data for your Canvas submission.",
+                    required: true
+                }
+            }
         }
     }
 };

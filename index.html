@@ -1858,6 +1858,1413 @@
                 size: letter portrait;
             }
         }
+
+        /* ========== EXERCISE SYSTEM CSS ========== */
+
+        /* Section Progress Bar */
+        .section-progress-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            border: 1px solid #e1e8ed;
+        }
+
+        .section-progress-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .section-progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 24px;
+            right: 24px;
+            height: 3px;
+            background: #dee2e6;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .section-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .section-step:hover {
+            transform: scale(1.05);
+        }
+
+        .section-step-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+
+        .section-step.completed .section-step-indicator {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .section-step.current .section-step-indicator {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.2);
+        }
+
+        .section-step.locked .section-step-indicator {
+            opacity: 0.5;
+        }
+
+        .section-step-label {
+            font-size: 0.7em;
+            color: #6c757d;
+            margin-top: 6px;
+            text-align: center;
+            max-width: 60px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .section-step.current .section-step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Section Content Area */
+        .section-content-area {
+            min-height: 400px;
+        }
+
+        /* Exercise Container */
+        .exercise-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 24px 0;
+            overflow: hidden;
+        }
+
+        .exercise-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 24px;
+        }
+
+        .exercise-header h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .exercise-header p {
+            margin: 0;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .exercise-body {
+            padding: 24px;
+        }
+
+        .exercise-footer {
+            padding: 16px 24px;
+            background: #f8f9fa;
+            border-top: 1px solid #e1e8ed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .exercise-skip-link {
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .exercise-skip-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Sociology Link Box */
+        .sociology-link-box {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border-left: 4px solid #805ad5;
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px;
+            margin-top: 20px;
+        }
+
+        .sociology-link-box h4 {
+            color: #553c9a;
+            margin: 0 0 8px 0;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sociology-link-box p {
+            color: #6b46c1;
+            margin: 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .sociology-link-box cite {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.85em;
+            color: #805ad5;
+            font-style: normal;
+        }
+
+        /* ========== RANKING EXERCISE ========== */
+        .ranking-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ranking-item {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: grab;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .ranking-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(155, 89, 182, 0.15);
+        }
+
+        .ranking-item.dragging {
+            opacity: 0.8;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            cursor: grabbing;
+            transform: scale(1.02);
+        }
+
+        .ranking-item.drag-over {
+            border-color: var(--primary);
+            border-style: dashed;
+        }
+
+        .ranking-handle {
+            color: #adb5bd;
+            font-size: 1.2em;
+            cursor: grab;
+        }
+
+        .ranking-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95em;
+            flex-shrink: 0;
+        }
+
+        .ranking-content {
+            flex: 1;
+        }
+
+        .ranking-content h4 {
+            margin: 0 0 4px 0;
+            color: var(--navy);
+            font-size: 1em;
+        }
+
+        .ranking-content p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .ranking-move-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ranking-move-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #e9ecef;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+        }
+
+        .ranking-move-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Touch-friendly ranking for mobile */
+        @media (max-width: 768px) {
+            .ranking-item {
+                padding: 14px 16px;
+            }
+
+            .ranking-move-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8em;
+            }
+        }
+
+        /* ========== CALCULATOR EXERCISE ========== */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .calculator-input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calculator-input-group label {
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .calculator-input-wrapper {
+            position: relative;
+        }
+
+        .calculator-input-wrapper.currency::before {
+            content: '$';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .calculator-input-wrapper.currency input {
+            padding-left: 28px;
+        }
+
+        .calculator-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.2s ease;
+        }
+
+        .calculator-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .calculator-select {
+            appearance: none;
+            background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E") no-repeat right 12px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        .calculator-output-desc {
+            display: block;
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .calculator-outputs {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .calculator-outputs h4 {
+            margin: 0 0 16px 0;
+            color: var(--navy);
+            font-size: 1.1em;
+        }
+
+        .calculator-output-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .calculator-output-item:last-child {
+            border-bottom: none;
+        }
+
+        .calculator-output-item.highlight {
+            background: rgba(155, 89, 182, 0.1);
+            margin: 0 -16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-bottom: none;
+        }
+
+        .calculator-output-label {
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+
+        .calculator-output-value {
+            font-weight: 700;
+            font-size: 1.1em;
+            color: var(--navy);
+        }
+
+        .calculator-interpretation {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .calculator-interpretation.warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            color: #856404;
+        }
+
+        .calculator-interpretation.success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+
+        .calculator-interpretation.info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            color: #0c5460;
+        }
+
+        /* ========== QUIZ EXERCISE ========== */
+        .quiz-question {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .quiz-question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .quiz-question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 14px 16px;
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: #f8f4ff;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #f8f4ff 0%, #fff 100%);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: #d4edda;
+        }
+
+        .quiz-option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .quiz-option input {
+            margin-right: 12px;
+            margin-top: 2px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .quiz-option-text {
+            flex: 1;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .quiz-explanation {
+            margin-top: 16px;
+            padding: 16px;
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            border-radius: 0 8px 8px 0;
+            display: none;
+        }
+
+        .quiz-explanation.visible {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .quiz-explanation h5 {
+            margin: 0 0 8px 0;
+            color: #1565c0;
+            font-size: 0.95em;
+        }
+
+        .quiz-explanation p {
+            margin: 0;
+            color: #0c5460;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .quiz-explanation cite {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.85em;
+            color: #1976d2;
+            font-style: italic;
+        }
+
+        .quiz-result {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .quiz-result.passed {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid var(--success);
+        }
+
+        .quiz-result.failed {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border: 2px solid #dc3545;
+        }
+
+        .quiz-result h4 {
+            margin: 0 0 8px 0;
+            font-size: 1.2em;
+        }
+
+        .quiz-result p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        /* ========== REFLECTION EXERCISE ========== */
+        .reflection-textarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1em;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+
+        .reflection-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .reflection-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+
+        .reflection-char-count {
+            transition: color 0.2s ease;
+        }
+
+        .reflection-char-count.warning {
+            color: #ffc107;
+        }
+
+        .reflection-char-count.error {
+            color: #dc3545;
+        }
+
+        .reflection-char-count.success {
+            color: var(--success);
+        }
+
+        .reflection-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .reflection-tag {
+            background: #e9ecef;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: #495057;
+        }
+
+        /* ========== MAPPING EXERCISE ========== */
+        .mapping-container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 20px;
+            min-height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .mapping-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mapping-sidebar {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #e8eaed;
+        }
+
+        .mapping-sidebar > h4 {
+            margin: 0 0 12px 0;
+            color: #202124;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .mapping-node-types {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .mapping-node-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: #fafafa;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .mapping-node-type:hover {
+            background: #f1f3f4;
+            border-color: #dadce0;
+        }
+
+        .mapping-node-type.selected {
+            background: #e8f0fe;
+            border-color: #1a73e8;
+        }
+
+        .mapping-node-icon {
+            font-size: 1.1em;
+        }
+
+        .mapping-node-label {
+            font-size: 0.85em;
+            color: #202124;
+        }
+
+        .mapping-canvas-area {
+            background: #fafbfc;
+            border: 1px solid #dadce0;
+            border-radius: 12px;
+            position: relative;
+            min-height: 350px;
+            overflow: hidden;
+        }
+
+        .mapping-canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .mapping-node {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: move;
+            transition: box-shadow 0.2s ease;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .mapping-node:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .mapping-node.selected {
+            box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.4);
+        }
+
+        .mapping-node-emoji {
+            font-size: 1.5em;
+        }
+
+        .mapping-node-name {
+            font-size: 0.7em;
+            color: white;
+            text-align: center;
+            margin-top: 4px;
+            max-width: 70px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .mapping-connection {
+            stroke-linecap: round;
+            transition: stroke-width 0.2s ease;
+        }
+
+        .mapping-connection:hover {
+            stroke-width: 5;
+        }
+
+        .mapping-metrics {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e8eaed;
+        }
+
+        .mapping-metrics h4 {
+            margin: 0 0 8px 0;
+            font-size: 0.8em;
+            color: #5f6368;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .mapping-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+        }
+
+        .mapping-metric-label {
+            font-size: 0.8em;
+            color: #5f6368;
+        }
+
+        .mapping-metric-value {
+            font-weight: 600;
+            color: #202124;
+            font-size: 0.9em;
+        }
+
+        .mapping-instructions {
+            background: #e7f3ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 0.85em;
+            color: #0c5460;
+        }
+
+        /* Mode selector for Add/Connect/Delete */
+        .mapping-mode-selector {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+            padding: 8px;
+            background: #f1f3f4;
+            border-radius: 10px;
+        }
+
+        .mapping-mode-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #5f6368;
+        }
+
+        .mapping-mode-btn:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .mapping-mode-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+        }
+
+        .mapping-mode-btn[data-mode="delete"].active {
+            color: #dc3545;
+        }
+
+        /* Status message area */
+        .mapping-status {
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .mapping-status.add-mode {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .mapping-status.connect-mode {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .mapping-status.delete-mode {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* Connection type selector panel */
+        .mapping-panel {
+            margin-bottom: 12px;
+            padding: 14px;
+            background: #fff;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+        }
+
+        .mapping-panel h4 {
+            margin: 0 0 12px 0;
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .mapping-connection-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .mapping-connection-type {
+            padding: 6px 12px;
+            border: 1px solid #dadce0;
+            border-radius: 16px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mapping-connection-type:hover {
+            background: #f8f9fa;
+            border-color: #bdc1c6;
+        }
+
+        .mapping-connection-type.selected {
+            background: #e8f0fe;
+            border-color: #1a73e8;
+            color: #1a73e8;
+        }
+
+        .mapping-connection-type .conn-line {
+            width: 20px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        /* Hint text */
+        .mapping-hint {
+            font-size: 0.75em;
+            color: #5f6368;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        /* Node delete mode styling */
+        .mapping-node.deletable {
+            cursor: pointer;
+        }
+
+        .mapping-node.deletable:hover {
+            filter: brightness(0.9);
+        }
+
+        .mapping-node .delete-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .mapping-node .delete-badge:hover {
+            background: #c82333;
+            transform: scale(1.1);
+        }
+
+        /* Connection delete mode */
+        .mapping-connection-group.deletable {
+            cursor: pointer;
+        }
+
+        .mapping-connection-group.deletable line {
+            stroke-width: 6;
+        }
+
+        .mapping-connection-group.deletable:hover line {
+            stroke: #dc3545 !important;
+            stroke-width: 8;
+        }
+
+        .mapping-connection-hit-area {
+            stroke: transparent;
+            stroke-width: 20;
+            cursor: pointer;
+            fill: none;
+        }
+
+        /* ========== SCENARIO EXERCISE ========== */
+        .scenario-setup {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-left: 4px solid #ffc107;
+            border-radius: 0 12px 12px 0;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+
+        .scenario-setup h4 {
+            margin: 0 0 12px 0;
+            color: #856404;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scenario-setup p {
+            margin: 0;
+            color: #664d03;
+            line-height: 1.6;
+        }
+
+        .scenario-branches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .scenario-branch {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .scenario-branch:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(155, 89, 182, 0.15);
+        }
+
+        .scenario-branch.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #f8f4ff 0%, #fff 100%);
+            box-shadow: 0 4px 16px rgba(155, 89, 182, 0.2);
+        }
+
+        .scenario-branch.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .scenario-branch h4 {
+            margin: 0 0 8px 0;
+            color: var(--navy);
+            font-size: 1.05em;
+        }
+
+        .scenario-branch p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .scenario-outcome {
+            display: none;
+            margin-top: 24px;
+            padding: 24px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        .scenario-outcome.visible {
+            display: block;
+        }
+
+        .scenario-outcome h4 {
+            margin: 0 0 12px 0;
+            color: var(--navy);
+            font-size: 1.1em;
+        }
+
+        .scenario-outcome p {
+            margin: 0 0 16px 0;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .scenario-consequence {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .scenario-consequence.positive {
+            border-left: 4px solid var(--success);
+        }
+
+        .scenario-consequence.negative {
+            border-left: 4px solid #dc3545;
+        }
+
+        .scenario-consequence.neutral {
+            border-left: 4px solid #6c757d;
+        }
+
+        /* Navigation Buttons */
+        .section-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            margin-top: 24px;
+            border-top: 1px solid #e1e8ed;
+        }
+
+        .section-nav-left,
+        .section-nav-right {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Skip Warning Modal */
+        .skip-warning-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .skip-warning-modal.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .skip-warning-content {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .skip-warning-content h3 {
+            margin: 0 0 16px 0;
+            color: var(--navy);
+        }
+
+        .skip-warning-content p {
+            margin: 0 0 24px 0;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+
+        .skip-warning-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        /* Exercise Type Icons */
+        .exercise-type-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .exercise-type-icon.ranking { background: #e3f2fd; }
+        .exercise-type-icon.calculator { background: #e8f5e9; }
+        .exercise-type-icon.quiz { background: #fff3e0; }
+        .exercise-type-icon.reflection { background: #fce4ec; }
+        .exercise-type-icon.mapping { background: #e1f5fe; }
+        .exercise-type-icon.scenario { background: #f3e5f5; }
+
+        /* Accessibility: Focus visible */
+        .exercise-container :focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* ========== MOBILE RESPONSIVENESS ========== */
+        @media (max-width: 768px) {
+            /* Section progress bar - horizontal scroll on mobile */
+            .section-progress-container {
+                overflow-x: auto;
+                padding: 12px 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .section-progress-bar {
+                min-width: 600px;
+                padding: 0 10px;
+            }
+
+            .section-step-indicator {
+                width: 28px;
+                height: 28px;
+                font-size: 0.7em;
+            }
+
+            .section-step-label {
+                font-size: 0.6em;
+                max-width: 50px;
+            }
+
+            /* Exercise containers */
+            .exercise-container {
+                margin: 16px 0;
+                border-radius: 8px;
+            }
+
+            .exercise-header {
+                padding: 16px;
+            }
+
+            .exercise-header h3 {
+                font-size: 1.1em;
+            }
+
+            .exercise-body {
+                padding: 16px;
+            }
+
+            /* Scenario branches - stack vertically */
+            .scenario-branches {
+                flex-direction: column;
+            }
+
+            .scenario-branch {
+                min-width: unset;
+                width: 100%;
+            }
+
+            /* Mapping exercise - smaller canvas */
+            .mapping-container {
+                flex-direction: column;
+            }
+
+            .mapping-sidebar {
+                width: 100%;
+                min-width: unset;
+                border-right: none;
+                border-bottom: 1px solid #e1e8ed;
+                padding-bottom: 16px;
+            }
+
+            .mapping-canvas-area {
+                height: 300px;
+            }
+
+            .mapping-node-types {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .mapping-node-type {
+                flex: 1 1 45%;
+                padding: 8px;
+            }
+
+            /* Mode selector - stack on mobile */
+            .mapping-mode-selector {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .mapping-mode-btn {
+                padding: 12px;
+            }
+
+            /* Connection types - smaller on mobile */
+            .mapping-connection-types {
+                gap: 6px;
+            }
+
+            .mapping-connection-type {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+
+            .mapping-connection-type .conn-line {
+                width: 18px;
+            }
+
+            /* Quiz options - full width */
+            .quiz-option {
+                padding: 12px;
+            }
+
+            /* Section navigation */
+            .section-nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .section-nav-left,
+            .section-nav-right {
+                width: 100%;
+            }
+
+            .section-nav button {
+                width: 100%;
+            }
+
+            /* Reflection textarea */
+            .reflection-textarea {
+                min-height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-step-label {
+                display: none;
+            }
+
+            .section-step-indicator {
+                width: 32px;
+                height: 32px;
+            }
+
+            .exercise-type-icon {
+                display: none;
+            }
+
+            .mapping-canvas-area {
+                height: 250px;
+            }
+
+            .mapping-node {
+                width: 60px;
+                height: 60px;
+            }
+
+            .mapping-node-name {
+                font-size: 0.65em;
+            }
+
+            /* Mode buttons smaller text */
+            .mapping-mode-btn {
+                font-size: 0.8em;
+                padding: 10px;
+            }
+
+            /* Hide connection line preview on very small screens */
+            .mapping-connection-type .conn-line {
+                display: none;
+            }
+
+            .mapping-status {
+                font-size: 0.85em;
+                padding: 10px 12px;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .ranking-item,
+            .scenario-branch,
+            .quiz-option,
+            .section-step {
+                transition: none;
+            }
+
+            .scenario-outcome,
+            .quiz-explanation {
+                animation: none;
+            }
+        }
+
+        /* Print styles for exercises */
+        @media print {
+            .exercise-container {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #333;
+            }
+
+            .exercise-header {
+                background: #f0f0f0 !important;
+                color: #333 !important;
+            }
+
+            .mapping-canvas-area {
+                min-height: 200px;
+            }
+
+            .scenario-branches {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-nav,
+            .skip-warning-modal {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2047,12 +3454,20 @@
 
         <!-- MODULE 1: CHARACTER CREATION -->
         <div id="module1" class="content game-section">
-            <h2 style="color: var(--navy); margin-bottom: 20px;">Module 1: Family Origins & Starting Point</h2>
+            <!-- Section Progress Bar -->
+            <div id="module1-section-progress" class="section-progress-container"></div>
 
-            <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapter 1 (What IS Family?)
-            </div>
+            <!-- Dynamic Section Content (rendered by ModuleSectionController) -->
+            <div id="module1-section-content" class="section-content-area"></div>
+
+            <!-- EXISTING CHARACTER CREATION CONTENT -->
+            <div id="module1-decisions-container">
+                <h2 style="color: var(--navy); margin-bottom: 20px;">Module 1: Family Origins & Starting Point</h2>
+
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> 15-20 minutes |
+                    <strong>📚 Connect to:</strong> Hammond Chapter 1 (What IS Family?)
+                </div>
 
             <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
                 <strong>🎯 Decision-Making Framework</strong><br>
@@ -2179,27 +3594,36 @@
             <div style="margin-top: 40px; text-align: center;">
                 <button class="btn btn-primary" onclick="completeModule1()">Begin My Life Journey →</button>
             </div>
+            </div> <!-- End module1-decisions-container -->
         </div>
 
-        <!-- MODULE 2: EDUCATION & CAREER (AGE-RESPONSIVE BRANCHING) -->
+        <!-- MODULE 2: EDUCATION & CAREER (ENHANCED WITH SECTION SYSTEM) -->
         <div id="module2" class="content game-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: var(--navy); margin: 0;">Module 2: Education & Career Pathways</h2>
+            <!-- Section Progress Bar -->
+            <div id="module2-section-progress" class="section-progress-container"></div>
+
+            <!-- Advantage Display -->
+            <div style="display: flex; justify-content: flex-end; padding: 10px 0;">
                 <div id="advantage-m2" class="advantage-display"></div>
             </div>
+
+            <!-- Dynamic Section Content (rendered by ModuleSectionController) -->
+            <div id="module2-section-content" class="section-content-area"></div>
 
             <!-- Previous Module Summary (populated dynamically) -->
             <div id="module2-intro-summary"></div>
 
-            <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapter 4 (Gender, Socialization & Life Course)
-            </div>
+            <!-- EXISTING DECISION CONTENT (shown during DECISION_1 and DECISION_2 sections) -->
+            <div id="module2-decisions-container">
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> 15-20 minutes |
+                    <strong>📚 Connect to:</strong> Hammond Chapter 4 (Gender, Socialization & Life Course)
+                </div>
 
-            <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
-                <strong>🎯 Life Course Perspective in Action</strong><br>
-                Hammond Ch. 4 explains how <strong>timing matters</strong>. The SAME decision (career change, education) has different meanings and consequences depending on your life stage. This module adapts to show how education/career decisions intersect with your current responsibilities and constraints.
-            </div>
+                <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
+                    <strong>🎯 Life Course Perspective in Action</strong><br>
+                    Hammond Ch. 4 explains how <strong>timing matters</strong>. The SAME decision (career change, education) has different meanings and consequences depending on your life stage. This module adapts to show how education/career decisions intersect with your current responsibilities and constraints.
+                </div>
 
             <!-- BRANCH 1: TRADITIONAL AGE (18-24) -->
             <div id="module2_traditional" class="branch-content" style="display:none;">
@@ -2519,34 +3943,44 @@
                 </div>
             </div>
 
-            <!-- SHARED: Career cascades -->
-            <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
-                <strong>💡 SYSTEMS THINKING: How will your career choices cascade?</strong><br>
-                • <strong>Module 3 (Relationships):</strong> Work hours affect relationship quality and time together<br>
-                • <strong>Module 4-5 (Partnership):</strong> Income affects homogamy, marriage timing, financial dynamics<br>
-                • <strong>Module 6 (Work-Family):</strong> Career flexibility determines caregiving options<br>
-                • <strong>Module 7 (Crisis):</strong> Income stability affects resilience to job loss/emergency<br><br>
-                <em>No decision is isolated—your career choice ripples through every life domain.</em>
-            </div>
+                <!-- SHARED: Career cascades -->
+                <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 25px 0;">
+                    <strong>💡 SYSTEMS THINKING: How will your career choices cascade?</strong><br>
+                    • <strong>Module 3 (Relationships):</strong> Work hours affect relationship quality and time together<br>
+                    • <strong>Module 4-5 (Partnership):</strong> Income affects homogamy, marriage timing, financial dynamics<br>
+                    • <strong>Module 6 (Work-Family):</strong> Career flexibility determines caregiving options<br>
+                    • <strong>Module 7 (Crisis):</strong> Income stability affects resilience to job loss/emergency<br><br>
+                    <em>No decision is isolated—your career choice ripples through every life domain.</em>
+                </div>
 
-            <div style="margin-top: 40px; text-align: center;">
-                <button class="btn btn-primary" onclick="completeModule2()">Complete Module 2 →</button>
-            </div>
+                <div style="margin-top: 40px; text-align: center;">
+                    <button class="btn btn-primary" onclick="completeModule2()">Complete Module 2 →</button>
+                </div>
+            </div><!-- End module2-decisions-container -->
         </div>
 
         <!-- MODULE 3: LOVE, INTIMACY & COMMUNICATION -->
         <div id="module3" class="content game-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: var(--navy); margin: 0;">Module 3: Relationships & Communication Patterns</h2>
+            <!-- Section Progress Bar -->
+            <div id="module3-section-progress" class="section-progress-container"></div>
+
+            <!-- Advantage Display -->
+            <div style="display: flex; justify-content: flex-end; padding: 10px 0;">
                 <div id="advantage-m3" class="advantage-display"></div>
             </div>
 
+            <!-- Dynamic Section Content (rendered by ModuleSectionController) -->
+            <div id="module3-section-content" class="section-content-area"></div>
+
+            <!-- Previous Module Summary (populated dynamically) -->
             <div id="module3-intro-summary"></div>
 
-            <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapters 5-6 (Love, Intimacy & Communication)
-            </div>
+            <!-- EXISTING DECISION CONTENT (shown during DECISION_1 and DECISION_2 sections) -->
+            <div id="module3-decisions-container">
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> 15-20 minutes |
+                    <strong>📚 Connect to:</strong> Hammond Chapters 5-6 (Love, Intimacy & Communication)
+                </div>
 
             <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
                 <strong>🎯 Life Course Perspective in Action</strong><br>
@@ -2874,21 +4308,31 @@
             <div style="margin-top: 40px; text-align: center;">
                 <button class="btn btn-primary" onclick="completeModule3()">Complete Module 3 →</button>
             </div>
+            </div> <!-- End module3-decisions-container -->
         </div>
 
         <!-- MODULE 4: SEXUALITY & MATE SELECTION -->
         <div id="module4" class="content game-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: var(--navy); margin: 0;">Module 4: Partner Selection & Compatibility</h2>
+            <!-- Section Progress Bar -->
+            <div id="module4-section-progress" class="section-progress-container"></div>
+
+            <!-- Advantage Display -->
+            <div style="display: flex; justify-content: flex-end; padding: 10px 0;">
                 <div id="advantage-m4" class="advantage-display"></div>
             </div>
 
+            <!-- Dynamic Section Content (rendered by ModuleSectionController) -->
+            <div id="module4-section-content" class="section-content-area"></div>
+
+            <!-- Previous Module Summary (populated dynamically) -->
             <div id="module4-intro-summary"></div>
 
-            <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapters 7-8 (Sexuality & Mate Selection)
-            </div>
+            <!-- EXISTING DECISION CONTENT (shown during DECISION_1 and DECISION_2 sections) -->
+            <div id="module4-decisions-container">
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> 15-20 minutes |
+                    <strong>📚 Connect to:</strong> Hammond Chapters 7-8 (Sexuality & Mate Selection)
+                </div>
 
             <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
                 <strong>🎯 Life Course Perspective in Action</strong><br>
@@ -3191,22 +4635,31 @@
             <div style="margin-top: 40px; text-align: center;">
                 <button class="btn btn-primary" onclick="completeModule4()">Complete Module 4 →</button>
             </div>
+            </div> <!-- End module4-decisions-container -->
         </div>
-
 
         <!-- MODULE 5: MARRIAGE & PARTNERSHIP FORMATION -->
         <div id="module5" class="content game-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: var(--navy); margin: 0;">Module 5: Marriage & Partnership Formation</h2>
+            <!-- Section Progress Bar -->
+            <div id="module5-section-progress" class="section-progress-container"></div>
+
+            <!-- Advantage Display -->
+            <div style="display: flex; justify-content: flex-end; padding: 10px 0;">
                 <div id="advantage-m5" class="advantage-display"></div>
             </div>
 
+            <!-- Dynamic Section Content -->
+            <div id="module5-section-content" class="section-content-area"></div>
+
+            <!-- Previous Module Summary -->
             <div id="module5-intro-summary"></div>
 
-            <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapter 9
-            </div>
+            <!-- EXISTING DECISION CONTENT -->
+            <div id="module5-decisions-container">
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> 15-20 minutes |
+                    <strong>📚 Connect to:</strong> Hammond Chapter 9
+                </div>
 
             <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
                 <strong>🎯 Life Course Perspective in Action</strong><br>
@@ -3482,22 +4935,31 @@
             <div style="margin-top: 40px; text-align: center;">
                 <button class="btn btn-primary" onclick="completeModule5()">Complete Module 5 →</button>
             </div>
+            </div> <!-- End module5-decisions-container -->
         </div>
-
 
         <!-- MODULE 6: PARENTHOOD & WORK-FAMILY BALANCE -->
         <div id="module6" class="content game-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: var(--navy); margin: 0;">Module 6: Parenthood & Work-Family Balance</h2>
+            <!-- Section Progress Bar -->
+            <div id="module6-section-progress" class="section-progress-container"></div>
+
+            <!-- Advantage Display -->
+            <div style="display: flex; justify-content: flex-end; padding: 10px 0;">
                 <div id="advantage-m6" class="advantage-display"></div>
             </div>
 
+            <!-- Dynamic Section Content -->
+            <div id="module6-section-content" class="section-content-area"></div>
+
+            <!-- Previous Module Summary -->
             <div id="module6-intro-summary"></div>
 
-            <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 25 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapters 10-11
-            </div>
+            <!-- EXISTING DECISION CONTENT -->
+            <div id="module6-decisions-container">
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> 15-20 minutes |
+                    <strong>📚 Connect to:</strong> Hammond Chapters 10-12
+                </div>
 
             <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
                 <strong>🎯 Life Course Perspective:</strong> Work-family challenges differ by life stage—young children (31), current childcare crisis (36), teenagers (48), grandchildren (64).
@@ -3618,22 +5080,31 @@
             <div style="margin-top: 40px; text-align: center;">
                 <button class="btn btn-primary" onclick="completeModule6()">Complete Module 6 →</button>
             </div>
+            </div> <!-- End module6-decisions-container -->
         </div>
-
 
         <!-- MODULE 7: FAMILY CHALLENGES & TRANSITIONS -->
         <div id="module7" class="content game-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: var(--navy); margin: 0;">Module 7: Family Challenges & Crises</h2>
+            <!-- Section Progress Bar -->
+            <div id="module7-section-progress" class="section-progress-container"></div>
+
+            <!-- Advantage Display -->
+            <div style="display: flex; justify-content: flex-end; padding: 10px 0;">
                 <div id="advantage-m7" class="advantage-display"></div>
             </div>
 
+            <!-- Dynamic Section Content -->
+            <div id="module7-section-content" class="section-content-area"></div>
+
+            <!-- Previous Module Summary -->
             <div id="module7-intro-summary"></div>
 
-            <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> Hammond Chapter 12 (ABC-X Model)
-            </div>
+            <!-- EXISTING DECISION CONTENT -->
+            <div id="module7-decisions-container">
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> 15-20 minutes |
+                    <strong>📚 Connect to:</strong> Hammond Chapter 12-13 (ABC-X Model)
+                </div>
 
             <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
                 <strong>🎯 Life Course:</strong> Crisis types vary by age—job loss at 35, teen crisis at 50, health crisis at 65.
@@ -3750,28 +5221,36 @@
             <div style="margin-top: 40px; text-align: center;">
                 <button class="btn btn-primary" onclick="completeModule7()">Complete Module 7 →</button>
             </div>
+            </div> <!-- End module7-decisions-container -->
         </div>
-
 
         <!-- MODULE 8: SYSTEMS REFLECTION & ANALYSIS -->
         <div id="module8" class="content game-section">
+            <!-- Section Progress Bar -->
+            <div id="module8-section-progress" class="section-progress-container"></div>
+
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h2 style="color: var(--navy); margin: 0;">Module 8: Systems Thinking & Reflection</h2>
                 <div id="advantage-m8" class="advantage-display"></div>
             </div>
 
-            <div id="module8-intro-summary"></div>
+            <!-- Dynamic Section Content -->
+            <div id="module8-section-content" class="section-content-area"></div>
 
-            <div class="alert alert-info">
-                <strong>⏱️ Time:</strong> 20 minutes |
-                <strong>📚 Connect to:</strong> All Hammond Chapters—Systems Integration
-            </div>
+            <!-- Decisions Container - shown/hidden by section controller -->
+            <div id="module8-decisions-container" class="decisions-container" style="display: none;">
+                <div id="module8-intro-summary"></div>
 
-            <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
-                <strong>🎯 Life Course Integration:</strong> Trace how decisions cascaded from Module 1 through Module 7.
-            </div>
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> 20 minutes |
+                    <strong>📚 Connect to:</strong> All Hammond Chapters—Systems Integration
+                </div>
 
-            <!-- INSTRUCTOR DASHBOARD (visible to instructors or as demo) -->
+                <div class="alert alert-warning" style="background: #fff3cd; border-color: #ffc107; color: #856404; margin-bottom: 25px;">
+                    <strong>🎯 Life Course Integration:</strong> Trace how decisions cascaded from Module 1 through Module 7.
+                </div>
+
+                <!-- INSTRUCTOR DASHBOARD (visible to instructors or as demo) -->
             <details style="margin-bottom: 24px;">
                 <summary style="cursor: pointer; padding: 12px; background: #f8f9fa; border-radius: 8px; font-weight: 600;">
                     📊 View Class Aggregate Data (Instructor View)
@@ -3978,6 +5457,7 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             <div style="margin-top: 40px; text-align: center;">
                 <button class="btn btn-primary" onclick="completeModule8()">Generate Final Report →</button>
             </div>
+            </div> <!-- End decisions-container -->
         </div>
 
         <div class="footer">
@@ -4002,7 +5482,20 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             const saved = localStorage.getItem('lifePlanningGame');
             if (saved) {
                 gameState = JSON.parse(saved);
-                console.log('Loaded game state:', gameState);
+
+                // Initialize GameEngine with saved state (handles migration)
+                if (typeof GameEngine !== 'undefined') {
+                    GameEngine.init({
+                        exerciseResponses: gameState.exerciseResponses || {},
+                        sectionProgress: gameState.sectionProgress || {},
+                        comprehensionResults: gameState.comprehensionResults || {},
+                        journal: gameState.journal || [],
+                        mappingData: gameState.mappingData || {},
+                        scenarioPaths: gameState.scenarioPaths || {},
+                        narrativeFlags: gameState.narrativeFlags || [],
+                        advantageScore: gameState.characterData?.advantageScore || 0
+                    });
+                }
             } else {
                 gameState.startedAt = new Date().toISOString();
             }
@@ -4010,9 +5503,20 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
 
         // Save state to localStorage
         function saveGameState(showNotification = false) {
+            // Sync exercise data from GameEngine to gameState before saving
+            if (typeof GameEngine !== 'undefined' && GameEngine.state) {
+                gameState.exerciseResponses = GameEngine.state.exerciseResponses || {};
+                gameState.sectionProgress = GameEngine.state.sectionProgress || {};
+                gameState.comprehensionResults = GameEngine.state.comprehensionResults || {};
+                gameState.journal = GameEngine.state.journal || [];
+                gameState.mappingData = GameEngine.state.mappingData || {};
+                gameState.scenarioPaths = GameEngine.state.scenarioPaths || {};
+                gameState.narrativeFlags = GameEngine.state.narrativeFlags || [];
+                gameState.advantageScore = GameEngine.state.advantageScore || 0;
+            }
+
             gameState.lastUpdated = new Date().toISOString();
             localStorage.setItem('lifePlanningGame', JSON.stringify(gameState));
-            console.log('Saved game state');
 
             // Show save notification on important saves (module completions)
             if (showNotification && typeof showSaveNotification === 'function') {
@@ -4038,6 +5542,7 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             window.scrollTo(0, 0);
 
             // Initialize modules that need setup
+            if (sectionId === 'module1') initModule1();
             if (sectionId === 'module2') initModule2();
             if (sectionId === 'module3') initModule3();
             if (sectionId === 'module4') initModule4();
@@ -4059,6 +5564,7 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
         // Start game
         function startGame() {
             showSection('module1');
+            // initModule1 is called by showSection
         }
 
         // Show module hub
@@ -4241,10 +5747,22 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
             showSection('module2');
         }
 
-        // Complete Module 2
+        // Initialize Module 1 - Character Creation
+        function initModule1() {
+            // Initialize section controller for enhanced experience
+            if (typeof ModuleSectionController !== 'undefined' && GAME_DATA.moduleSections?.module1) {
+                ModuleSectionController.init(1);
+            }
+        }
+
         // Initialize Module 2 based on life stage
         function initModule2() {
             const lifeStage = gameState.characterData.lifeStage || 'traditional';
+
+            // Initialize section controller for enhanced experience
+            if (typeof ModuleSectionController !== 'undefined' && GAME_DATA.moduleSections?.module2) {
+                ModuleSectionController.init(2);
+            }
 
             // Hide all branches
             document.querySelectorAll('#module2 .branch-content').forEach(div => {
@@ -4263,6 +5781,29 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                     el.textContent = gameState.characterData.currentAge;
                 });
             }
+
+            // Update advantage display
+            updateAdvantageDisplay('m2');
+        }
+
+        // Update advantage score display for a module
+        function updateAdvantageDisplay(moduleKey) {
+            const display = document.getElementById(`advantage-${moduleKey}`);
+            if (!display || typeof GameEngine === 'undefined') return;
+
+            const score = GameEngine.state.advantageScore;
+            let className = 'advantage-indicator neutral';
+            let text = `Advantage: ${score}`;
+
+            if (score > 0) {
+                className = 'advantage-indicator positive';
+                text = `+${score} Advantage`;
+            } else if (score < 0) {
+                className = 'advantage-indicator negative';
+                text = `${score} Disadvantage`;
+            }
+
+            display.innerHTML = `<span class="${className}">${text}</span>`;
         }
 
         function completeModule2() {
@@ -4277,10 +5818,37 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 return;
             }
 
+            // Check if required exercises were completed
+            const quizResult = GameEngine.state.comprehensionResults?.['m2_ex3_quiz'];
+            const scenarioResult = GameEngine.state.scenarioPaths?.['m2_ex6_scenario'];
+
+            // Soft validation - warn but allow proceeding
+            if (!quizResult?.passed) {
+                if (!confirm('You haven\'t passed the comprehension check yet. Continue anyway?')) {
+                    return;
+                }
+            }
+
+            if (!scenarioResult) {
+                if (!confirm('You haven\'t completed the scenario exercise. Continue anyway?')) {
+                    return;
+                }
+            }
+
             // Save data with life stage context
             gameState.characterData.educationPath = q5.value;
             gameState.characterData.careerField = q6.value;
             gameState.characterData.module2LifeStage = lifeStage; // Track which path taken
+
+            // Sync exercise responses to gameState for export
+            if (typeof GameEngine !== 'undefined') {
+                gameState.exerciseResponses = GameEngine.state.exerciseResponses;
+                gameState.comprehensionResults = GameEngine.state.comprehensionResults;
+                gameState.journal = GameEngine.state.journal;
+                gameState.mappingData = GameEngine.state.mappingData;
+                gameState.scenarioPaths = GameEngine.state.scenarioPaths;
+                gameState.narrativeFlags = GameEngine.state.narrativeFlags;
+            }
 
             // Mark complete
             if (!gameState.modulesCompleted.includes(2)) {
@@ -4299,6 +5867,11 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
         // Initialize Module 3 (show appropriate branch based on life stage)
         function initModule3() {
             const lifeStage = gameState.characterData.lifeStage || 'traditional';
+
+            // Initialize section controller for enhanced experience
+            if (typeof ModuleSectionController !== 'undefined' && GAME_DATA.moduleSections?.module3) {
+                ModuleSectionController.init(3);
+            }
 
             // Hide all branches
             document.querySelectorAll('#module3 .branch-content').forEach(div => {
@@ -4436,6 +6009,9 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
                 alert('Complete at least one module before exporting!');
                 return;
             }
+
+            // Sync GameEngine state to gameState before export
+            saveGameState(false);
 
             if (format === 'text') {
                 exportText();
@@ -5063,9 +6639,18 @@ Aim for 300-500 words demonstrating sociological analysis, not just personal opi
 // Initialize Module 4
 function initModule4() {
     const lifeStage = gameState.characterData.lifeStage || 'traditional';
+
+    // Initialize section controller for enhanced experience
+    if (typeof ModuleSectionController !== 'undefined' && GAME_DATA.moduleSections?.module4) {
+        ModuleSectionController.init(4);
+    }
+
+    // Hide all branches
     document.querySelectorAll('#module4 .branch-content').forEach(div => {
         div.style.display = 'none';
     });
+
+    // Show appropriate branch
     const branchDiv = document.getElementById(`module4_${lifeStage}`);
     if (branchDiv) {
         branchDiv.style.display = 'block';
@@ -5100,9 +6685,18 @@ function completeModule4() {
 // Initialize Module 5
 function initModule5() {
     const lifeStage = gameState.characterData.lifeStage || 'traditional';
+
+    // Initialize section controller for enhanced experience
+    if (typeof ModuleSectionController !== 'undefined' && GAME_DATA.moduleSections?.module5) {
+        ModuleSectionController.init(5);
+    }
+
+    // Hide all branches
     document.querySelectorAll('#module5 .branch-content').forEach(div => {
         div.style.display = 'none';
     });
+
+    // Show appropriate branch
     const branchDiv = document.getElementById(`module5_${lifeStage}`);
     if (branchDiv) {
         branchDiv.style.display = 'block';
@@ -5137,9 +6731,18 @@ function completeModule5() {
 // Initialize Module 6
 function initModule6() {
     const lifeStage = gameState.characterData.lifeStage || 'traditional';
+
+    // Initialize section controller for enhanced experience
+    if (typeof ModuleSectionController !== 'undefined' && GAME_DATA.moduleSections?.module6) {
+        ModuleSectionController.init(6);
+    }
+
+    // Hide all branches
     document.querySelectorAll('#module6 .branch-content').forEach(div => {
         div.style.display = 'none';
     });
+
+    // Show appropriate branch
     const branchDiv = document.getElementById(`module6_${lifeStage}`);
     if (branchDiv) {
         branchDiv.style.display = 'block';
@@ -5174,9 +6777,18 @@ function completeModule6() {
 // Initialize Module 7
 function initModule7() {
     const lifeStage = gameState.characterData.lifeStage || 'traditional';
+
+    // Initialize section controller for enhanced experience
+    if (typeof ModuleSectionController !== 'undefined' && GAME_DATA.moduleSections?.module7) {
+        ModuleSectionController.init(7);
+    }
+
+    // Hide all branches
     document.querySelectorAll('#module7 .branch-content').forEach(div => {
         div.style.display = 'none';
     });
+
+    // Show appropriate branch
     const branchDiv = document.getElementById(`module7_${lifeStage}`);
     if (branchDiv) {
         branchDiv.style.display = 'block';
@@ -5210,6 +6822,11 @@ function completeModule7() {
 
 // Initialize Module 8
 function initModule8() {
+    // Initialize section controller for Module 8
+    if (typeof ModuleSectionController !== 'undefined') {
+        ModuleSectionController.init(8);
+    }
+
     const lifeStage = gameState.characterData.lifeStage || 'traditional';
     document.querySelectorAll('#module8 .branch-content').forEach(div => {
         div.style.display = 'none';
@@ -5405,6 +7022,17 @@ function renderConsequencePanel(panelElement, choiceData) {
         <div class="consequence-immediate">${consequence.immediate}</div>
     `;
 
+    // Add personalized narrative based on exercise responses
+    const narrativeHook = getPersonalizedNarrative(choiceData);
+    if (narrativeHook) {
+        html += `
+            <div class="consequence-personalized" style="background: #f8f4ff; border-left: 4px solid var(--primary); padding: 12px 16px; margin: 16px 0; border-radius: 0 8px 8px 0;">
+                <h5 style="color: var(--primary); margin: 0 0 8px 0; font-size: 0.95em;">🎯 Based on Your Priorities</h5>
+                <p style="margin: 0; color: var(--text-dark); font-size: 0.95em;">${narrativeHook}</p>
+            </div>
+        `;
+    }
+
     if (consequence.sociologicalLink) {
         const concept = GAME_DATA.concepts?.[consequence.sociologicalLink.concept];
         html += `
@@ -5472,6 +7100,58 @@ function createReflectionPrompt(promptText, textareaId, isOptional = true) {
             ${isOptional ? '<p class="reflection-optional">This reflection is optional but helps deepen your sociological understanding.</p>' : ''}
         </div>
     `;
+}
+
+/**
+ * Get personalized narrative based on exercise responses
+ */
+function getPersonalizedNarrative(choiceData) {
+    if (typeof GameEngine === 'undefined' || typeof GAME_DATA === 'undefined') return null;
+
+    const narratives = [];
+
+    // Check ranking exercises for top priorities
+    const rankingExercises = ['m1_ex2_values_sort', 'm2_ex1_ranking', 'm3_ex1_ranking', 'm4_ex1_ranking'];
+    for (const exId of rankingExercises) {
+        const response = GameEngine.getExerciseResponse(exId);
+        if (response?.ranking && response.ranking.length > 0) {
+            const exercise = GAME_DATA.exercises?.[exId];
+            const topPriority = response.ranking[0];
+
+            // Check if this exercise has narrative hooks for the top priority
+            if (exercise?.narrativeHooks?.[topPriority]) {
+                narratives.push(exercise.narrativeHooks[topPriority]);
+            }
+        }
+    }
+
+    // Check scenario exercises for flags that connect to this choice
+    const scenarioExercises = ['m1_ex5_scenario', 'm2_ex6_scenario', 'm3_ex4_scenario'];
+    for (const exId of scenarioExercises) {
+        const response = GameEngine.state.scenarioPaths?.[exId];
+        if (response?.branchChosen) {
+            const exercise = GAME_DATA.exercises?.[exId];
+            const branch = exercise?.branches?.find(b => b.id === response.branchChosen);
+            if (branch?.narrativeFlag) {
+                // Generate contextual text based on flag
+                const flagNarratives = {
+                    'asserts_independence': 'Your earlier decision to assert independence shapes how you approach this choice.',
+                    'keeps_peace': 'Your tendency to keep peace in family situations influences your priorities here.',
+                    'bridges_difference': 'Your communication skills from earlier help you navigate this decision.',
+                    'self_protective': 'Your preference for protecting your boundaries affects your options.',
+                    'career_priority': 'Your career-focused decisions create path dependencies here.',
+                    'relationship_priority': 'Prioritizing relationships earlier shapes what feels possible now.',
+                    'balance_seeker': 'Your attempt to balance competing demands affects your current choices.'
+                };
+                if (flagNarratives[branch.narrativeFlag]) {
+                    narratives.push(flagNarratives[branch.narrativeFlag]);
+                }
+            }
+        }
+    }
+
+    // Return the most relevant narrative (first match)
+    return narratives.length > 0 ? narratives[0] : null;
 }
 
 /**
@@ -7063,7 +8743,1817 @@ function initAccessibility() {
     if (contentDiv && !contentDiv.id) {
         contentDiv.id = 'main-content';
     }
+
+    // Add ARIA live region for announcements
+    if (!document.getElementById('aria-live-region')) {
+        const liveRegion = document.createElement('div');
+        liveRegion.id = 'aria-live-region';
+        liveRegion.setAttribute('role', 'status');
+        liveRegion.setAttribute('aria-live', 'polite');
+        liveRegion.setAttribute('aria-atomic', 'true');
+        liveRegion.className = 'sr-only';
+        liveRegion.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;';
+        document.body.appendChild(liveRegion);
+    }
 }
+
+// Announce message to screen readers
+function announceToScreenReader(message) {
+    const liveRegion = document.getElementById('aria-live-region');
+    if (liveRegion) {
+        liveRegion.textContent = '';
+        setTimeout(() => { liveRegion.textContent = message; }, 100);
+    }
+}
+
+// Add accessibility to dynamically rendered exercises
+function enhanceExerciseAccessibility(exerciseId) {
+    const container = document.querySelector(`[data-exercise-id="${exerciseId}"]`);
+    if (!container) return;
+
+    const exercise = GAME_DATA.exercises?.[exerciseId];
+    if (!exercise) return;
+
+    // Set role and label on container
+    container.setAttribute('role', 'region');
+    container.setAttribute('aria-label', exercise.title || 'Exercise');
+
+    // Handle specific exercise types
+    if (exercise.type === 'ranking') {
+        const list = container.querySelector('.ranking-list');
+        if (list) {
+            list.setAttribute('role', 'listbox');
+            list.setAttribute('aria-label', 'Drag items to reorder or use arrow buttons');
+            list.querySelectorAll('.ranking-item').forEach((item, idx) => {
+                item.setAttribute('role', 'option');
+                item.setAttribute('aria-selected', 'false');
+                item.setAttribute('tabindex', '0');
+                // Keyboard navigation
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        ExerciseRenderer.moveRankingItem(exerciseId, item.dataset.id, -1);
+                        setTimeout(() => item.focus(), 50);
+                    } else if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        ExerciseRenderer.moveRankingItem(exerciseId, item.dataset.id, 1);
+                        setTimeout(() => item.focus(), 50);
+                    }
+                });
+            });
+        }
+    }
+
+    if (exercise.type === 'quiz') {
+        container.querySelectorAll('.quiz-question').forEach((q, idx) => {
+            q.setAttribute('role', 'group');
+            q.setAttribute('aria-label', `Question ${idx + 1}`);
+        });
+    }
+
+    if (exercise.type === 'scenario') {
+        const branches = container.querySelector('.scenario-branches');
+        if (branches) {
+            branches.setAttribute('role', 'radiogroup');
+            branches.setAttribute('aria-label', 'Choose your response');
+            branches.querySelectorAll('.scenario-branch').forEach((branch, idx) => {
+                branch.setAttribute('role', 'radio');
+                branch.setAttribute('tabindex', '0');
+                branch.setAttribute('aria-checked', branch.classList.contains('selected') ? 'true' : 'false');
+                // Keyboard selection
+                branch.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        branch.click();
+                    }
+                });
+            });
+        }
+    }
+
+    if (exercise.type === 'reflection') {
+        const textarea = container.querySelector('textarea');
+        if (textarea && !textarea.getAttribute('aria-describedby')) {
+            const charCount = container.querySelector('.reflection-char-count');
+            if (charCount) {
+                charCount.id = `char-count-desc-${exerciseId}`;
+                textarea.setAttribute('aria-describedby', charCount.id);
+            }
+        }
+    }
+}
+
+// ========== EXERCISE RENDERER ==========
+// Renders all 6 exercise types: ranking, calculator, quiz, reflection, mapping, scenario
+
+const ExerciseRenderer = {
+    /**
+     * Render an exercise by ID
+     */
+    render: function(exerciseId, containerId) {
+        const exercise = GAME_DATA.exercises?.[exerciseId];
+        if (!exercise) {
+            console.error('Exercise not found:', exerciseId);
+            return;
+        }
+
+        const container = document.getElementById(containerId);
+        if (!container) {
+            console.error('Container not found:', containerId);
+            return;
+        }
+
+        // Call appropriate renderer based on type
+        const renderers = {
+            'ranking': this.renderRanking,
+            'calculator': this.renderCalculator,
+            'quiz': this.renderQuiz,
+            'reflection': this.renderReflection,
+            'mapping': this.renderMapping,
+            'scenario': this.renderScenario
+        };
+
+        const renderer = renderers[exercise.type];
+        if (renderer) {
+            container.innerHTML = renderer.call(this, exercise);
+            this.attachEventListeners(exercise, containerId);
+            // Enhance accessibility after rendering
+            if (typeof enhanceExerciseAccessibility === 'function') {
+                enhanceExerciseAccessibility(exercise.id);
+            }
+        } else {
+            console.error('Unknown exercise type:', exercise.type);
+        }
+    },
+
+    /**
+     * Render ranking exercise
+     */
+    renderRanking: function(exercise) {
+        const existingResponse = GameEngine.getExerciseResponse(exercise.id);
+        // If we have saved ranking (array of IDs), map them back to full item objects
+        let items = exercise.items;
+        if (existingResponse?.ranking && Array.isArray(existingResponse.ranking)) {
+            items = existingResponse.ranking.map(id =>
+                exercise.items.find(item => item.id === id)
+            ).filter(Boolean); // Remove any undefined items
+        }
+
+        let itemsHtml = items.map((item, index) => `
+            <li class="ranking-item" data-id="${item.id}" draggable="true">
+                <span class="ranking-handle">☰</span>
+                <span class="ranking-number">${index + 1}</span>
+                <div class="ranking-content">
+                    <h4>${item.label}</h4>
+                    <p>${item.description}</p>
+                </div>
+                <div class="ranking-move-buttons">
+                    <button type="button" class="ranking-move-btn" onclick="ExerciseRenderer.moveRankingItem('${exercise.id}', '${item.id}', -1)">▲</button>
+                    <button type="button" class="ranking-move-btn" onclick="ExerciseRenderer.moveRankingItem('${exercise.id}', '${item.id}', 1)">▼</button>
+                </div>
+            </li>
+        `).join('');
+
+        let sociologyHtml = '';
+        if (exercise.sociologyLink) {
+            sociologyHtml = `
+                <div class="sociology-link-box">
+                    <h4>📚 Sociology Connection</h4>
+                    <p>${exercise.sociologyLink.explanation}</p>
+                    <cite>— Hammond ${exercise.sociologyLink.hammondRef}</cite>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="exercise-container" data-exercise-id="${exercise.id}">
+                <div class="exercise-header">
+                    <h3><span class="exercise-type-icon ranking">📊</span> ${exercise.title}</h3>
+                    <p>${exercise.instructions}</p>
+                </div>
+                <div class="exercise-body">
+                    <ul class="ranking-list" id="ranking-list-${exercise.id}">
+                        ${itemsHtml}
+                    </ul>
+                    ${sociologyHtml}
+                </div>
+                <div class="exercise-footer">
+                    ${exercise.skippable ? `<a href="#" class="exercise-skip-link" onclick="ExerciseRenderer.skipExercise('${exercise.id}'); return false;">Skip this exercise</a>` : '<span></span>'}
+                    <button class="btn btn-primary" onclick="ExerciseRenderer.saveRanking('${exercise.id}')">Save Ranking</button>
+                </div>
+            </div>
+        `;
+    },
+
+    /**
+     * Render calculator exercise
+     */
+    renderCalculator: function(exercise) {
+        const existingResponse = GameEngine.getExerciseResponse(exercise.id);
+        const savedInputs = existingResponse?.inputs || {};
+
+        // Handle both input types: number and select
+        let inputsHtml = exercise.inputs.map(input => {
+            const savedValue = savedInputs[input.id];
+            const value = savedValue !== undefined ? savedValue : (input.default || '');
+
+            if (input.type === 'select' && input.options) {
+                // Render as dropdown
+                const optionsHtml = input.options.map(opt => {
+                    const selected = String(value) === String(opt.value) ? 'selected' : '';
+                    return `<option value="${opt.value}" ${selected}>${opt.label}</option>`;
+                }).join('');
+
+                return `
+                    <div class="calculator-input-group">
+                        <label for="calc-${exercise.id}-${input.id}">${input.label}</label>
+                        <div class="calculator-input-wrapper">
+                            <select id="calc-${exercise.id}-${input.id}"
+                                    class="calculator-input calculator-select"
+                                    data-input-id="${input.id}"
+                                    onchange="ExerciseRenderer.calculateOutputs('${exercise.id}')">
+                                <option value="">Select...</option>
+                                ${optionsHtml}
+                            </select>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Render as number input
+                const wrapperClass = input.type === 'currency' ? 'calculator-input-wrapper currency' : 'calculator-input-wrapper';
+                return `
+                    <div class="calculator-input-group">
+                        <label for="calc-${exercise.id}-${input.id}">${input.label}</label>
+                        <div class="${wrapperClass}">
+                            <input type="number"
+                                   id="calc-${exercise.id}-${input.id}"
+                                   class="calculator-input"
+                                   data-input-id="${input.id}"
+                                   value="${value}"
+                                   min="${input.min || 0}"
+                                   max="${input.max || 999999}"
+                                   step="${input.step || 1}"
+                                   onchange="ExerciseRenderer.calculateOutputs('${exercise.id}')">
+                        </div>
+                    </div>
+                `;
+            }
+        }).join('');
+
+        // Support both 'outputs' (Module 2) and 'calculations' (Module 4) field names
+        const outputsArray = exercise.outputs || exercise.calculations || [];
+        const isPercentFormat = outputsArray.some(o => o.format === 'percent');
+
+        let outputsHtml = outputsArray.map(output => {
+            const highlightClass = output.highlight ? 'highlight' : '';
+            const defaultValue = output.format === 'percent' ? '0%' : '$0';
+            const descriptionHtml = output.description ? `<span class="calculator-output-desc">${output.description}</span>` : '';
+            return `
+                <div class="calculator-output-item ${highlightClass}">
+                    <div class="calculator-output-main">
+                        <span class="calculator-output-label">${output.label}</span>
+                        <span class="calculator-output-value" id="output-${exercise.id}-${output.id}">${defaultValue}</span>
+                    </div>
+                    ${descriptionHtml}
+                </div>
+            `;
+        }).join('');
+
+        let sociologyHtml = '';
+        if (exercise.sociologyLink) {
+            sociologyHtml = `
+                <div class="sociology-link-box">
+                    <h4>📚 Sociology Connection</h4>
+                    <p>${exercise.sociologyLink.explanation}</p>
+                    <cite>— Hammond ${exercise.sociologyLink.hammondRef}</cite>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="exercise-container" data-exercise-id="${exercise.id}">
+                <div class="exercise-header">
+                    <h3><span class="exercise-type-icon calculator">🧮</span> ${exercise.title}</h3>
+                    <p>${exercise.instructions}</p>
+                </div>
+                <div class="exercise-body">
+                    <div class="calculator-grid">
+                        ${inputsHtml}
+                    </div>
+                    <div class="calculator-outputs">
+                        <h4>Calculated Results</h4>
+                        ${outputsHtml}
+                        <div id="calc-interpretation-${exercise.id}" class="calculator-interpretation" style="display:none;"></div>
+                    </div>
+                    ${sociologyHtml}
+                </div>
+                <div class="exercise-footer">
+                    ${exercise.skippable ? `<a href="#" class="exercise-skip-link" onclick="ExerciseRenderer.skipExercise('${exercise.id}'); return false;">Skip this exercise</a>` : '<span></span>'}
+                    <button class="btn btn-primary" onclick="ExerciseRenderer.saveCalculator('${exercise.id}')">Save Calculations</button>
+                </div>
+            </div>
+        `;
+    },
+
+    /**
+     * Render quiz exercise
+     */
+    renderQuiz: function(exercise) {
+        const existingResponse = GameEngine.state.comprehensionResults[exercise.id];
+
+        let questionsHtml = exercise.questions.map((q, qIndex) => {
+            let optionsHtml = q.options.map(opt => {
+                const checked = existingResponse?.results?.[q.id]?.userAnswer === opt.id ? 'checked' : '';
+                let optionClass = 'quiz-option';
+                if (existingResponse) {
+                    if (opt.correct) optionClass += ' correct';
+                    else if (existingResponse.results[q.id]?.userAnswer === opt.id) optionClass += ' incorrect';
+                }
+                return `
+                    <label class="${optionClass}">
+                        <input type="radio" name="quiz-${exercise.id}-${q.id}" value="${opt.id}" ${checked} ${existingResponse ? 'disabled' : ''}>
+                        <span class="quiz-option-text">${opt.text}</span>
+                    </label>
+                `;
+            }).join('');
+
+            let explanationHtml = '';
+            if (existingResponse) {
+                explanationHtml = `
+                    <div class="quiz-explanation visible">
+                        <h5>Explanation</h5>
+                        <p>${q.explanation}</p>
+                        <cite>${q.hammondRef}</cite>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="quiz-question" data-question-id="${q.id}">
+                    <div class="quiz-question-text">${qIndex + 1}. ${q.question}</div>
+                    <div class="quiz-options">
+                        ${optionsHtml}
+                    </div>
+                    ${explanationHtml}
+                </div>
+            `;
+        }).join('');
+
+        let resultHtml = '';
+        if (existingResponse) {
+            const resultClass = existingResponse.passed ? 'passed' : 'failed';
+            const scorePercent = Math.round(existingResponse.score * 100);
+            resultHtml = `
+                <div class="quiz-result ${resultClass}">
+                    <h4>${existingResponse.passed ? '✅ Passed!' : '❌ Not Passed'}</h4>
+                    <p>Score: ${scorePercent}% (Attempt ${existingResponse.attempts} of ${exercise.maxAttempts})</p>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="exercise-container" data-exercise-id="${exercise.id}">
+                <div class="exercise-header">
+                    <h3><span class="exercise-type-icon quiz">❓</span> ${exercise.title}</h3>
+                    <p>${exercise.instructions}</p>
+                </div>
+                <div class="exercise-body">
+                    ${questionsHtml}
+                    ${resultHtml}
+                </div>
+                <div class="exercise-footer">
+                    <span class="quiz-attempts">Passing score: ${exercise.passingScore > 1 ? exercise.passingScore : Math.round((exercise.passingScore || 0.5) * 100)}%</span>
+                    <button class="btn btn-primary" onclick="ExerciseRenderer.submitQuiz('${exercise.id}')" ${existingResponse?.passed ? 'disabled' : ''}>
+                        ${existingResponse ? (existingResponse.passed ? 'Passed ✓' : 'Retry Quiz') : 'Submit Answers'}
+                    </button>
+                </div>
+            </div>
+        `;
+    },
+
+    /**
+     * Render reflection exercise
+     */
+    renderReflection: function(exercise) {
+        const existingResponse = GameEngine.getExerciseResponse(exercise.id);
+        const savedContent = existingResponse?.content || '';
+
+        const tagsHtml = exercise.tags ? exercise.tags.map(tag => `<span class="reflection-tag">#${tag}</span>`).join('') : '';
+
+        let sociologyHtml = '';
+        if (exercise.sociologyLink) {
+            sociologyHtml = `
+                <div class="sociology-link-box">
+                    <h4>📚 Sociology Connection</h4>
+                    <p>${exercise.sociologyLink.explanation}</p>
+                    <cite>— Hammond ${exercise.sociologyLink.hammondRef}</cite>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="exercise-container" data-exercise-id="${exercise.id}">
+                <div class="exercise-header">
+                    <h3><span class="exercise-type-icon reflection">💭</span> ${exercise.title}</h3>
+                    <p>${exercise.prompt}</p>
+                </div>
+                <div class="exercise-body">
+                    <textarea id="reflection-${exercise.id}"
+                              class="reflection-textarea"
+                              placeholder="${exercise.placeholder || 'Write your reflection here...'}"
+                              maxlength="${exercise.maxLength || 2000}"
+                              oninput="ExerciseRenderer.updateCharCount('${exercise.id}')">${savedContent}</textarea>
+                    <div class="reflection-meta">
+                        <div class="reflection-tags">${tagsHtml}</div>
+                        <span class="reflection-char-count" id="char-count-${exercise.id}">
+                            ${savedContent.length}/${exercise.maxLength || 2000} characters
+                            ${exercise.minLength ? `(min: ${exercise.minLength})` : ''}
+                        </span>
+                    </div>
+                    ${sociologyHtml}
+                </div>
+                <div class="exercise-footer">
+                    ${exercise.skippable ? `<a href="#" class="exercise-skip-link" onclick="ExerciseRenderer.skipExercise('${exercise.id}'); return false;">Skip this exercise</a>` : '<span></span>'}
+                    <button class="btn btn-primary" onclick="ExerciseRenderer.saveReflection('${exercise.id}')">
+                        ${exercise.journalEntry ? 'Save to Journal' : 'Save Reflection'}
+                    </button>
+                </div>
+            </div>
+        `;
+    },
+
+    /**
+     * Render mapping exercise
+     */
+    renderMapping: function(exercise) {
+        const existingData = GameEngine.state.mappingData[exercise.id];
+
+        const nodeTypesHtml = exercise.nodeTypes.map(nt => `
+            <div class="mapping-node-type" data-type="${nt.id}" onclick="ExerciseRenderer.selectNodeType('${exercise.id}', '${nt.id}')">
+                <span class="mapping-node-icon">${nt.icon}</span>
+                <span class="mapping-node-label">${nt.label}</span>
+            </div>
+        `).join('');
+
+        // Connection types from exercise or defaults
+        const connectionTypes = exercise.connectionTypes || [
+            { id: 'close', label: 'Close/Supportive', color: '#27ae60' },
+            { id: 'distant', label: 'Distant', color: '#95a5a6' },
+            { id: 'conflict', label: 'Conflict/Tension', color: '#e74c3c' }
+        ];
+        const connectionTypesHtml = connectionTypes.map(ct => `
+            <div class="mapping-connection-type" data-type="${ct.id}" onclick="ExerciseRenderer.selectConnectionType('${exercise.id}', '${ct.id}')" style="border-left: 4px solid ${ct.color};">
+                <span class="mapping-conn-label">${ct.label}</span>
+            </div>
+        `).join('');
+
+        const metricsHtml = exercise.metrics ? exercise.metrics.map(m => `
+            <div class="mapping-metric">
+                <span class="mapping-metric-label">${m.label}</span>
+                <span class="mapping-metric-value" id="metric-${exercise.id}-${m.id}">0${m.format === 'percent' ? '%' : ''}</span>
+            </div>
+        `).join('') : '';
+
+        let sociologyHtml = '';
+        if (exercise.sociologyLink) {
+            sociologyHtml = `
+                <div class="sociology-link-box">
+                    <h4>📚 Sociology Connection</h4>
+                    <p>${exercise.sociologyLink.explanation}</p>
+                    <cite>— Hammond ${exercise.sociologyLink.hammondRef}</cite>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="exercise-container" data-exercise-id="${exercise.id}">
+                <div class="exercise-header">
+                    <h3><span class="exercise-type-icon mapping">🗺️</span> ${exercise.title}</h3>
+                    <p>${exercise.instructions}</p>
+                </div>
+                <div class="exercise-body">
+                    <div class="mapping-container">
+                        <div class="mapping-sidebar">
+                            <!-- Mode selector -->
+                            <div class="mapping-mode-selector">
+                                <button class="mapping-mode-btn active" data-mode="add" onclick="ExerciseRenderer.setMappingMode('${exercise.id}', 'add')">
+                                    ➕ Add
+                                </button>
+                                <button class="mapping-mode-btn" data-mode="connect" onclick="ExerciseRenderer.setMappingMode('${exercise.id}', 'connect')">
+                                    🔗 Connect
+                                </button>
+                                <button class="mapping-mode-btn" data-mode="delete" onclick="ExerciseRenderer.setMappingMode('${exercise.id}', 'delete')">
+                                    🗑️ Delete
+                                </button>
+                            </div>
+
+                            <!-- Status message -->
+                            <div class="mapping-status add-mode" id="status-${exercise.id}">
+                                Select a person type below, then click on the canvas to add them.
+                            </div>
+
+                            <!-- Add mode: node types -->
+                            <div class="mapping-panel" id="panel-add-${exercise.id}">
+                                <h4>Person Types</h4>
+                                <div class="mapping-node-types">
+                                    ${nodeTypesHtml}
+                                </div>
+                            </div>
+
+                            <!-- Connect mode: connection types -->
+                            <div class="mapping-panel" id="panel-connect-${exercise.id}" style="display:none;">
+                                <h4>Connection Type</h4>
+                                <div class="mapping-connection-types">
+                                    ${connectionTypesHtml}
+                                </div>
+                                <p class="mapping-hint">Click first person, then click second person to connect.</p>
+                            </div>
+
+                            <!-- Delete mode: instructions -->
+                            <div class="mapping-panel" id="panel-delete-${exercise.id}" style="display:none;">
+                                <h4>Delete Mode</h4>
+                                <p class="mapping-hint">Click a person to remove them.<br>Click a connection line to remove it.</p>
+                            </div>
+
+                            <div class="mapping-metrics">
+                                <h4>Network Metrics</h4>
+                                ${metricsHtml}
+                            </div>
+                        </div>
+                        <div class="mapping-canvas-area" id="canvas-${exercise.id}" onclick="ExerciseRenderer.handleCanvasClick(event, '${exercise.id}')">
+                            <svg class="mapping-canvas" id="svg-${exercise.id}"></svg>
+                        </div>
+                    </div>
+                    ${sociologyHtml}
+                </div>
+                <div class="exercise-footer">
+                    ${exercise.skippable ? `<a href="#" class="exercise-skip-link" onclick="ExerciseRenderer.skipExercise('${exercise.id}'); return false;">Skip this exercise</a>` : '<span></span>'}
+                    <button class="btn btn-secondary" onclick="ExerciseRenderer.clearMapping('${exercise.id}')" style="margin-right:10px;">Clear All</button>
+                    <button class="btn btn-primary" onclick="ExerciseRenderer.saveMapping('${exercise.id}')">Save Network</button>
+                </div>
+            </div>
+        `;
+    },
+
+    /**
+     * Render scenario exercise
+     */
+    renderScenario: function(exercise) {
+        const existingResponse = GameEngine.state.scenarioPaths[exercise.id];
+
+        const branchesHtml = exercise.branches.map(branch => {
+            const selectedClass = existingResponse?.branchChosen === branch.id ? 'selected' : '';
+            return `
+                <div class="scenario-branch ${selectedClass}"
+                     data-branch-id="${branch.id}"
+                     onclick="ExerciseRenderer.selectBranch('${exercise.id}', '${branch.id}')">
+                    <h4>${branch.label}</h4>
+                    <p>${branch.description || branch.brief || ''}</p>
+                </div>
+            `;
+        }).join('');
+
+        let outcomeHtml = '';
+        if (existingResponse) {
+            const branch = exercise.branches.find(b => b.id === existingResponse.branchChosen);
+            if (branch) {
+                // Handle both old and new field naming conventions
+                const advantageScore = branch.advantageChange ?? branch.consequences?.advantageScore ?? 0;
+                const narrativeText = branch.consequence || branch.narrative || '';
+
+                let consequenceClass = 'neutral';
+                if (advantageScore > 0) consequenceClass = 'positive';
+                else if (advantageScore < 0) consequenceClass = 'negative';
+
+                outcomeHtml = `
+                    <div class="scenario-outcome visible">
+                        <h4>Your Choice: ${branch.label}</h4>
+                        <p>${narrativeText}</p>
+                        ${advantageScore !== 0 ? `
+                            <div class="scenario-consequence ${consequenceClass}">
+                                <strong>Advantage Impact:</strong> ${advantageScore > 0 ? '+' : ''}${advantageScore}
+                            </div>
+                        ` : ''}
+                        <div class="sociology-link-box" style="margin-top:16px;">
+                            <h4>📚 Sociology Connection</h4>
+                            <p>${branch.sociologyLink?.explanation || ''}</p>
+                            <cite>— Hammond ${branch.sociologyLink?.hammondRef || ''}</cite>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        return `
+            <div class="exercise-container" data-exercise-id="${exercise.id}">
+                <div class="exercise-header">
+                    <h3><span class="exercise-type-icon scenario">🔀</span> ${exercise.title}</h3>
+                </div>
+                <div class="exercise-body">
+                    <div class="scenario-setup">
+                        <h4>⚡ The Situation</h4>
+                        <p>${exercise.setup}</p>
+                    </div>
+                    <div class="scenario-branches">
+                        ${branchesHtml}
+                    </div>
+                    ${outcomeHtml}
+                </div>
+                <div class="exercise-footer">
+                    <span></span>
+                    <button class="btn btn-primary" onclick="ExerciseRenderer.confirmScenario('${exercise.id}')" ${existingResponse ? 'disabled' : ''}>
+                        ${existingResponse ? 'Choice Made ✓' : 'Confirm Choice'}
+                    </button>
+                </div>
+            </div>
+        `;
+    },
+
+    // ========== EVENT HANDLERS ==========
+
+    attachEventListeners: function(exercise, containerId) {
+        // Attach drag-and-drop for ranking
+        if (exercise.type === 'ranking') {
+            this.initRankingDragDrop(exercise.id);
+        }
+        // Calculate initial outputs for calculator
+        if (exercise.type === 'calculator') {
+            setTimeout(() => this.calculateOutputs(exercise.id), 100);
+        }
+        // Initialize mapping data
+        if (exercise.type === 'mapping') {
+            this.mappingState[exercise.id] = {
+                mode: 'add',
+                selectedType: null,
+                selectedConnectionType: 'close',
+                nodes: [],
+                connections: [],
+                selectedNode: null
+            };
+            // Load existing data if available
+            const existingData = GameEngine.state.mappingData[exercise.id];
+            if (existingData) {
+                this.mappingState[exercise.id].nodes = existingData.nodes || [];
+                this.mappingState[exercise.id].connections = existingData.connections || [];
+                this.renderMappingNodes(exercise.id);
+            }
+            // Set default connection type as selected
+            setTimeout(() => {
+                const firstConnType = document.querySelector(`[data-exercise-id="${exercise.id}"] .mapping-connection-type`);
+                if (firstConnType) firstConnType.classList.add('selected');
+            }, 100);
+        }
+    },
+
+    // Ranking handlers
+    initRankingDragDrop: function(exerciseId) {
+        const list = document.getElementById(`ranking-list-${exerciseId}`);
+        if (!list) return;
+
+        let draggedItem = null;
+
+        list.querySelectorAll('.ranking-item').forEach(item => {
+            item.addEventListener('dragstart', (e) => {
+                draggedItem = item;
+                item.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+            });
+
+            item.addEventListener('dragend', () => {
+                item.classList.remove('dragging');
+                list.querySelectorAll('.ranking-item').forEach(i => i.classList.remove('drag-over'));
+                this.updateRankingNumbers(exerciseId);
+            });
+
+            item.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                if (item !== draggedItem) {
+                    item.classList.add('drag-over');
+                }
+            });
+
+            item.addEventListener('dragleave', () => {
+                item.classList.remove('drag-over');
+            });
+
+            item.addEventListener('drop', (e) => {
+                e.preventDefault();
+                if (item !== draggedItem) {
+                    const allItems = [...list.querySelectorAll('.ranking-item')];
+                    const draggedIndex = allItems.indexOf(draggedItem);
+                    const targetIndex = allItems.indexOf(item);
+
+                    if (draggedIndex < targetIndex) {
+                        item.parentNode.insertBefore(draggedItem, item.nextSibling);
+                    } else {
+                        item.parentNode.insertBefore(draggedItem, item);
+                    }
+                }
+                item.classList.remove('drag-over');
+            });
+        });
+    },
+
+    moveRankingItem: function(exerciseId, itemId, direction) {
+        const list = document.getElementById(`ranking-list-${exerciseId}`);
+        const item = list.querySelector(`[data-id="${itemId}"]`);
+        if (!item) return;
+
+        const items = [...list.querySelectorAll('.ranking-item')];
+        const index = items.indexOf(item);
+
+        if (direction === -1 && index > 0) {
+            item.parentNode.insertBefore(item, items[index - 1]);
+        } else if (direction === 1 && index < items.length - 1) {
+            item.parentNode.insertBefore(items[index + 1], item);
+        }
+
+        this.updateRankingNumbers(exerciseId);
+    },
+
+    updateRankingNumbers: function(exerciseId) {
+        const list = document.getElementById(`ranking-list-${exerciseId}`);
+        list.querySelectorAll('.ranking-item').forEach((item, index) => {
+            item.querySelector('.ranking-number').textContent = index + 1;
+        });
+    },
+
+    saveRanking: function(exerciseId) {
+        const list = document.getElementById(`ranking-list-${exerciseId}`);
+        const items = [...list.querySelectorAll('.ranking-item')].map(item => item.dataset.id);
+
+        GameEngine.saveRankingResponse(exerciseId, items);
+        this.showSaveConfirmation(exerciseId);
+    },
+
+    // Calculator handlers
+    calculateOutputs: function(exerciseId) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+        if (!exercise || exercise.type !== 'calculator') return;
+
+        // Gather inputs from DOM
+        const inputs = {};
+        exercise.inputs.forEach(input => {
+            const el = document.getElementById(`calc-${exerciseId}-${input.id}`);
+            inputs[input.id] = parseFloat(el?.value) || 0;
+        });
+
+        // Support both data formats:
+        // - Module 2 style: exercise.formulas (object) + exercise.outputs (array)
+        // - Module 4 style: exercise.calculations (array with embedded formulas)
+        const outputsArray = exercise.outputs || exercise.calculations || [];
+        const formulas = exercise.formulas || {};
+
+        // Build formulas from calculations array if no formulas object
+        if (!exercise.formulas && exercise.calculations) {
+            exercise.calculations.forEach(calc => {
+                if (calc.formula) {
+                    formulas[calc.id] = calc.formula;
+                }
+            });
+        }
+
+        // Calculate outputs using formulas
+        const outputs = {};
+        const context = { ...inputs, Math: Math }; // Include Math for formulas
+
+        // Process formulas in order (important for dependent calculations)
+        for (const output of outputsArray) {
+            const formula = formulas[output.id] || output.formula;
+            if (!formula) continue;
+
+            try {
+                // Create a function that evaluates the formula with context variables
+                const varNames = Object.keys(context);
+                const varValues = Object.values(context);
+                const evalFunc = new Function(...varNames, `return ${formula}`);
+                outputs[output.id] = evalFunc(...varValues);
+                context[output.id] = outputs[output.id]; // Add to context for dependent calcs
+            } catch (e) {
+                console.error('Formula error for', output.id, ':', e);
+                outputs[output.id] = 0;
+            }
+        }
+
+        // Display outputs
+        outputsArray.forEach(output => {
+            const el = document.getElementById(`output-${exerciseId}-${output.id}`);
+            if (el) {
+                let value = outputs[output.id] || 0;
+                if (output.format === 'currency') {
+                    el.textContent = '$' + Math.round(value).toLocaleString();
+                } else if (output.format === 'percent') {
+                    el.textContent = Math.round(value) + '%';
+                } else if (output.format === 'decimal') {
+                    el.textContent = value.toFixed(output.decimals || 1);
+                } else {
+                    el.textContent = Math.round(value);
+                }
+            }
+        });
+
+        // Check interpretations (support both old and new format)
+        const interpretationEl = document.getElementById(`calc-interpretation-${exerciseId}`);
+        if (interpretationEl) {
+            // Old format: exercise.interpretations (array with conditions)
+            if (exercise.interpretations) {
+                for (const interp of exercise.interpretations) {
+                    try {
+                        const varNames = Object.keys(outputs);
+                        const varValues = Object.values(outputs);
+                        const evalFunc = new Function(...varNames, `return ${interp.condition}`);
+                        if (evalFunc(...varValues)) {
+                            interpretationEl.innerHTML = interp.message;
+                            interpretationEl.className = 'calculator-interpretation ' + interp.type;
+                            interpretationEl.style.display = 'block';
+                            break;
+                        }
+                    } catch (e) {
+                        console.error('Interpretation error:', e);
+                    }
+                }
+            }
+            // New format: exercise.interpretation (object with thresholds)
+            else if (exercise.interpretation) {
+                const mainScore = outputs['homogamy_score'] || outputs['total'] || Object.values(outputs).pop() || 0;
+                let message = '';
+                let interpClass = '';
+
+                if (mainScore >= (exercise.interpretation.high?.threshold || 75)) {
+                    message = exercise.interpretation.high?.message || '';
+                    interpClass = 'positive';
+                } else if (mainScore >= (exercise.interpretation.medium?.threshold || 50)) {
+                    message = exercise.interpretation.medium?.message || '';
+                    interpClass = 'neutral';
+                } else {
+                    message = exercise.interpretation.low?.message || '';
+                    interpClass = 'warning';
+                }
+
+                if (message) {
+                    interpretationEl.innerHTML = message;
+                    interpretationEl.className = 'calculator-interpretation ' + interpClass;
+                    interpretationEl.style.display = 'block';
+                }
+            }
+        }
+    },
+
+    saveCalculator: function(exerciseId) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+        if (!exercise) return;
+
+        const inputs = {};
+        exercise.inputs.forEach(input => {
+            const el = document.getElementById(`calc-${exerciseId}-${input.id}`);
+            inputs[input.id] = parseFloat(el?.value) || 0;
+        });
+
+        // Support both data formats (same logic as calculateOutputs)
+        const outputsArray = exercise.outputs || exercise.calculations || [];
+        const formulas = exercise.formulas || {};
+
+        // Build formulas from calculations array if no formulas object
+        if (!exercise.formulas && exercise.calculations) {
+            exercise.calculations.forEach(calc => {
+                if (calc.formula) {
+                    formulas[calc.id] = calc.formula;
+                }
+            });
+        }
+
+        // Calculate outputs
+        const outputs = {};
+        const context = { ...inputs, Math: Math };
+
+        for (const output of outputsArray) {
+            const formula = formulas[output.id] || output.formula;
+            if (!formula) continue;
+
+            try {
+                const varNames = Object.keys(context);
+                const varValues = Object.values(context);
+                const evalFunc = new Function(...varNames, `return ${formula}`);
+                outputs[output.id] = evalFunc(...varValues);
+                context[output.id] = outputs[output.id];
+            } catch (e) {
+                outputs[output.id] = 0;
+            }
+        }
+
+        GameEngine.saveCalculatorResponse(exerciseId, inputs, outputs);
+        this.showSaveConfirmation(exerciseId);
+    },
+
+    // Quiz handlers
+    submitQuiz: function(exerciseId) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+        if (!exercise) return;
+
+        const answers = {};
+        exercise.questions.forEach(q => {
+            const selected = document.querySelector(`input[name="quiz-${exerciseId}-${q.id}"]:checked`);
+            if (selected) {
+                answers[q.id] = selected.value;
+            }
+        });
+
+        // Check if all questions answered
+        if (Object.keys(answers).length < exercise.questions.length) {
+            alert('Please answer all questions before submitting.');
+            return;
+        }
+
+        const result = GameEngine.saveQuizResponse(exerciseId, answers);
+
+        // Re-render quiz with results
+        const container = document.querySelector(`[data-exercise-id="${exerciseId}"]`).parentElement;
+        ExerciseRenderer.render(exerciseId, container.id);
+
+        if (result.passed) {
+            this.showSaveConfirmation(exerciseId, 'Quiz passed!');
+        } else if (result.attempts >= exercise.maxAttempts) {
+            alert(`Maximum attempts reached. The correct answers are now shown.`);
+        } else {
+            alert(`Score: ${Math.round(result.score * 100)}%. ${exercise.maxAttempts - result.attempts} attempts remaining.`);
+        }
+    },
+
+    // Reflection handlers
+    updateCharCount: function(exerciseId) {
+        const textarea = document.getElementById(`reflection-${exerciseId}`);
+        const counter = document.getElementById(`char-count-${exerciseId}`);
+        const exercise = GAME_DATA.exercises[exerciseId];
+
+        if (!textarea || !counter) return;
+
+        const len = textarea.value.length;
+        const max = exercise?.maxLength || 2000;
+        const min = exercise?.minLength || 0;
+
+        counter.textContent = `${len}/${max} characters${min ? ` (min: ${min})` : ''}`;
+
+        if (len < min) {
+            counter.className = 'reflection-char-count error';
+        } else if (len > max * 0.9) {
+            counter.className = 'reflection-char-count warning';
+        } else if (len >= min) {
+            counter.className = 'reflection-char-count success';
+        } else {
+            counter.className = 'reflection-char-count';
+        }
+    },
+
+    saveReflection: function(exerciseId) {
+        const textarea = document.getElementById(`reflection-${exerciseId}`);
+        const exercise = GAME_DATA.exercises[exerciseId];
+
+        if (!textarea) return;
+
+        const content = textarea.value.trim();
+        const minLength = exercise?.minLength || 0;
+
+        if (content.length < minLength) {
+            alert(`Please write at least ${minLength} characters.`);
+            return;
+        }
+
+        // Get current module from section controller if available
+        const moduleId = ModuleSectionController.currentModule || 2;
+
+        GameEngine.saveReflectionResponse(exerciseId, content, moduleId);
+        this.showSaveConfirmation(exerciseId, exercise?.journalEntry ? 'Added to journal!' : 'Reflection saved!');
+    },
+
+    // Mapping handlers
+    mappingState: {},
+
+    // Set mapping interaction mode
+    setMappingMode: function(exerciseId, mode) {
+        const state = this.mappingState[exerciseId];
+        if (!state) return;
+
+        state.mode = mode;
+        state.selectedNode = null; // Clear selection when changing modes
+
+        // Update mode buttons
+        document.querySelectorAll(`[data-exercise-id="${exerciseId}"] .mapping-mode-btn`).forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.mode === mode);
+        });
+
+        // Show/hide appropriate panel
+        ['add', 'connect', 'delete'].forEach(m => {
+            const panel = document.getElementById(`panel-${m}-${exerciseId}`);
+            if (panel) panel.style.display = m === mode ? 'block' : 'none';
+        });
+
+        // Update status message
+        const statusMessages = {
+            add: 'Select a person type below, then click on the canvas to add them.',
+            connect: 'Select a connection type, then click two people to connect them.',
+            delete: 'Click on a person or connection line to remove it.'
+        };
+        this.updateMappingStatus(exerciseId, statusMessages[mode]);
+
+        this.renderMappingNodes(exerciseId);
+    },
+
+    // Select connection type for connect mode
+    selectConnectionType: function(exerciseId, typeId) {
+        const state = this.mappingState[exerciseId];
+        if (!state) return;
+
+        state.selectedConnectionType = typeId;
+
+        // Update UI
+        document.querySelectorAll(`[data-exercise-id="${exerciseId}"] .mapping-connection-type`).forEach(el => {
+            el.classList.toggle('selected', el.dataset.type === typeId);
+        });
+
+        this.updateMappingStatus(exerciseId, `Connection type: ${typeId}. Click first person to start connecting.`);
+    },
+
+    selectNodeType: function(exerciseId, typeId) {
+        const state = this.mappingState[exerciseId];
+        if (!state) return;
+
+        // Ensure we're in add mode
+        if (state.mode !== 'add') {
+            this.setMappingMode(exerciseId, 'add');
+        }
+
+        // Toggle selection
+        if (state.selectedType === typeId) {
+            state.selectedType = null;
+            this.updateMappingStatus(exerciseId, 'Select a person type below, then click on the canvas to add them.');
+        } else {
+            state.selectedType = typeId;
+            const exercise = GAME_DATA.exercises[exerciseId];
+            const nodeType = exercise.nodeTypes.find(t => t.id === typeId);
+            this.updateMappingStatus(exerciseId, `Adding: ${nodeType?.label || typeId}. Click on the canvas to place them.`);
+        }
+
+        // Update UI
+        document.querySelectorAll(`[data-exercise-id="${exerciseId}"] .mapping-node-type`).forEach(el => {
+            el.classList.toggle('selected', el.dataset.type === state.selectedType);
+        });
+    },
+
+    updateMappingStatus: function(exerciseId, message) {
+        const statusEl = document.getElementById(`status-${exerciseId}`);
+        if (statusEl) {
+            statusEl.textContent = message;
+            // Update class based on current mode
+            const state = this.mappingState[exerciseId];
+            if (state) {
+                statusEl.className = 'mapping-status ' + (state.mode || 'add') + '-mode';
+            }
+        }
+    },
+
+    handleCanvasClick: function(event, exerciseId) {
+        const state = this.mappingState[exerciseId];
+        if (!state) return;
+
+        const canvas = document.getElementById(`canvas-${exerciseId}`);
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const mode = state.mode || 'add';
+
+        // Check if clicked on existing node
+        const clickedNode = state.nodes.find(n => {
+            const dx = n.x - x;
+            const dy = n.y - y;
+            return Math.sqrt(dx*dx + dy*dy) < 45;
+        });
+
+        if (mode === 'add') {
+            // ADD MODE: Add new nodes
+            if (clickedNode) {
+                // Clicked on existing node - do nothing in add mode
+                this.updateMappingStatus(exerciseId, 'That spot is taken. Click elsewhere to add a new person.');
+                return;
+            }
+            if (state.selectedType) {
+                const exercise = GAME_DATA.exercises[exerciseId];
+                const nodeType = exercise.nodeTypes.find(t => t.id === state.selectedType);
+                if (nodeType && state.nodes.length < (exercise.maxNodes || 15)) {
+                    const name = prompt('Enter name for this person:');
+                    if (name) {
+                        state.nodes.push({
+                            id: 'node_' + Date.now(),
+                            type: state.selectedType,
+                            name: name,
+                            x: x,
+                            y: y,
+                            color: nodeType.color,
+                            icon: nodeType.icon
+                        });
+                        this.updateMappingStatus(exerciseId, `Added ${name}. Click to add more or select a different type.`);
+                    }
+                } else if (state.nodes.length >= (exercise.maxNodes || 15)) {
+                    this.updateMappingStatus(exerciseId, 'Maximum nodes reached. Delete some to add more.');
+                }
+            } else {
+                this.updateMappingStatus(exerciseId, 'First select a person type from the list, then click here.');
+            }
+        } else if (mode === 'connect') {
+            // CONNECT MODE: Create connections between nodes
+            if (!clickedNode) {
+                this.updateMappingStatus(exerciseId, 'Click on a person to start a connection.');
+                return;
+            }
+
+            if (!state.selectedConnectionType) {
+                this.updateMappingStatus(exerciseId, 'First select a connection type above.');
+                return;
+            }
+
+            if (state.selectedNode && state.selectedNode !== clickedNode.id) {
+                // Second click - create connection
+                const existingConn = state.connections.find(c =>
+                    (c.from === state.selectedNode && c.to === clickedNode.id) ||
+                    (c.from === clickedNode.id && c.to === state.selectedNode)
+                );
+                if (existingConn) {
+                    // Update existing connection type
+                    existingConn.type = state.selectedConnectionType;
+                    this.updateMappingStatus(exerciseId, 'Connection updated! Click another pair to connect.');
+                } else {
+                    // Create new connection
+                    state.connections.push({
+                        from: state.selectedNode,
+                        to: clickedNode.id,
+                        type: state.selectedConnectionType
+                    });
+                    this.updateMappingStatus(exerciseId, 'Connected! Click another pair to continue.');
+                }
+                state.selectedNode = null;
+            } else {
+                // First click - select node
+                state.selectedNode = clickedNode.id;
+                const node = state.nodes.find(n => n.id === clickedNode.id);
+                this.updateMappingStatus(exerciseId, `Selected ${node?.name || 'person'}. Now click another person to connect.`);
+            }
+        } else if (mode === 'delete') {
+            // DELETE MODE: Remove nodes
+            if (clickedNode) {
+                const node = state.nodes.find(n => n.id === clickedNode.id);
+                if (confirm(`Delete ${node?.name || 'this person'}?`)) {
+                    // Remove node
+                    state.nodes = state.nodes.filter(n => n.id !== clickedNode.id);
+                    // Remove connections involving this node
+                    state.connections = state.connections.filter(c =>
+                        c.from !== clickedNode.id && c.to !== clickedNode.id
+                    );
+                    this.updateMappingStatus(exerciseId, 'Deleted. Click another to delete more.');
+                }
+            }
+        }
+
+        this.renderMappingNodes(exerciseId);
+        this.updateMappingMetrics(exerciseId);
+    },
+
+    // Delete a connection by index
+    deleteConnection: function(exerciseId, connIndex) {
+        const state = this.mappingState[exerciseId];
+        if (!state || state.mode !== 'delete') return;
+
+        if (confirm('Delete this connection?')) {
+            state.connections.splice(connIndex, 1);
+            this.renderMappingNodes(exerciseId);
+            this.updateMappingMetrics(exerciseId);
+            this.updateMappingStatus(exerciseId, 'Connection deleted.');
+        }
+    },
+
+    renderMappingNodes: function(exerciseId) {
+        const state = this.mappingState[exerciseId];
+        const canvas = document.getElementById(`canvas-${exerciseId}`);
+        const svg = document.getElementById(`svg-${exerciseId}`);
+
+        if (!state || !canvas || !svg) return;
+
+        const mode = state.mode || 'add';
+        const isDeleteMode = mode === 'delete';
+
+        // Clear existing
+        canvas.querySelectorAll('.mapping-node').forEach(n => n.remove());
+        svg.innerHTML = '';
+
+        // Connection type colors
+        const connColors = {
+            'close': '#27ae60',
+            'strong': '#27ae60',
+            'distant': '#95a5a6',
+            'weak': '#95a5a6',
+            'conflict': '#e74c3c',
+            'tension': '#e74c3c',
+            'cutoff': '#2c3e50'
+        };
+
+        // Draw connections
+        state.connections.forEach((conn, index) => {
+            const fromNode = state.nodes.find(n => n.id === conn.from);
+            const toNode = state.nodes.find(n => n.id === conn.to);
+            if (fromNode && toNode) {
+                const color = connColors[conn.type] || '#6c757d';
+
+                // Create a group for the connection (line + clickable area)
+                const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                g.classList.add('mapping-connection-group');
+
+                // Invisible wider line for easier clicking
+                if (isDeleteMode) {
+                    const hitArea = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    hitArea.setAttribute('x1', fromNode.x);
+                    hitArea.setAttribute('y1', fromNode.y);
+                    hitArea.setAttribute('x2', toNode.x);
+                    hitArea.setAttribute('y2', toNode.y);
+                    hitArea.setAttribute('stroke', 'transparent');
+                    hitArea.setAttribute('stroke-width', '20');
+                    hitArea.style.cursor = 'pointer';
+                    hitArea.onclick = () => this.deleteConnection(exerciseId, index);
+                    g.appendChild(hitArea);
+                }
+
+                // Visible line
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', fromNode.x);
+                line.setAttribute('y1', fromNode.y);
+                line.setAttribute('x2', toNode.x);
+                line.setAttribute('y2', toNode.y);
+                line.setAttribute('stroke', color);
+                line.setAttribute('stroke-width', '3');
+
+                // Dashed for distant/weak, dotted for conflict
+                if (conn.type === 'distant' || conn.type === 'weak') {
+                    line.setAttribute('stroke-dasharray', '8,4');
+                } else if (conn.type === 'conflict' || conn.type === 'tension') {
+                    line.setAttribute('stroke-dasharray', '4,4');
+                } else if (conn.type === 'cutoff') {
+                    line.setAttribute('stroke-dasharray', '2,6');
+                }
+
+                line.classList.add('mapping-connection');
+                if (isDeleteMode) {
+                    line.style.pointerEvents = 'none'; // Let hit area handle clicks
+                    g.classList.add('deletable');
+                }
+                g.appendChild(line);
+                svg.appendChild(g);
+            }
+        });
+
+        // Draw nodes
+        state.nodes.forEach(node => {
+            const el = document.createElement('div');
+            const isSelected = state.selectedNode === node.id;
+            el.className = 'mapping-node' + (isSelected ? ' selected' : '') + (isDeleteMode ? ' deletable' : '');
+            el.style.left = (node.x - 40) + 'px';
+            el.style.top = (node.y - 40) + 'px';
+            el.style.backgroundColor = node.color;
+            el.innerHTML = `
+                <span class="mapping-node-emoji">${node.icon}</span>
+                <span class="mapping-node-name">${node.name}</span>
+                ${isDeleteMode ? '<span class="delete-badge">✕</span>' : ''}
+            `;
+            el.onclick = (e) => {
+                e.stopPropagation();
+                this.handleCanvasClick({ clientX: e.clientX, clientY: e.clientY }, exerciseId);
+            };
+            canvas.appendChild(el);
+        });
+    },
+
+    updateMappingMetrics: function(exerciseId) {
+        const state = this.mappingState[exerciseId];
+        const exercise = GAME_DATA.exercises[exerciseId];
+
+        if (!state || !exercise?.metrics) return;
+
+        exercise.metrics.forEach(m => {
+            const el = document.getElementById(`metric-${exerciseId}-${m.id}`);
+            if (el) {
+                const value = GameEngine.evaluateMetric(m.formula, state.nodes, state.connections);
+                if (m.format === 'percent') {
+                    el.textContent = Math.round(value) + '%';
+                } else {
+                    el.textContent = Math.round(value);
+                }
+            }
+        });
+    },
+
+    clearMapping: function(exerciseId) {
+        if (confirm('Clear all nodes and connections?')) {
+            this.mappingState[exerciseId] = {
+                selectedType: null,
+                nodes: [],
+                connections: [],
+                selectedNode: null
+            };
+            this.renderMappingNodes(exerciseId);
+            this.updateMappingMetrics(exerciseId);
+        }
+    },
+
+    saveMapping: function(exerciseId) {
+        const state = this.mappingState[exerciseId];
+        if (!state) return;
+
+        const metrics = GameEngine.saveMappingResponse(exerciseId, state.nodes, state.connections);
+        this.showSaveConfirmation(exerciseId);
+    },
+
+    // Scenario handlers
+    selectBranch: function(exerciseId, branchId) {
+        // Don't allow changing after confirmed
+        if (GameEngine.state.scenarioPaths[exerciseId]) return;
+
+        // Update UI
+        document.querySelectorAll(`[data-exercise-id="${exerciseId}"] .scenario-branch`).forEach(el => {
+            el.classList.toggle('selected', el.dataset.branchId === branchId);
+        });
+    },
+
+    confirmScenario: function(exerciseId) {
+        const selected = document.querySelector(`[data-exercise-id="${exerciseId}"] .scenario-branch.selected`);
+        if (!selected) {
+            alert('Please select an option first.');
+            return;
+        }
+
+        const branchId = selected.dataset.branchId;
+        const branch = GameEngine.saveScenarioResponse(exerciseId, branchId);
+
+        // Re-render to show outcome
+        const container = document.querySelector(`[data-exercise-id="${exerciseId}"]`).parentElement;
+        ExerciseRenderer.render(exerciseId, container.id);
+    },
+
+    // Utility
+    skipExercise: function(exerciseId) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+        if (exercise?.skipWarning) {
+            if (!confirm(exercise.skipWarning)) return;
+        }
+
+        GameEngine.saveExerciseResponse(exerciseId, { skipped: true });
+        this.showSaveConfirmation(exerciseId, 'Exercise skipped');
+    },
+
+    showSaveConfirmation: function(exerciseId, message = 'Saved!') {
+        // Trigger game state save to persist exercise data
+        if (typeof saveGameState === 'function') {
+            saveGameState(false);
+        }
+
+        // Announce to screen readers
+        if (typeof announceToScreenReader === 'function') {
+            announceToScreenReader(message);
+        }
+
+        const container = document.querySelector(`[data-exercise-id="${exerciseId}"]`);
+        if (!container) return;
+
+        // Show brief confirmation
+        const footer = container.querySelector('.exercise-footer');
+        if (footer) {
+            const existing = footer.querySelector('.save-confirmation');
+            if (existing) existing.remove();
+
+            const confirm = document.createElement('span');
+            confirm.className = 'save-confirmation';
+            confirm.style.cssText = 'color: var(--success); font-weight: 600; margin-right: 12px;';
+            confirm.textContent = '✓ ' + message;
+            footer.insertBefore(confirm, footer.firstChild);
+
+            setTimeout(() => confirm.remove(), 3000);
+        }
+    }
+};
+
+
+// ========== MODULE SECTION CONTROLLER ==========
+// Manages the 10-section structure within each module
+
+const ModuleSectionController = {
+    currentModule: null,
+    currentSection: null,
+    sections: ['MODULE_INTRO', 'CONCEPT_INTRO', 'PRE_DECISION_EXERCISE', 'DECISION_1', 'COMPREHENSION_CHECK', 'REFLECTION_PROMPT', 'TRANSITION', 'DECISION_2', 'MODULE_SYNTHESIS', 'EXPORT_REMINDER'],
+
+    /**
+     * Initialize section controller for a module
+     */
+    init: function(moduleId) {
+        this.currentModule = moduleId;
+
+        // Get current section from state or start at beginning
+        const savedProgress = GameEngine.state.sectionProgress[moduleId];
+        this.currentSection = savedProgress?.currentSection || 'MODULE_INTRO';
+
+        this.renderProgressBar(moduleId);
+        this.renderSection(moduleId, this.currentSection);
+    },
+
+    /**
+     * Render the progress bar
+     */
+    renderProgressBar: function(moduleId) {
+        const container = document.getElementById(`module${moduleId}-section-progress`);
+        if (!container) return;
+
+        const moduleConfig = GAME_DATA.moduleSections?.[`module${moduleId}`];
+        const sectionTypes = GAME_DATA.moduleSections?.sectionTypes;
+
+        if (!moduleConfig || !sectionTypes) return;
+
+        const completedSections = GameEngine.state.sectionProgress[moduleId]?.completedSections || [];
+
+        let html = '<div class="section-progress-bar">';
+
+        this.sections.forEach((sectionKey, index) => {
+            const sectionType = sectionTypes[sectionKey];
+            const isCompleted = completedSections.includes(sectionKey);
+            const isCurrent = this.currentSection === sectionKey;
+            const isLocked = index > 0 && !completedSections.includes(this.sections[index - 1]) && !isCurrent;
+
+            let statusClass = '';
+            if (isCompleted) statusClass = 'completed';
+            else if (isCurrent) statusClass = 'current';
+            else if (isLocked) statusClass = 'locked';
+
+            html += `
+                <div class="section-step ${statusClass}"
+                     data-section="${sectionKey}"
+                     onclick="ModuleSectionController.navigateToSection('${moduleId}', '${sectionKey}')">
+                    <div class="section-step-indicator">
+                        ${isCompleted ? '✓' : index + 1}
+                    </div>
+                    <div class="section-step-label">${this.getSectionShortLabel(sectionKey)}</div>
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        container.innerHTML = html;
+    },
+
+    getSectionShortLabel: function(sectionKey) {
+        const labels = {
+            'MODULE_INTRO': 'Intro',
+            'CONCEPT_INTRO': 'Concepts',
+            'PRE_DECISION_EXERCISE': 'Activities',
+            'DECISION_1': 'Decision 1',
+            'COMPREHENSION_CHECK': 'Quiz',
+            'REFLECTION_PROMPT': 'Reflect',
+            'TRANSITION': 'Scenario',
+            'DECISION_2': 'Decision 2',
+            'MODULE_SYNTHESIS': 'Summary',
+            'EXPORT_REMINDER': 'Export'
+        };
+        return labels[sectionKey] || sectionKey;
+    },
+
+    /**
+     * Render section content
+     */
+    renderSection: function(moduleId, sectionKey) {
+        const container = document.getElementById(`module${moduleId}-section-content`);
+        if (!container) return;
+
+        const moduleConfig = GAME_DATA.moduleSections?.[`module${moduleId}`];
+        const sectionConfig = moduleConfig?.sections?.[sectionKey];
+
+        if (!sectionConfig) {
+            console.warn('Section config not found:', sectionKey);
+            return;
+        }
+
+        // Manage visibility of existing decisions container
+        const decisionsContainer = document.getElementById(`module${moduleId}-decisions-container`);
+        const isDecisionSection = sectionKey === 'DECISION_1' || sectionKey === 'DECISION_2';
+
+        if (decisionsContainer) {
+            decisionsContainer.style.display = isDecisionSection ? 'block' : 'none';
+        }
+
+        let html = '';
+
+        switch (sectionKey) {
+            case 'MODULE_INTRO':
+                html = this.renderModuleIntro(moduleId, moduleConfig, sectionConfig);
+                break;
+            case 'CONCEPT_INTRO':
+                html = this.renderConceptIntro(moduleId, sectionConfig);
+                break;
+            case 'PRE_DECISION_EXERCISE':
+                html = this.renderExercises(moduleId, sectionConfig);
+                break;
+            case 'COMPREHENSION_CHECK':
+                html = this.renderExercises(moduleId, sectionConfig);
+                break;
+            case 'REFLECTION_PROMPT':
+                html = this.renderExercises(moduleId, sectionConfig);
+                break;
+            case 'TRANSITION':
+                html = this.renderExercises(moduleId, sectionConfig);
+                break;
+            case 'DECISION_1':
+            case 'DECISION_2':
+                html = this.renderDecisionPlaceholder(moduleId, sectionConfig, sectionKey);
+                break;
+            case 'MODULE_SYNTHESIS':
+                html = this.renderSynthesis(moduleId, sectionConfig);
+                break;
+            case 'EXPORT_REMINDER':
+                html = this.renderExportReminder(moduleId, sectionConfig);
+                break;
+        }
+
+        // Add navigation
+        html += this.renderNavigation(moduleId, sectionKey);
+
+        container.innerHTML = html;
+
+        // Render exercises after container is in DOM
+        if (sectionConfig.exercises) {
+            sectionConfig.exercises.forEach((exId, index) => {
+                const exerciseContainer = document.getElementById(`exercise-container-${exId}`);
+                if (exerciseContainer) {
+                    ExerciseRenderer.render(exId, `exercise-container-${exId}`);
+                }
+            });
+        }
+
+        // Update state
+        GameEngine.updateSectionProgress(moduleId, sectionKey);
+    },
+
+    renderModuleIntro: function(moduleId, moduleConfig, sectionConfig) {
+        const objectivesHtml = sectionConfig.objectives?.map(obj => `<li>${obj}</li>`).join('') || '';
+
+        return `
+            <div class="module-intro-section">
+                <h2 style="color: var(--navy); margin-bottom: 20px;">${moduleConfig.title}</h2>
+                <div class="alert alert-info">
+                    <strong>⏱️ Time:</strong> ${moduleConfig.estimatedTime} |
+                    <strong>📚 Hammond:</strong> ${moduleConfig.hammondRef}
+                </div>
+
+                <div class="info-box" style="margin: 20px 0;">
+                    <h3>🎯 Learning Objectives</h3>
+                    <ul>${objectivesHtml}</ul>
+                </div>
+
+                ${sectionConfig.keyQuestion ? `
+                    <div class="alert" style="background: #fff3cd; border-left: 4px solid #ffc107;">
+                        <strong>Key Question:</strong> ${sectionConfig.keyQuestion}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    },
+
+    renderConceptIntro: function(moduleId, sectionConfig) {
+        let conceptsHtml = '';
+        if (sectionConfig.concepts) {
+            sectionConfig.concepts.forEach(conceptKey => {
+                const concept = GAME_DATA.concepts?.[conceptKey];
+                if (concept) {
+                    conceptsHtml += `
+                        <div class="concept-card" style="background: #f8f4ff; border-left: 4px solid var(--primary); padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0;">
+                            <h4 style="color: var(--primary); margin: 0 0 8px 0;">${concept.term}</h4>
+                            <p style="margin: 0; color: var(--text-dark);">${concept.definition}</p>
+                            <cite style="font-size: 0.85em; color: #666;">— ${concept.hammondRef}</cite>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        let exampleHtml = '';
+        if (sectionConfig.example) {
+            exampleHtml = `
+                <div class="alert" style="background: #e7f3ff; border-left: 4px solid #2196F3; margin-top: 20px;">
+                    <h4 style="color: #1565c0; margin: 0 0 8px 0;">📌 Example: ${sectionConfig.example.title}</h4>
+                    <p style="margin: 0;">${sectionConfig.example.description}</p>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="concept-intro-section">
+                <h3 style="color: var(--navy); margin-bottom: 20px;">📚 Key Concepts</h3>
+                ${conceptsHtml}
+                ${exampleHtml}
+            </div>
+        `;
+    },
+
+    renderExercises: function(moduleId, sectionConfig) {
+        if (!sectionConfig.exercises?.length) {
+            return '<p>No exercises configured for this section.</p>';
+        }
+
+        let html = '';
+        if (sectionConfig.instruction) {
+            html += `<p style="color: var(--text-dark); margin-bottom: 20px;">${sectionConfig.instruction}</p>`;
+        }
+
+        sectionConfig.exercises.forEach(exId => {
+            html += `<div id="exercise-container-${exId}" class="exercise-wrapper"></div>`;
+        });
+
+        return html;
+    },
+
+    renderDecisionPlaceholder: function(moduleId, sectionConfig, sectionKey) {
+        // Show the existing decisions container for this section
+        const decisionsContainer = document.getElementById(`module${moduleId}-decisions-container`);
+        if (decisionsContainer) {
+            decisionsContainer.style.display = 'block';
+        }
+
+        // Return instruction text
+        return `
+            <div class="decision-section-intro">
+                <p style="color: var(--text-dark); margin-bottom: 20px;">
+                    <strong>${sectionKey === 'DECISION_1' ? 'First Decision Point' : 'Second Decision Point'}</strong>
+                    ${sectionConfig.description ? ` — ${sectionConfig.description}` : ''}
+                </p>
+            </div>
+        `;
+    },
+
+    renderSynthesis: function(moduleId, sectionConfig) {
+        let conceptsHtml = '';
+        if (sectionConfig.keyConcepts) {
+            sectionConfig.keyConcepts.forEach(conceptKey => {
+                const concept = GAME_DATA.concepts?.[conceptKey];
+                if (concept) {
+                    conceptsHtml += `<span class="reflection-tag" style="background: var(--primary); color: white;">${concept.term}</span> `;
+                }
+            });
+        }
+
+        return `
+            <div class="module-synthesis-section">
+                <div class="module-summary">
+                    <h3>📋 Module Summary</h3>
+
+                    ${conceptsHtml ? `
+                        <div style="margin-bottom: 16px;">
+                            <strong>Key Concepts Covered:</strong><br>
+                            ${conceptsHtml}
+                        </div>
+                    ` : ''}
+
+                    <div class="summary-takeaway" style="background: rgba(255,255,255,0.15); padding: 16px; border-radius: 8px; margin: 16px 0;">
+                        <strong>Key Takeaway:</strong>
+                        <p style="margin: 8px 0 0 0;">${sectionConfig.takeaway || ''}</p>
+                    </div>
+
+                    ${sectionConfig.connectionToNext ? `
+                        <div style="margin-top: 16px; font-style: italic; opacity: 0.9;">
+                            <strong>Looking Ahead:</strong> ${sectionConfig.connectionToNext}
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+    },
+
+    renderExportReminder: function(moduleId, sectionConfig) {
+        return `
+            <div class="export-reminder-section">
+                <div class="alert" style="background: #ffe4e1; border-left: 4px solid #ff6b6b; padding: 20px;">
+                    <h3 style="color: #c0392b; margin: 0 0 12px 0;">💾 ${sectionConfig.message || 'Export Required'}</h3>
+                    <p style="margin: 0 0 20px 0;">Your progress is saved locally, but you must export your data for Canvas assignments.</p>
+                    <button class="btn btn-primary" onclick="exportData('text')">Export Game Data</button>
+                </div>
+            </div>
+        `;
+    },
+
+    renderNavigation: function(moduleId, currentSection) {
+        const currentIndex = this.sections.indexOf(currentSection);
+        const hasPrev = currentIndex > 0;
+        const hasNext = currentIndex < this.sections.length - 1;
+
+        return `
+            <div class="section-nav">
+                <div class="section-nav-left">
+                    ${hasPrev ? `
+                        <button class="btn btn-secondary" onclick="ModuleSectionController.prevSection('${moduleId}')">
+                            ← Previous
+                        </button>
+                    ` : ''}
+                </div>
+                <div class="section-nav-right">
+                    ${hasNext ? `
+                        <button class="btn btn-primary" onclick="ModuleSectionController.nextSection('${moduleId}')">
+                            ${currentSection === 'EXPORT_REMINDER' ? 'Complete Module' : 'Next →'}
+                        </button>
+                    ` : `
+                        <button class="btn btn-success" onclick="ModuleSectionController.completeModule('${moduleId}')">
+                            Complete Module ✓
+                        </button>
+                    `}
+                </div>
+            </div>
+        `;
+    },
+
+    navigateToSection: function(moduleId, sectionKey) {
+        const currentIndex = this.sections.indexOf(this.currentSection);
+        const targetIndex = this.sections.indexOf(sectionKey);
+        const completedSections = GameEngine.state.sectionProgress[moduleId]?.completedSections || [];
+
+        // Can navigate to completed sections or next section only
+        if (completedSections.includes(sectionKey) || targetIndex <= currentIndex + 1) {
+            this.currentSection = sectionKey;
+            this.renderProgressBar(moduleId);
+            this.renderSection(moduleId, sectionKey);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    },
+
+    nextSection: function(moduleId) {
+        const currentIndex = this.sections.indexOf(this.currentSection);
+        if (currentIndex < this.sections.length - 1) {
+            // Mark current as complete
+            GameEngine.updateSectionProgress(moduleId, this.currentSection, true);
+
+            // Move to next
+            this.currentSection = this.sections[currentIndex + 1];
+            this.renderProgressBar(moduleId);
+            this.renderSection(moduleId, this.currentSection);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Focus management for accessibility
+            this.focusSectionContent(moduleId);
+
+            // Announce section change to screen readers
+            if (typeof announceToScreenReader === 'function') {
+                const sectionLabel = this.getSectionShortLabel(this.currentSection);
+                announceToScreenReader(`Now on ${sectionLabel} section`);
+            }
+        }
+    },
+
+    prevSection: function(moduleId) {
+        const currentIndex = this.sections.indexOf(this.currentSection);
+        if (currentIndex > 0) {
+            this.currentSection = this.sections[currentIndex - 1];
+            this.renderProgressBar(moduleId);
+            this.renderSection(moduleId, this.currentSection);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Focus management for accessibility
+            this.focusSectionContent(moduleId);
+
+            // Announce section change
+            if (typeof announceToScreenReader === 'function') {
+                const sectionLabel = this.getSectionShortLabel(this.currentSection);
+                announceToScreenReader(`Back to ${sectionLabel} section`);
+            }
+        }
+    },
+
+    focusSectionContent: function(moduleId) {
+        // Focus the first focusable element in the section content after a short delay
+        setTimeout(() => {
+            const container = document.getElementById(`module${moduleId}-section-content`);
+            if (container) {
+                const focusable = container.querySelector('h2, h3, button, input, textarea, [tabindex="0"]');
+                if (focusable) {
+                    focusable.focus();
+                }
+            }
+        }, 100);
+    },
+
+    completeModule: function(moduleId) {
+        // Mark all sections as complete
+        this.sections.forEach(section => {
+            GameEngine.updateSectionProgress(moduleId, section, true);
+        });
+
+        // Call existing module completion logic
+        if (typeof window[`completeModule${moduleId}`] === 'function') {
+            window[`completeModule${moduleId}`]();
+        } else {
+            alert('Module complete! Return to Module Hub.');
+            showModuleHub();
+        }
+    }
+};
+
 
 // ========== INITIALIZE ALL NEW FEATURES ==========
 document.addEventListener('DOMContentLoaded', function() {

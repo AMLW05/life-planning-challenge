@@ -8,6 +8,7 @@
 const GameEngine = {
     // Current game state with multi-dimensional tracking
     state: {
+        // Core state (v1)
         lifeStage: null,
         economicClass: "middle",
         relationshipPath: "single",
@@ -15,7 +16,17 @@ const GameEngine = {
         advantageScore: 0,
         choices: {},           // All choices made: { moduleId: { questionId: choiceId } }
         consequences: [],      // Consequences revealed
-        reflections: []        // Player reflections entered
+        reflections: [],       // Player reflections entered
+
+        // NEW in v2: Exercise System State
+        exerciseResponses: {},      // { exerciseId: { response, timestamp, ... } }
+        sectionProgress: {},        // { moduleId: { currentSection, completedSections: [], startedAt } }
+        comprehensionResults: {},   // { exerciseId: { score, attempts, passed } }
+        journal: [],                // [ { timestamp, moduleId, exerciseId, tags, content } ]
+        mappingData: {},            // { exerciseId: { nodes, connections, metrics } }
+        scenarioPaths: {},          // { exerciseId: { branchChosen, timestamp } }
+        narrativeFlags: [],         // Flags set by exercises that affect narrative
+        version: 2                  // Save format version for migration
     },
 
     /**
@@ -23,9 +34,304 @@ const GameEngine = {
      */
     init: function(savedState) {
         if (savedState) {
-            this.state = { ...this.state, ...savedState };
+            // Migrate old saves to v2 format
+            const migratedState = this.migrateState(savedState);
+            this.state = { ...this.state, ...migratedState };
         }
-        console.log("GameEngine initialized with state:", this.state);
+    },
+
+    /**
+     * Migrate old save formats to current version
+     */
+    migrateState: function(savedState) {
+        // If no version field, it's v1 format
+        if (!savedState.version || savedState.version < 2) {
+            return {
+                ...savedState,
+                // Add new v2 fields with empty defaults
+                exerciseResponses: savedState.exerciseResponses || {},
+                sectionProgress: savedState.sectionProgress || {},
+                comprehensionResults: savedState.comprehensionResults || {},
+                journal: savedState.journal || [],
+                mappingData: savedState.mappingData || {},
+                scenarioPaths: savedState.scenarioPaths || {},
+                narrativeFlags: savedState.narrativeFlags || [],
+                version: 2
+            };
+        }
+        return savedState;
+    },
+
+    /**
+     * Save exercise response
+     */
+    saveExerciseResponse: function(exerciseId, response) {
+        this.state.exerciseResponses[exerciseId] = {
+            response: response,
+            timestamp: new Date().toISOString()
+        };
+        return true;
+    },
+
+    /**
+     * Get exercise response
+     */
+    getExerciseResponse: function(exerciseId) {
+        return this.state.exerciseResponses[exerciseId] || null;
+    },
+
+    /**
+     * Save ranking exercise response
+     */
+    saveRankingResponse: function(exerciseId, rankedItems) {
+        this.state.exerciseResponses[exerciseId] = {
+            type: 'ranking',
+            ranking: rankedItems,
+            topPriority: rankedItems[0],
+            timestamp: new Date().toISOString()
+        };
+        return true;
+    },
+
+    /**
+     * Save calculator exercise response
+     */
+    saveCalculatorResponse: function(exerciseId, inputs, outputs) {
+        this.state.exerciseResponses[exerciseId] = {
+            type: 'calculator',
+            inputs: inputs,
+            outputs: outputs,
+            timestamp: new Date().toISOString()
+        };
+        return true;
+    },
+
+    /**
+     * Save and grade quiz response
+     */
+    saveQuizResponse: function(exerciseId, answers) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+        if (!exercise || exercise.type !== 'quiz') return false;
+
+        // Grade the quiz
+        let correct = 0;
+        const results = {};
+        exercise.questions.forEach(q => {
+            const userAnswer = answers[q.id];
+            const correctOption = q.options.find(o => o.correct);
+            const isCorrect = userAnswer === correctOption?.id;
+            if (isCorrect) correct++;
+            results[q.id] = { userAnswer, correct: isCorrect, correctAnswer: correctOption?.id };
+        });
+
+        const score = correct / exercise.questions.length;
+        const currentAttempt = (this.state.comprehensionResults[exerciseId]?.attempts || 0) + 1;
+        // Normalize passingScore: values > 1 are percentages (e.g., 50), values <= 1 are decimals (e.g., 0.5)
+        let passingThreshold = exercise.passingScore || 0.5;
+        if (passingThreshold > 1) passingThreshold = passingThreshold / 100;
+        const passed = score >= passingThreshold;
+
+        this.state.comprehensionResults[exerciseId] = {
+            score: score,
+            attempts: currentAttempt,
+            passed: passed,
+            lastAttempt: new Date().toISOString(),
+            results: results
+        };
+
+        this.state.exerciseResponses[exerciseId] = {
+            type: 'quiz',
+            answers: answers,
+            score: score,
+            passed: passed,
+            timestamp: new Date().toISOString()
+        };
+
+        return { score, passed, attempts: currentAttempt, results };
+    },
+
+    /**
+     * Save reflection and add to journal
+     */
+    saveReflectionResponse: function(exerciseId, content, moduleId) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+
+        this.state.exerciseResponses[exerciseId] = {
+            type: 'reflection',
+            content: content,
+            timestamp: new Date().toISOString()
+        };
+
+        // Add to journal if configured
+        if (exercise?.journalEntry) {
+            this.state.journal.push({
+                timestamp: new Date().toISOString(),
+                moduleId: moduleId,
+                exerciseId: exerciseId,
+                tags: exercise.tags || [],
+                content: content
+            });
+        }
+
+        return true;
+    },
+
+    /**
+     * Save mapping exercise data
+     */
+    saveMappingResponse: function(exerciseId, nodes, connections) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+
+        // Calculate metrics
+        const metrics = {};
+        if (exercise?.metrics) {
+            exercise.metrics.forEach(m => {
+                try {
+                    // Safe evaluation of simple formulas
+                    metrics[m.id] = this.evaluateMetric(m.formula, nodes, connections);
+                } catch (e) {
+                    metrics[m.id] = 0;
+                }
+            });
+        }
+
+        this.state.mappingData[exerciseId] = {
+            nodes: nodes,
+            connections: connections,
+            metrics: metrics,
+            timestamp: new Date().toISOString()
+        };
+
+        this.state.exerciseResponses[exerciseId] = {
+            type: 'mapping',
+            nodeCount: nodes.length,
+            connectionCount: connections.length,
+            metrics: metrics,
+            timestamp: new Date().toISOString()
+        };
+
+        return metrics;
+    },
+
+    /**
+     * Helper to evaluate mapping metrics safely
+     */
+    evaluateMetric: function(formula, nodes, connections) {
+        try {
+            // Create a safe evaluation context
+            const context = {
+                nodes: nodes || [],
+                connections: connections || [],
+                Math: Math
+            };
+
+            // Use Function constructor for safe evaluation with limited scope
+            const evalFunc = new Function('nodes', 'connections', 'Math', `return ${formula}`);
+            const result = evalFunc(context.nodes, context.connections, context.Math);
+
+            return isNaN(result) ? 0 : result;
+        } catch (e) {
+            console.warn('Metric evaluation error for formula:', formula, e);
+            return 0;
+        }
+    },
+
+    /**
+     * Save scenario branch choice
+     */
+    saveScenarioResponse: function(exerciseId, branchId) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+        const branch = exercise?.branches?.find(b => b.id === branchId);
+
+        if (!branch) return false;
+
+        this.state.scenarioPaths[exerciseId] = {
+            branchChosen: branchId,
+            timestamp: new Date().toISOString()
+        };
+
+        // Apply consequences - handle both old and new field naming conventions
+        const advantageChange = branch.advantageChange ?? branch.consequences?.advantageScore ?? 0;
+        if (advantageChange !== 0) {
+            this.state.advantageScore += advantageChange;
+        }
+
+        // Handle narrative flags (both singular and plural forms)
+        if (branch.narrativeFlag) {
+            this.state.narrativeFlags.push(branch.narrativeFlag);
+        }
+        if (branch.consequences?.narrativeFlags) {
+            this.state.narrativeFlags.push(...branch.consequences.narrativeFlags);
+        }
+
+        this.state.exerciseResponses[exerciseId] = {
+            type: 'scenario',
+            branchChosen: branchId,
+            branchLabel: branch.label,
+            timestamp: new Date().toISOString()
+        };
+
+        return branch;
+    },
+
+    /**
+     * Update section progress for a module
+     */
+    updateSectionProgress: function(moduleId, sectionType, completed = false) {
+        if (!this.state.sectionProgress[moduleId]) {
+            this.state.sectionProgress[moduleId] = {
+                currentSection: sectionType,
+                completedSections: [],
+                startedAt: new Date().toISOString()
+            };
+        }
+
+        this.state.sectionProgress[moduleId].currentSection = sectionType;
+
+        if (completed && !this.state.sectionProgress[moduleId].completedSections.includes(sectionType)) {
+            this.state.sectionProgress[moduleId].completedSections.push(sectionType);
+        }
+
+        return this.state.sectionProgress[moduleId];
+    },
+
+    /**
+     * Get current section for a module
+     */
+    getCurrentSection: function(moduleId) {
+        return this.state.sectionProgress[moduleId]?.currentSection || 'MODULE_INTRO';
+    },
+
+    /**
+     * Check if section is completed
+     */
+    isSectionCompleted: function(moduleId, sectionType) {
+        return this.state.sectionProgress[moduleId]?.completedSections?.includes(sectionType) || false;
+    },
+
+    /**
+     * Get narrative hook based on exercise responses
+     */
+    getNarrativeHook: function(exerciseId, hookKey) {
+        const exercise = GAME_DATA.exercises[exerciseId];
+        const response = this.state.exerciseResponses[exerciseId];
+
+        if (!exercise?.narrativeHooks || !response) return null;
+
+        // For ranking exercises, use top priority
+        if (response.type === 'ranking' && response.topPriority) {
+            return exercise.narrativeHooks[response.topPriority];
+        }
+
+        // For other exercises, use hookKey
+        return exercise.narrativeHooks[hookKey] || null;
+    },
+
+    /**
+     * Check if narrative flag is set
+     */
+    hasNarrativeFlag: function(flag) {
+        return this.state.narrativeFlags.includes(flag);
     },
 
     /**
